@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--如果你有多个数据源需要通过<context:property-placeholder管理，且不愿意放在一个配置文件里，那么一定要加上ignore-unresolvable=“true"-->
+    <context:property-placeholder location="classpath:resource/app.properties" ignore-unresolvable="true" />
+
+    <!--shardedJedisPool的相关配置-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--新版是maxTotal，旧版是maxActive-->
+        <property name="maxTotal" value="200"/>
+        <property name="maxIdle" value="50"/>
+        <property name="maxWaitMillis" value="30000" />
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true" />
+    </bean>
+
+    <!--********** 【原生Jedis】 ************-->
+    <!-- ShardedJedisPool -->
+    <!--<bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool"  scope="singleton">
+        <constructor-arg index="0" ref="jedisPoolConfig" />
+        <constructor-arg index="1">
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <constructor-arg name="host" value="${redis.uri}" />
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>-->
+    <!-- JedisPool -->
+    <!--<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        &lt;!&ndash;<constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="${redis.password}" />
+        <constructor-arg name="database" value="${redis.database}" type="int" />&ndash;&gt;
+    </bean>-->
+
+    <!-- spring data redis -->
+    <bean id="jedisConnectionFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="usePool" value="true"></property>
+        <property name="hostName" value="${redis.host}" />
+        <property name="port" value="${redis.port}" />
+        <!--<property name="password" value="${redis.pass}" /> -->
+        <property name="timeout" value="30000" />
+        <!--
+        <property name="database" value="0"></property>
+        <constructor-arg index="0" ref="jedisPoolConfig" />
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
+        -->
+        <property name="poolConfig" ref="jedisPoolConfig" />
+    </bean>
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
+        <property name="valueSerializer">
+            <bean
+                    class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+    </bean>
+</beans>
