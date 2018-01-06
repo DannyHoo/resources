@@ -1,6 +1,6 @@
-$(document).ready(function () { /* ҳ���л� */
+$(document).ready(function() { /* 页码切换 */
     var NLNUM = $('.index .page_num a');
-    NLNUM.click(function () {
+    NLNUM.click(function() {
         NLNUM.removeClass('current');
         $(this).addClass('current');
         var NUMB = $(this).index() + 1;
@@ -19,8 +19,8 @@ $(document).ready(function () { /* ҳ���л� */
         }
     });
 
-    /* �������� */
-    $(window).scroll(function () {
+    /* 浮动内容 */
+    $(window).scroll(function() {
         var bodyTop = 0,
             //bodyHeight = $(window).height(),
             sideTop = $('.sidebar ul').eq(0).height() + 142;
@@ -45,10 +45,10 @@ $(document).ready(function () { /* ҳ���л� */
     });
 
 
-});
-/* jQuery Document End */
 
-/* ��߸������� */
+}); /* jQuery Document End */
+
+/* 侧边浮动内容 */
 lastScrollY = 0;
 
 function gotop() {
@@ -67,44 +67,45 @@ function gotop() {
         $("#gotop").fadeIn('fast');
     }
 }
-/*gotopcode = " \
- <div id=\"side_func\"> \
- \
- <a class=\"sfa block1 app\" href=\"http://q.krnet.cc\" target=\"_blank\" title=\"�Ա��ڲ��Ż�ȯ\"><span>�Ż�ȯ</span></a> \
- <a class=\"sfa block1 tougao\" href=\"/tougao.html\" target=\"_blank\" title=\"����鿴Ͷ��Ҫ��\"><span>Ͷ��</span></a> \
- <a class=\"sfa block2\" id=\"gocomm\" href=\"#commentDiv\"><span>����</span></a> \
- <a class=\"sfa block3\" id=\"gotop\" href=\"javascript:;\"  onfocus=\"this.blur()\"  style=\"display:none\"><span>����</span></a> \
- </div> \
- "
- document.write(gotopcode);
- $('#side_func').prependTo('body');
- window.setInterval("gotop()", 1);
+gotopcode = " \
+	<div id=\"side_func\"> \
+	 \
+	<a class=\"sfa block1 app\" href=\"http://q.krnet.cc\" target=\"_blank\" title=\"淘宝内部优惠券\"><span>优惠券</span></a> \
+	<a class=\"sfa block1 tougao\" href=\"/tougao.html\" target=\"_blank\" title=\"点击查看投稿要求\"><span>投稿</span></a> \
+	<a class=\"sfa block2\" id=\"gocomm\" href=\"#commentDiv\"><span>评论</span></a> \
+	<a class=\"sfa block3\" id=\"gotop\" href=\"javascript:;\"  onfocus=\"this.blur()\"  style=\"display:none\"><span>顶部</span></a> \
+	</div> \
+"
+document.write(gotopcode);
+$('#side_func').prependTo('body');
+window.setInterval("gotop()", 1);
 
- $('#side_func a.joinus').hover(
- function () {
- $(this).find('span.text1').css({
- 'display': 'none'
- });
- $(this).find('span.text2').css({
- 'display': 'block'
- });
- }, function () {
- $(this).find('span.text2').css({
- 'display': 'none'
- });
- $(this).find('span.text1').css({
- 'display': 'block'
- });
- });*/
+$('#side_func a.joinus').hover(
 
-$("#gotop").click(function () {
+    function() {
+        $(this).find('span.text1').css({
+            'display': 'none'
+        });
+        $(this).find('span.text2').css({
+            'display': 'block'
+        });
+    }, function() {
+        $(this).find('span.text2').css({
+            'display': 'none'
+        });
+        $(this).find('span.text1').css({
+            'display': 'block'
+        });
+    });
+
+$("#gotop").click(function() {
     $("html,body").animate({
         scrollTop: 0
     }, 200);
     return false;
 });
 
-$('#gocomm,.pti_comm').click(function () {
+$('#gocomm,.pti_comm').click(function() {
     var href = $(this).attr("href");
     var pos = $(href).offset().top - 35;
     $("html,body").animate({
@@ -112,10 +113,10 @@ $('#gocomm,.pti_comm').click(function () {
     }, 200);
     return false;
 });
-(function ($, window, document, undefined) {
+(function($, window, document, undefined) {
     var $window = $(window);
 
-    $.fn.lazyload = function (options) {
+    $.fn.lazyload = function(options) {
         var elements = this;
         var $container;
         var settings = {
@@ -134,15 +135,14 @@ $('#gocomm,.pti_comm').click(function () {
         function update() {
             var counter = 0;
 
-            elements.each(function () {
+            elements.each(function() {
                 var $this = $(this);
                 if (settings.skip_invisible && !$this.is(":visible")) {
                     return;
                 }
                 if ($.abovethetop(this, settings) || $.leftofbegin(this, settings)) { /* Nothing. */
                 } else if (!$.belowthefold(this, settings) && !$.rightoffold(this, settings)) {
-                    $this.trigger("appear");
-                    /* if we found an image we'll load, reset the counter */
+                    $this.trigger("appear"); /* if we found an image we'll load, reset the counter */
                     counter = 0;
                 } else {
                     if (++counter > settings.failure_limit) {
@@ -171,12 +171,12 @@ $('#gocomm,.pti_comm').click(function () {
 
         /* Fire one scroll event per scroll. Not one scroll event per image. */
         if (0 === settings.event.indexOf("scroll")) {
-            $container.bind(settings.event, function () {
+            $container.bind(settings.event, function() {
                 return update();
             });
         }
 
-        this.each(function () {
+        this.each(function() {
             var self = this;
             var $self = $(self);
 
@@ -190,13 +190,13 @@ $('#gocomm,.pti_comm').click(function () {
             }
 
             /* When appear is triggered load original image. */
-            $self.one("appear", function () {
+            $self.one("appear", function() {
                 if (!this.loaded) {
                     if (settings.appear) {
                         var elements_left = elements.length;
                         settings.appear.call(self, elements_left, settings);
                     }
-                    $("<img />").bind("load", function () {
+                    $("<img />").bind("load", function() {
 
                         var original = $self.attr("data-" + settings.data_attribute);
                         $self.hide();
@@ -210,7 +210,7 @@ $('#gocomm,.pti_comm').click(function () {
                         self.loaded = true;
 
                         /* Remove image from array so it is not looped next time. */
-                        var temp = $.grep(elements, function (element) {
+                        var temp = $.grep(elements, function(element) {
                             return !element.loaded;
                         });
                         elements = $(temp);
@@ -226,7 +226,7 @@ $('#gocomm,.pti_comm').click(function () {
             /* When wanted event is triggered load original image */
             /* by triggering appear.                              */
             if (0 !== settings.event.indexOf("scroll")) {
-                $self.bind(settings.event, function () {
+                $self.bind(settings.event, function() {
                     if (!self.loaded) {
                         $self.trigger("appear");
                     }
@@ -235,16 +235,16 @@ $('#gocomm,.pti_comm').click(function () {
         });
 
         /* Check if something appears when window is resized. */
-        $window.bind("resize", function () {
+        $window.bind("resize", function() {
             update();
         });
 
         /* With IOS5 force loading images when navigating with back button. */
         /* Non optimal workaround. */
         if ((/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)) {
-            $window.bind("pageshow", function (event) {
+            $window.bind("pageshow", function(event) {
                 if (event.originalEvent && event.originalEvent.persisted) {
-                    elements.each(function () {
+                    elements.each(function() {
                         $(this).trigger("appear");
                     });
                 }
@@ -252,7 +252,7 @@ $('#gocomm,.pti_comm').click(function () {
         }
 
         /* Force initial check if images should appear. */
-        $(document).ready(function () {
+        $(document).ready(function() {
             update();
         });
 
@@ -262,7 +262,7 @@ $('#gocomm,.pti_comm').click(function () {
     /* Convenience methods in jQuery namespace.           */
     /* Use as  $.belowthefold(element, {threshold : 100, container : window}) */
 
-    $.belowthefold = function (element, settings) {
+    $.belowthefold = function(element, settings) {
         var fold;
 
         if (settings.container === undefined || settings.container === window) {
@@ -274,7 +274,7 @@ $('#gocomm,.pti_comm').click(function () {
         return fold <= $(element).offset().top - settings.threshold;
     };
 
-    $.rightoffold = function (element, settings) {
+    $.rightoffold = function(element, settings) {
         var fold;
 
         if (settings.container === undefined || settings.container === window) {
@@ -286,7 +286,7 @@ $('#gocomm,.pti_comm').click(function () {
         return fold <= $(element).offset().left - settings.threshold;
     };
 
-    $.abovethetop = function (element, settings) {
+    $.abovethetop = function(element, settings) {
         var fold;
 
         if (settings.container === undefined || settings.container === window) {
@@ -298,7 +298,7 @@ $('#gocomm,.pti_comm').click(function () {
         return fold >= $(element).offset().top + settings.threshold + $(element).height();
     };
 
-    $.leftofbegin = function (element, settings) {
+    $.leftofbegin = function(element, settings) {
         var fold;
 
         if (settings.container === undefined || settings.container === window) {
@@ -310,7 +310,7 @@ $('#gocomm,.pti_comm').click(function () {
         return fold >= $(element).offset().left + settings.threshold + $(element).width();
     };
 
-    $.inviewport = function (element, settings) {
+    $.inviewport = function(element, settings) {
         return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) && !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
     };
 
@@ -319,43 +319,43 @@ $('#gocomm,.pti_comm').click(function () {
     /* $("img").filter(":below-the-fold").something() which is faster */
 
     $.extend($.expr[":"], {
-        "below-the-fold": function (a) {
+        "below-the-fold": function(a) {
             return $.belowthefold(a, {
                 threshold: 0
             });
         },
-        "above-the-top": function (a) {
+        "above-the-top": function(a) {
             return !$.belowthefold(a, {
                 threshold: 0
             });
         },
-        "right-of-screen": function (a) {
+        "right-of-screen": function(a) {
             return $.rightoffold(a, {
                 threshold: 0
             });
         },
-        "left-of-screen": function (a) {
+        "left-of-screen": function(a) {
             return !$.rightoffold(a, {
                 threshold: 0
             });
         },
-        "in-viewport": function (a) {
+        "in-viewport": function(a) {
             return $.inviewport(a, {
                 threshold: 0
             });
         },
         /* Maintain BC for couple of versions. */
-        "above-the-fold": function (a) {
+        "above-the-fold": function(a) {
             return !$.belowthefold(a, {
                 threshold: 0
             });
         },
-        "right-of-fold": function (a) {
+        "right-of-fold": function(a) {
             return $.rightoffold(a, {
                 threshold: 0
             });
         },
-        "left-of-fold": function (a) {
+        "left-of-fold": function(a) {
             return !$.rightoffold(a, {
                 threshold: 0
             });
