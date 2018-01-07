@@ -21,9 +21,7 @@ public class RedisCacheServiceImplTest extends BaseServiceSpringTest {
     @Test
     public void putStringTest(){
         String key="testKey";
-        String value="Danny";
-        String value1=new String("Danny");
-        String value2=new String("Danny");
+        String value="DannyHoo";
         String result=redisCacheService.putString(key,value);
         System.out.println(result);
     }

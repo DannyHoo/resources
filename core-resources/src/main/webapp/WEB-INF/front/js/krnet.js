@@ -67,36 +67,6 @@ function gotop() {
         $("#gotop").fadeIn('fast');
     }
 }
-gotopcode = " \
-	<div id=\"side_func\"> \
-	 \
-	<a class=\"sfa block1 app\" href=\"http://q.krnet.cc\" target=\"_blank\" title=\"淘宝内部优惠券\"><span>优惠券</span></a> \
-	<a class=\"sfa block1 tougao\" href=\"/tougao.html\" target=\"_blank\" title=\"点击查看投稿要求\"><span>投稿</span></a> \
-	<a class=\"sfa block2\" id=\"gocomm\" href=\"#commentDiv\"><span>评论</span></a> \
-	<a class=\"sfa block3\" id=\"gotop\" href=\"javascript:;\"  onfocus=\"this.blur()\"  style=\"display:none\"><span>顶部</span></a> \
-	</div> \
-"
-document.write(gotopcode);
-$('#side_func').prependTo('body');
-window.setInterval("gotop()", 1);
-
-$('#side_func a.joinus').hover(
-
-    function() {
-        $(this).find('span.text1').css({
-            'display': 'none'
-        });
-        $(this).find('span.text2').css({
-            'display': 'block'
-        });
-    }, function() {
-        $(this).find('span.text2').css({
-            'display': 'none'
-        });
-        $(this).find('span.text1').css({
-            'display': 'block'
-        });
-    });
 
 $("#gotop").click(function() {
     $("html,body").animate({
