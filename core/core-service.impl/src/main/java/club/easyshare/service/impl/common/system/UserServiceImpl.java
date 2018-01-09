@@ -21,9 +21,19 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserGlue userGlue;
 
+    /**
+     * 用户登录
+     * @param userParameter
+     * @return
+     */
     @Override
     public User login(UserParameter userParameter) {
-        return userGlue.login(userParameter);
+        try {
+            return userGlue.login(userParameter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

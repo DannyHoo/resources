@@ -1,5 +1,6 @@
 package club.easyshare.business.system;
 
+import club.easyshare.framework.utils.RSACrypt;
 import club.easyshare.framework.utils.RSAUtil;
 import org.apache.xerces.impl.dv.util.Base64;
 import org.springframework.stereotype.Component;
@@ -26,8 +27,8 @@ public class UserBusiness {
         //生成公钥和私钥
         RSAPublicKey publicKey = (RSAPublicKey) map.get("public");
         RSAPrivateKey privateKey = (RSAPrivateKey) map.get("private");
-        System.out.println("公钥："+String.valueOf(Base64.encode(publicKey.getEncoded())));
-        System.out.println("私钥："+String.valueOf(Base64.encode(privateKey.getEncoded())));
+        System.out.println("公钥：" + String.valueOf(Base64.encode(publicKey.getEncoded())));
+        System.out.println("私钥：" + String.valueOf(Base64.encode(privateKey.getEncoded())));
 
         //模
         String modulus = publicKey.getModulus().toString();
@@ -42,10 +43,23 @@ public class UserBusiness {
         RSAPrivateKey priKey = RSAUtil.getPrivateKey(modulus, private_exponent);
         //加密后的密文
         String mi = RSAUtil.encryptByPublicKey(ming, pubKey);
-        System.err.println("密文："+mi);
+        System.err.println("密文：" + mi);
         //解密后的明文
         ming = RSAUtil.decryptByPrivateKey(mi, priKey);
-        System.err.println("明文："+ming);
+        System.err.println("明文：" + ming);
         return "";
+    }
+
+    /**
+     * 解密经过RSA加密后的密码
+     *
+     * @param password
+     * @param privateKey
+     * @return
+     * @throws Exception
+     */
+    public String decryptPassword(String password, String privateKey) throws Exception {
+        String decryptedPassword = RSACrypt.decrypt(RSACrypt.loadPrivateKey(privateKey), RSACrypt.strToBase64(password));
+        return decryptedPassword;
     }
 }

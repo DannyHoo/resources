@@ -2,14 +2,10 @@ package club.easyshare.framework.utils;
 
 import javax.crypto.Cipher;
 import java.math.BigInteger;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.RSAPrivateKeySpec;
-import java.security.spec.RSAPublicKeySpec;
+import java.security.spec.*;
 import java.util.HashMap;
 
 /**
@@ -82,6 +78,39 @@ public class RSAUtil {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 通过公钥byte[]将公钥还原，适用于RSA算法
+     *
+     * @param keyBytes
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public static RSAPublicKey getPublicKey(byte[] keyBytes) throws
+            NoSuchAlgorithmException, InvalidKeySpecException {
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        RSAPublicKey publicKey = (RSAPublicKey) keyFactory.generatePublic(keySpec);
+        return publicKey;
+    }
+
+    /**
+     * 通过私钥byte[]将公钥还原，适用于RSA算法
+     *
+     * @param keyBytes
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public static RSAPrivateKey getPrivateKey(byte[] keyBytes) throws
+            NoSuchAlgorithmException, InvalidKeySpecException {
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+        RSAPrivateKey RSAprivateKey = (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+        return RSAprivateKey;
     }
 
     /**

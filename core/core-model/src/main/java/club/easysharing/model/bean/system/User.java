@@ -2,6 +2,7 @@ package club.easysharing.model.bean.system;
 
 import club.easysharing.model.bean.BaseBean;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 /**
@@ -17,6 +18,8 @@ public class User extends BaseBean{
     private String userName;
 
     private String password;
+
+    private String salt;
 
     private String portrait;
 
@@ -53,6 +56,15 @@ public class User extends BaseBean{
 
     public User setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public User setSalt(String salt) {
+        this.salt = salt;
         return this;
     }
 

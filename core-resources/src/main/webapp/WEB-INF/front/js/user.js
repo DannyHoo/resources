@@ -4,6 +4,7 @@ $(function () {
 });
 
 $(document).ready(function () {
+    /*检查用户是否登录*/
     var loginResult = $.ajax({url: "/user/checkLogin.html", data: "id:666,name:大大大", async: false});
     var isLogin = loginResult.responseText;
     if ("true" == isLogin) {
@@ -25,7 +26,7 @@ $(document).ready(function () {
     } else {
         $("#liAboutMenu").after(
             '<li class="layui-nav-item login_register" style=" float:right; list-style-type:none;">' +
-            '<a href="">登录/注册</a>' +
+            '<a href="javascript:showLoginModal();">登录/注册</a>' +
             '</li>'
         );
     }

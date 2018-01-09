@@ -1,4 +1,4 @@
-package club.easyshare.dao.jpa.system;
+package club.easyshare.dao.jpa;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;

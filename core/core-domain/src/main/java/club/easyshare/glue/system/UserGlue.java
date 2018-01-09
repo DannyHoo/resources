@@ -1,6 +1,8 @@
 package club.easyshare.glue.system;
 
 import club.easyshare.business.system.UserBusiness;
+import club.easyshare.dao.data.system.DictDataDO;
+import club.easyshare.dao.jpa.system.DictDataDAO;
 import club.easyshare.dao.jpa.system.UserDAO;
 import club.easyshare.framework.utils.MD5Util;
 import club.easyshare.glue.base.BaseGlue;
@@ -20,16 +22,34 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserGlue extends BaseGlue{
 
+    private final static String RsaPrivateKey="RsaPrivateKey";
+
     @Autowired
     private UserBusiness userBusiness;
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private DictDataDAO dictDataDAO;
 
-    public User login(User userParameter){
-        String userName=userParameter.getUserName();
-        String password= userParameter.getPassword();
-        User user=convertIgnoreNullProperty(userDAO.findByUserNameAndPassword(userName,password),User.class);
-        return user;
+    /**
+     * 用户登录
+     * @param userParameter
+     * @return
+     * @throws Exception
+     */
+    public User login(UserParameter userParameter) throws Exception {
+        User loginResult=null;
+        DictDataDO dictDataDO=dictDataDAO.findByDictDataCode(RsaPrivateKey);
+        String privateKey=dictDataDO.getDictDataValue();
+        User userFound=findByUserName(userParameter);
+        if (userFound!=null){
+            String password= userBusiness.decryptPassword(userParameter.getPassword(),privateKey);
+            String md5Password=MD5Util.md5HexTwoSourceAndSalt(password,userFound.getSalt());
+            if (userFound.getPassword().equals(md5Password)){
+                loginResult=userFound;
+            }
+        }
+        return loginResult;
     }
 
     public User findByUserName(UserParameter userParameter) {

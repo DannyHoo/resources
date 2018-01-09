@@ -52,6 +52,5 @@ public class MD5Util {
 
     public static void main(String[] args) {
         System.out.println(MD5Util.md5HexTwoSourceAndSalt("123","456"));
-        System.out.println(MD5Util.digest("123456"));
     }
 }

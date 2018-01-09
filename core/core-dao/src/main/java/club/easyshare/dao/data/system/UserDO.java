@@ -27,6 +27,9 @@ public class UserDO extends BaseEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "salt")
+    private String salt;
+
     @Column(name = "portrait")
     private String portrait;
 
@@ -72,6 +75,15 @@ public class UserDO extends BaseEntity {
 
     public UserDO setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public UserDO setSalt(String salt) {
+        this.salt = salt;
         return this;
     }
 

@@ -33,7 +33,7 @@
     <mvc:resources location="/WEB-INF/front/images/" mapping="/front/images/**"/>
     <mvc:resources location="/WEB-INF/plugins/" mapping="/plugins/**"/>
     <mvc:resources location="/WEB-INF/plugins/layui/font/" mapping="/front/font/**"/>
-    <mvc:resources location="/WEB-INF/common/images/" mapping="/common/images/**"/>
+    <mvc:resources location="/WEB-INF/common/" mapping="/common/**"/>
 
     <!-- 配置SpringMvc视图解析器: 如何把 handler 方法返回值解析为实际的物理视图 -->
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
