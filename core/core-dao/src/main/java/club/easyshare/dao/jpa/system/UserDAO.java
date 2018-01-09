@@ -18,6 +18,11 @@ public interface UserDAO extends BaseDao<UserDO>,PagingAndSortingRepository<User
 
     @Modifying
     @Query("update UserDO u set u.userName=?2 where u.id=?1")
-    public int updateUserName(Long userId, String userName);
+    int updateUserName(Long userId, String userName);
 
+
+    UserDO findByUserNameAndPassword(String userName, String password);
+
+
+    UserDO findByUserName(String userName);
 }

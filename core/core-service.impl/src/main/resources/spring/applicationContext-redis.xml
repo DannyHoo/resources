@@ -48,7 +48,7 @@
         <property name="usePool" value="true"></property>
         <property name="hostName" value="${redis.host}" />
         <property name="port" value="${redis.port}" />
-        <!--<property name="password" value="${redis.pass}" /> -->
+        <property name="password" value="KgCnm250SbSb" />
         <property name="timeout" value="30000" />
         <!--
         <property name="database" value="0"></property>

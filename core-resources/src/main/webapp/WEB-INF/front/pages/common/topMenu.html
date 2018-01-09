@@ -1,3 +1,6 @@
+
+<script src="${ctxPath}/front/js/user.js" type="text/javascript"></script>
+
 <!-- 顶部菜单栏 -->
 <div class="nav">
     <ul class="layui-nav">
@@ -50,10 +53,10 @@
                 <dd><a href="">电商平台</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item"><a href="">关于</a></li>
-        <!--<li class="layui-nav-item login_register" style=" float:right; list-style-type:none;"><a href="">登录/注册</a>
-        </li>-->
-        <li class="layui-nav-item" style=" float:right; list-style-type:none;">
+        <li id="liAboutMenu" class="layui-nav-item"><a href="">关于</a></li>
+        <li class="layui-nav-item login_register" style=" float:right; list-style-type:none;"><a href="javascript:showLoginModal();">登录/注册</a>
+        </li>
+        <!--<li class="layui-nav-item" style=" float:right; list-style-type:none;">
             <a href="javascript:;">
                 <img src="${ctxPath}/common/images/portrait/face.jpg" class="layui-circle" width="35" height="35">
                 <cite>DannyHoo</cite>
@@ -65,6 +68,6 @@
                 <dd><a href="javascript:;" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite>更换皮肤</cite></a></dd>
                 <dd><a href="pages/login/login.html" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
             </dl>
-        </li>
+        </li>-->
     </ul>
 </div>

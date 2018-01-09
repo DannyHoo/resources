@@ -1,0 +1,4 @@
+
+$(function () {
+    $("#loginModal").modal("show");
+})

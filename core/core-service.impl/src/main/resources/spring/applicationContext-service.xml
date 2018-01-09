@@ -22,6 +22,7 @@
 
     <!--<import resource="classpath:/spring/applicationContext-trans.xml" />-->
     <import resource="classpath:/spring/applicationContext-redis.xml" />
+    <import resource="classpath:/spring/applicationContext-domain.xml" />
 
     <!-- 扫描包，加载service实现类 -->
     <context:component-scan base-package="club.easyshare.service"></context:component-scan>

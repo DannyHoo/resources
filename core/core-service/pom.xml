@@ -11,5 +11,12 @@
 
     <artifactId>core-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>club.easysharing.core</groupId>
+            <artifactId>core-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

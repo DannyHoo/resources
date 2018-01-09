@@ -21,13 +21,9 @@
 ">
 
     <import resource="classpath:/spring/applicationContext-jpa.xml" />
-    <import resource="classpath:/spring/applicationContext-trans.xml" />
 
-    <!-- 扫描包，加载service实现类 -->
-    <context:component-scan base-package="top.danny.spider.service"></context:component-scan>
+    <!-- 扫描包，加载business、glue实现类 -->
+    <context:component-scan base-package="club.easyshare.business"></context:component-scan>
+    <context:component-scan base-package="club.easyshare.glue"></context:component-scan>
 
-    <!--启用注解驱动的定时任务-->
-    <task:annotation-driven scheduler="myScheduler"/>
-    <!--配置定时任务的线程池,若不配置多任务下会有问题-->
-    <task:scheduler id="myScheduler" pool-size="5"/>
 </beans>

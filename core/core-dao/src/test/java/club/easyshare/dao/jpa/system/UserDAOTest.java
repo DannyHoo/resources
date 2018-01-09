@@ -1,6 +1,7 @@
 package club.easyshare.dao.jpa.system;
 
 import club.easyshare.dao.data.system.UserDO;
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +21,6 @@ public class UserDAOTest extends BaseDaoSpringTest {
     @Test
     public void findUser(){
         UserDO userDO=userDAO.findOne(1l);
-
+        System.out.println(JSON.toJSONString(userDO));
     }
 }
