@@ -1,12 +1,26 @@
 $(function () {
     $("#loginModal").modal("show");
 
+    /**
+     * 点击登录按钮
+     */
     $("#loginBtn").click(function () {
         doLogin();
         $("#loginBtn").click(function () {
             doLogin();
         });
     });
+
+    /**
+     * 关闭登录弹窗
+     */
+    $("#login_close").click(function () {
+        /*var index=layer.open();
+        layer.close(index);*/
+        $("#layui-layer-shade1").remove();
+        $("#layui-layer1").remove();
+    });
+
 })
 
 function doLogin() {

@@ -2,6 +2,7 @@ package club.easyshare.service.impl.common.system;
 
 import club.easyshare.glue.system.UserGlue;
 import club.easyshare.service.common.system.UserService;
+import club.easyshare.service.impl.common.BaseServiceImpl;
 import club.easysharing.model.bean.system.User;
 import club.easysharing.model.parameter.system.UserParameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @Created on 2018-01-07 23:02:51
  */
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl extends BaseServiceImpl implements UserService{
 
     @Autowired
     private UserGlue userGlue;
