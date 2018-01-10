@@ -1,8 +1,13 @@
 package club.easyshare.glue.base;
 
+import club.easyshare.dao.data.system.DictDataDO;
+import club.easyshare.dao.jpa.system.DictDataDAO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
@@ -18,7 +23,22 @@ import java.util.Set;
  * @Company: lxjr.com
  * @Created on 2018-01-07 22:03:40
  */
+@Component
 public class BaseGlue {
+    private final static String RsaPrivateKey = "RsaPrivateKey";
+
+    private static String rsaPrivateKey;
+
+    @Autowired
+    private DictDataDAO dictDataDAO;
+
+    protected String getRsaPrivateKey(){
+        if (StringUtils.isEmpty(rsaPrivateKey)){
+            DictDataDO dictDataDO = dictDataDAO.findByDictDataCode(RsaPrivateKey);
+            rsaPrivateKey=dictDataDO.getDictDataValue();
+        }
+        return rsaPrivateKey;
+    }
     protected <T> T convertIgnoreNullProperty(Object source, Class<T> targetClass) {
         return convert(source, targetClass);
     }

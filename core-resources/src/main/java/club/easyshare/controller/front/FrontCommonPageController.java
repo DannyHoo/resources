@@ -22,13 +22,6 @@ public class FrontCommonPageController {
         return "front/pages/common/header";
     }
 
-    @RequestMapping("/loginPage")
-    public String loginPage(HttpServletRequest request) {
-        return "front/pages/login";
-    }
-
-
-
     @RequestMapping("/template1")
     public String template1(HttpServletRequest request) {
         return "front/pages/templates/template1";

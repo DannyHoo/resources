@@ -40,6 +40,9 @@ public class ViewRecordDO extends BaseEntity {
     @Column(name = "protocol")
     private String protocol;
 
+    @Column(name = "refer")
+    private String refer;
+
     public String getUserAgent() {
         return userAgent;
     }
@@ -100,6 +103,15 @@ public class ViewRecordDO extends BaseEntity {
 
     public ViewRecordDO setProtocol(String protocol) {
         this.protocol = protocol;
+        return this;
+    }
+
+    public String getRefer() {
+        return refer;
+    }
+
+    public ViewRecordDO setRefer(String refer) {
+        this.refer = refer;
         return this;
     }
 }

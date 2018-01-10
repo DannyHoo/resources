@@ -42,4 +42,12 @@ public class AbstractController {
         request.getSession().setAttribute(USER_INFO_SESSION_ID, JSON.toJSONString(user));
     }
 
+    /**
+     * 从Session中清除当前登录用户
+     *
+     * @param request
+     */
+    protected void deleteCurrentUser(HttpServletRequest request) {
+        request.getSession().setAttribute(USER_INFO_SESSION_ID,null);
+    }
 }

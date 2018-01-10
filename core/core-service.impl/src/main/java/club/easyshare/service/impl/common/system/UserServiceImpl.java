@@ -41,4 +41,14 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService{
     public User findByUserName(UserParameter userParameter) {
         return userGlue.findByUserName(userParameter);
     }
+
+    @Override
+    public User register(UserParameter userParameter) {
+        try {
+            return userGlue.register(userParameter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

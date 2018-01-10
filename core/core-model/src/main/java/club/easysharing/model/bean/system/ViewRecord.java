@@ -27,6 +27,8 @@ public class ViewRecord extends BaseBean {
     private String remoteHost;
     //HTTP/1.1
     private String protocol;
+    //上一个页面地址
+    private String refer;
 
     public String getUserAgent() {
         return userAgent;
@@ -88,6 +90,15 @@ public class ViewRecord extends BaseBean {
 
     public ViewRecord setProtocol(String protocol) {
         this.protocol = protocol;
+        return this;
+    }
+
+    public String getRefer() {
+        return refer;
+    }
+
+    public ViewRecord setRefer(String refer) {
+        this.refer = refer;
         return this;
     }
 }

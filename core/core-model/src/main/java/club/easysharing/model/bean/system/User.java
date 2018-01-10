@@ -41,6 +41,8 @@ public class User extends BaseBean{
 
     private Long districtId;
 
+    private Integer status;
+
     public String getUserName() {
         return userName;
     }
@@ -155,6 +157,15 @@ public class User extends BaseBean{
 
     public User setDistrictId(Long districtId) {
         this.districtId = districtId;
+        return this;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public User setStatus(Integer status) {
+        this.status = status;
         return this;
     }
 }

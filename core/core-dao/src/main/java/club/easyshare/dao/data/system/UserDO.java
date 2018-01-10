@@ -60,6 +60,9 @@ public class UserDO extends BaseEntity {
     @Column(name="districtId")
     private Long districtId;
 
+    @Column(name="status")
+    private Integer status;
+
     public String getUserName() {
         return userName;
     }
@@ -174,6 +177,15 @@ public class UserDO extends BaseEntity {
 
     public UserDO setDistrictId(Long districtId) {
         this.districtId = districtId;
+        return this;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public UserDO setStatus(Integer status) {
+        this.status = status;
         return this;
     }
 }

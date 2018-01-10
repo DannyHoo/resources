@@ -26,6 +26,16 @@ public class UserController extends AbstractController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/loginPage")
+    public String loginPage(HttpServletRequest request) {
+        return "front/pages/login";
+    }
+
+    @RequestMapping("/registerPage")
+    public String registerPage(HttpServletRequest request) {
+        return "front/pages/register";
+    }
+
     @RequestMapping("/checkLogin")
     @ResponseBody
     public String header(HttpServletRequest request) {
@@ -51,5 +61,29 @@ public class UserController extends AbstractController {
         return "false";
     }
 
+    @RequestMapping("/doRegister")
+    @ResponseBody
+    public String doRegister(HttpServletRequest request) {
+        String email=request.getParameter("email");
+        String userName=request.getParameter("userName");
+        String password=request.getParameter("password");
+        UserParameter userParameter=new UserParameter();
+        userParameter.setEmail(email).setUserName(userName).setPassword(password);
+        User user=userService.register(userParameter);
+        if (user!=null){
+            setCurrentUser(request,user);
+            return "true";
+        }
+        return "false";
+    }
 
+    @RequestMapping("/exitLogin")
+    @ResponseBody
+    public String exitLogin(HttpServletRequest request) {
+        User currentUser=getCurrentUser(request);
+        if (currentUser!=null){
+            deleteCurrentUser(request);
+        }
+        return "true";
+    }
 }

@@ -16,4 +16,5 @@ public interface UserService {
 
     User findByUserName(UserParameter userParameter);
 
+    User register(UserParameter userParameter);
 }

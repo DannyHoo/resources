@@ -17,31 +17,37 @@
                 <div class="modal-header">
                     <button type="button" id="login_close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                             class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;text-align:center;">登录</h4>
+                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;text-align:center;">注册</h4>
                 </div>
                 <div class="modal-body">
                     <section class="box-login v5-input-txt" id="box-login">
                         <form id="login_form" action="" method="post" autocomplete="off">
 
                             <ul>
-                                <li class="form-group"><input class="form-control" id="id_account_l" maxlength="50"
-                                                              name="account_l" placeholder="请输入邮箱账号/用户名" type="text">
+                                <li class="form-group">
+                                    <input class="form-control" id="id_email_l" maxlength="50" name="account_l" placeholder="请输入邮箱账号" type="text">
                                 </li>
-                                <li class="form-group"><input class="form-control" id="id_password_l" name="password_l"
-                                                              placeholder="请输入密码" type="password"></li>
+                                <li class="form-group">
+                                    <input class="form-control" id="id_account_l" maxlength="50" name="account_l" placeholder="请输入用户名" type="text">
+                                </li>
+                                <li class="form-group">
+                                    <input class="form-control" id="id_password_l" name="password_l" placeholder="请输入密码" type="password">
+                                </li>
                             </ul>
                         </form>
-                        <p class="good-tips marginB10" style="font-size:12px;"><a id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？<a
-                                href="/user/registerPage.html" id="btnRegister">立即注册</a></p>
+                        <p class="good-tips marginB10" style="font-size:12px;"><a id="btnForgetpsw" class="fr">忘记密码？</a>已有账号？<a
+                                href="/user/loginPage.html" id="btnRegister">立即登录</a></p>
                         <div class="login-box marginB10">
-                            <button id="loginBtn" type="button" class="btn btn-micv5 btn-block globalLogin" style="margin-top:15px;">登录</button>
+                            <button id="registerBtn" type="button" class="btn btn-micv5 btn-block globalLogin" style="margin-top:15px;">注册</button>
                             <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">错误提示</div>
                         </div>
 
-                        <div class="threeLogin"><span>其他方式登录</span><a class="nqq" href="javascript:;"></a><a class="nwx"
-                                                                                                             href="javascript:;"></a>
-                            <!--<a class="nwb"></a>--></div>
-
+                        <!--<div class="threeLogin">
+                            <span>其他方式登录</span>
+                            <a class="nqq" href="javascript:;"></a>
+                            <a class="nwx" href="javascript:;"></a>
+                            &lt;!&ndash;<a class="nwb"></a>&ndash;&gt;
+                        </div>-->
                     </section>
                 </div>
             </div>
@@ -54,7 +60,7 @@
 <script type="text/javascript" src="${ctxPath}/front/js/login/modal.js"></script>
 <script type="text/javascript" src="${ctxPath}/plugins/layui/lay/modules/layer.js"></script>
 <script type="text/javascript" src="${ctxPath}/front/js/login/jsencrypt.min.js"></script>
-<script type="text/javascript" src="${ctxPath}/front/js/login/login.js"></script>
+<script type="text/javascript" src="${ctxPath}/front/js/login/register.js"></script>
 
 
 

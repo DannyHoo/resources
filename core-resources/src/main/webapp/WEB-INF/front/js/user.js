@@ -19,7 +19,7 @@ $(document).ready(function () {
             '<dd><a href="javascript:;" data-url="pages/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd> ' +
             '<dd><a href="javascript:;" data-url="pages/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd> ' +
             '<dd><a href="javascript:;" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite>更换皮肤</cite></a></dd> ' +
-            '<dd><a href="pages/login/login.html" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd> ' +
+            '<dd><a href="javascript:exit();" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd> ' +
             '</dl> ' +
             '</li>'
         );
@@ -34,3 +34,18 @@ $(document).ready(function () {
         $("p").slideToggle();
     });
 });
+
+function exit() {
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "/user/exitLogin.html",
+        datatype: 'json',
+        success: function (data) {
+            if("true" == data){
+                window.location.reload(true);
+            }
+        }
+    })
+    ;
+}

@@ -146,8 +146,8 @@ var refuseDevTools=function () {
             if (!(heightThreshold && widthThreshold) && (window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized || widthThreshold || heightThreshold)) {
                 if (!devtools.open || devtools.orientation !== orientation) {}
                 //打开开发者工具
-                window.location="/html/bg/pages/no_access.html"
-                alert("不允许打开开发者工具");
+                window.location="/error/notAccess.html"
+                //alert("不允许打开开发者工具");
             } else {
                 al("n1");
                 noconyet = 1

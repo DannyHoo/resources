@@ -21,6 +21,8 @@ import java.util.StringTokenizer;
 @Controller
 public class FrontIndexController {
 
+    protected final static boolean isSkipSaveViewRecord = Boolean.parseBoolean(System.getProperty("isSkipSaveViewRecord", "false")); //默认记录访问记录
+
     @Autowired
     private ViewRecordService viewRecordService;
 
@@ -37,8 +39,10 @@ public class FrontIndexController {
     }
 
     private void saveViewRecords(HttpServletRequest request) {
-        ViewRecordParameter viewRecordParameter = getViewRecordParameter(request);
-        viewRecordService.saveViewRecord(viewRecordParameter);
+        if (!isSkipSaveViewRecord){
+            ViewRecordParameter viewRecordParameter = getViewRecordParameter(request);
+            viewRecordService.saveViewRecord(viewRecordParameter);
+        }
     }
 
     private ViewRecordParameter getViewRecordParameter(HttpServletRequest request) {
@@ -50,6 +54,7 @@ public class FrontIndexController {
         String remoteHost = request.getRemoteHost();
         String method = request.getMethod();
         String protocol = request.getProtocol();
+        String refer = request.getHeader("referer");
         ViewRecordParameter viewRecordParameter = new ViewRecordParameter();
         viewRecordParameter.setUserAgent(agent)
                 .setUserBrowser(userbrowser)
@@ -57,7 +62,8 @@ public class FrontIndexController {
                 .setRemoteAddr(remoteAddr)
                 .setRemoteHost(remoteHost)
                 .setMethod(method)
-                .setProtocol(protocol);
+                .setProtocol(protocol)
+                .setRefer(refer);
         return viewRecordParameter;
     }
 
