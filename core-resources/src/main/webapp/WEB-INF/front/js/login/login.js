@@ -8,6 +8,7 @@ $(function () {
         });
     });
 })
+
 function doLogin() {
     var userName = $("#id_account_l").val();
     var password = $("#id_password_l").val();
@@ -23,15 +24,19 @@ function doLogin() {
     var temp;
     $.ajax({
         async: false,
-        data:{"userName":userName,"password":encrypted},
+        data: {"userName": userName, "password": encrypted},
         type: "post",
         url: "/user/doLogin.html",
         datatype: 'json',
         success: function (data) {
             temp = data;
+            if (temp == "true") {
+                window.parent.location.reload(true);
+            }else{
+                layer.msg('登录失败~');
+            }
         }
     });
-    alert(temp);
 
     /*var decrypt = new JSEncrypt();
      decrypt.setPrivateKey(privateKey);

@@ -23,13 +23,23 @@ public class AbstractController {
      * @param request
      * @return
      */
-    public static User getCurrentUser(HttpServletRequest request) {
+    public User getCurrentUser(HttpServletRequest request) {
         Object currentUserInfo = request.getSession().getAttribute(USER_INFO_SESSION_ID);
         if (currentUserInfo == null) {
             return null;
         }
         User currentUser = JSON.parseObject(currentUserInfo.toString(), User.class);
         return currentUser;
+    }
+
+    /**
+     * 向Session中存储当前登录用户
+     *
+     * @param request
+     * @param user
+     */
+    protected void setCurrentUser(HttpServletRequest request, User user) {
+        request.getSession().setAttribute(USER_INFO_SESSION_ID, JSON.toJSONString(user));
     }
 
 }

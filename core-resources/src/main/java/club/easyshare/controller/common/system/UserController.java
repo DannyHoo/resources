@@ -45,9 +45,11 @@ public class UserController extends AbstractController {
         userParameter.setUserName(userName).setPassword(password);
         User user=userService.login(userParameter);
         if (user!=null){
+            setCurrentUser(request,user);
             return "true";
         }
         return "false";
     }
+
 
 }
