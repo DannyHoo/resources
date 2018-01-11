@@ -1,0 +1,176 @@
+#footer{
+	clear:both;
+}
+#footer .footer_3 {
+	width: 100%;
+	height: 270px;
+	background: #1b202b;
+}
+#footer .footer3 {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#footer .f_l {
+	width: 223px;
+	height: 122px;
+	float: left;
+	margin-top: 40px;
+}
+
+#footer .f_l ul li {
+	line-height: 30px;
+}
+#footer .f_l ul li:nth-child(2){
+	margin-top:20px;
+}
+#footer .f_l ul li a {
+	margin-right: 55px;
+	color: #a8a8a8;
+	font-size: 14px;
+}
+#footer .f_l ul li a:hover{
+	color:#ebebeb;
+}
+#footer .f_l ul li:nth-child(1) a {
+	font-weight: bold;
+	font-size: 16px;
+	margin-right: 47px;
+}
+#footer .f_l ul li:nth-child(1) a:hover{
+	color:#a8a8a8
+}
+#footer .f_c {
+	width: 250px;
+	height: 112px;
+	margin-top: 44px;
+	float: left;
+	line-height: 30px;
+	color: #a8a8a8;
+}
+
+#footer .f_c ul li {
+	height: 31px;
+	line-height: 26px;
+}
+
+#footer .f_c ul li:nth-child(1) {
+	color: #ed5346;
+	font-size: 28px;
+	font-weight: bold;
+	padding-bottom: 15px;
+}
+
+#footer .f_r {
+	width: 455px;
+	height: 165px;
+	float: right;
+	margin-top: 50px;
+}
+
+#footer .f_r ul li {
+	float: left;
+	margin-left: 50px;
+}
+
+#footer .f_r ol {
+	margin-left: 50px;
+}
+#footer .f_r ol li {
+	float: left;
+	color: #ebebeb;
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	padding-right: 52px;
+}
+
+#footer .f_r ol li:nth-child(3) {
+	padding-right: 0;
+}
+
+#footer .f_c a {
+	color: #a8a8a8;
+}
+
+#footer .f_r a{
+	color: #ebebeb;
+}
+#footer .foot_4 {
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid #2A2F3A;
+	clear: both;
+	margin-top: 100px;
+}
+.trademark{
+	float: left;
+	margin-top: 10px;
+}
+
+.trademarkit{
+	float: right;
+	line-height: 50px;
+	color: #9c9999;
+}
+.trademark a{
+	background: url(../img/trademark.png) no-repeat;
+    width: 100px;
+    height: 34px;
+    cursor: pointer;
+    text-indent: 100000px;
+    line-height: 34px;
+    overflow: hidden;
+    display:block;
+	float:left;
+	padding-right:10px;
+	padding-top:10px;
+}
+.trademark .chenxin {
+    background-position: 0 0;
+}
+.trademark .chenxin:hover {
+    background-position: 0 -46px;
+}
+.trademark .lianmeng {
+    background-position: -110px 0;
+}
+.trademark .lianmeng:hover {
+    background-position: -110px -46px;
+}
+.trademark .norton {
+    background-position: -220px 0;
+}
+.trademark .norton:hover {
+    background-position: -220px -46px;
+}
+.trademark .it {
+    background-position: -330px 0;
+}
+.trademark .it:hover {
+    background-position: -330px -46px;
+}
+.foot_4 dl{
+	width:1000px;
+	margin:0 auto;
+}
+#Shortcuts{
+	width:44px;
+	height:21px;
+	display:block;
+	background: url(../img/title.jpg) no-repeat;
+	text-align: center;
+	color:#fff;
+	position:absolute;
+	left:80px;
+	top:7px;
+	display:none;
+}
+#footer .f_c ul li.strik a:hover{
+	color:#fff;
+}
+#strik:hover{
+	z-index:999;
+	color:red;
+}

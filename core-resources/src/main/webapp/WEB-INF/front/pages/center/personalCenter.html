@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)http://www.easysharing.club/ -->
+<html>
+<head>
+    <%
+    include("../common/header.html"){}
+    %>
+</head>
+<body class="index hello" style="">
+
+<div class="header">
+    <!-- 顶部一级菜单栏 -->
+    <%
+    include("../common/topMenu.html"){}
+    %>
+</div>
+<div class="wrap">
+    <!-- 顶部固定菜单栏 -->
+    <%
+    include("../common/topPublishBorder.html"){}
+    %>
+    <!-- 顶部 热词 引流 -->
+    <div class="toutiao publicborder">
+        <h2>
+            <a href="#" target="_blank"><i class="tt10"></i>习主席2018新年贺词</a>
+            <a href="#" target="_blank"><i class="tt20"></i>资本热捧A股区块链概念掀涨停潮</a>
+        </h2>
+    </div>
+
+    <div>
+        <%
+        include("center.html"){}
+        %>
+    </div>
+
+    <script type="text/javascript" src="${ctxPath}/front/js/krnet.js"></script>
+</div>
+<div class="footer">
+    <!-- footer公共内容 -->
+    <%
+    include("../common/footer.html"){}
+    %>
+</div>
+
+<script src="${ctxPath}/plugins/layui/layui.js"></script>
+<script>
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+    layui.use(['carousel', 'form'], function () {
+        var carousel = layui.carousel
+                , form = layui.form;
+        //图片轮播
+        carousel.render({
+            elem: '#test1'
+            , width: '430px'
+            , height: '300px'
+            , interval: 1800
+            , anim: 'fade'
+        });
+        //事件
+        carousel.on('change(test4)', function (res) {
+            console.log(res)
+        });
+        var $ = layui.$, active = {
+            set: function (othis) {
+                var THIS = 'layui-bg-normal'
+                        , key = othis.data('key')
+                        , options = {};
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+        //监听开关
+        form.on('switch(autoplay)', function () {
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+        $('.demoSet').on('keyup', function () {
+            var value = this.value
+                    , options = {};
+            if (!/^\d+$/.test(value)) return;
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function () {
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+</script>
+
+<!-- 右侧导航栏 -->
+<%
+include("../common/navigationbar.html"){}
+%>
+
+</body>
+</html>

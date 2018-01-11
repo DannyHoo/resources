@@ -1,6 +1,6 @@
 (function () {
 
-    refuseDevTools();
+    //refuseDevTools();
 
 })();
 function showLoginModal() {

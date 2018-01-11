@@ -1,0 +1,25 @@
+.activate{
+	width: 100%;
+	height: 50px;
+	background: #ec5345;
+}
+.activata-head{
+	width: 1000px;
+	margin: 0 auto;
+}
+.activata-head>p{
+	line-height: 50px;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 16px;
+}
+.activata-head>p>button{
+	width: 110px;
+	height: 32px;
+	border: none;
+	background: #ffffff;
+	border-radius: 3px;
+	font-size: 14px;
+	margin-left: 28px;
+	color: #ec5345;
+}

@@ -1,0 +1,461 @@
+/*我的普惠----右边内容*/
+body {
+    background: #f9f9f9;
+}
+
+.m_r .mr_t {
+    height: 168px;
+    margin-bottom: 20px;
+}
+
+.m_r .mr_t .phone {
+    height: 168px;
+    background: #fff;
+}
+
+.m_r .mr_t .phone .phone_l {
+    float: left;
+    width: 150px;
+    height: 116px;
+}
+
+.m_r .mr_t .phone .phone_l img {
+    width: 90px;
+    height: 90px;
+    margin-left: 30px;
+    margin-top: 36px;
+}
+
+.m_r .mr_t .phone .phone_r {
+    float: left;
+    height: 116px;
+}
+
+.phone_r ul li i a {
+    color: #ed5345;
+}
+
+.phone_r h1 {
+    font-size: 24px;
+    color: #333333;
+    height: 45px;
+    line-height: 45px;
+    margin: 20px 0 0 7px;
+}
+
+.phone_r div {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    position: relative;
+}
+
+.phone_r div img {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.phone_r div img:nth-child(1) {
+    position: absolute;
+    top: 10px;
+}
+
+.phone_r div img:nth-child(2) {
+    position: absolute;
+    left: 100px;
+    top: 3px;
+}
+
+.phone_r div img:nth-child(3) {
+    position: absolute;
+    left: 140px;
+    top: 10px;
+}
+
+.phone_r div span {
+    height: 30px;
+    display: inline-block;
+    color: #ed5345;
+    padding-left: 50px;
+}
+
+.phone_r ul li {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding-right: 24px;
+}
+
+.phone_r ul li i {
+    color: #ed5345;
+}
+
+.mr_t1 {
+    /*width: 820px;*/
+    height: 198px;
+    background: #fff;
+}
+
+.earnings_l {
+    height: 180px;
+    float: left;
+    background: #FFFFFF;
+}
+
+.earnings_l div {
+    padding-left: 100px;
+}
+
+.earningsl, .earningsr {
+    float: left;
+}
+
+.earningsr {
+    margin-left: -10px;
+}
+
+.earnings_l h1 {
+    font-size: 16px;
+    padding-top: 40px;
+}
+
+.earnings_l h2 {
+    color: #ed5345;
+    font-size: 28px;
+    margin-top: 4px;
+}
+
+.earnings_l p {
+    height: 25px;
+    line-height: 30px;
+    color: #999;
+}
+
+.earnings_r {
+    width: 188px;
+    height: 180px;
+    float: right;
+    background: #FFFFFF;
+}
+
+.earnings_r button {
+    width: 124px;
+    height: 40px;
+    display: block;
+    background: #ed5345;
+    margin-top: 16px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.earnings_r button:nth-child(1) {
+    border: 2px solid #ed5436;
+    background: none;
+    color: #ed5436;
+    margin-top: 68px;
+
+}
+
+.mr_t2 {
+    /*width: 820px;*/
+    margin-top: 22px;
+    background: #fff;
+    padding-bottom: 20px;
+}
+
+.mr_t2 h1 {
+    height: 57px;
+    line-height: 57px;
+    padding-left: 23px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.mr_t2 h2 {
+    float: right;
+    height: 57px;
+    line-height: 57px;
+    font-size: 14px;
+}
+
+.mr_t2 h2 i {
+    color: #ee7e76;
+}
+
+.mr_t2 h2 span {
+    padding-left: 20px;
+    color: #b2b2b2;
+}
+
+.mr_t2 ul {
+    width: 760px;
+    height: 40px;
+    background: #EFEFEF;
+    padding-left: 15px;
+    margin: 0 auto;
+}
+
+.mr_t2 ul li {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #333;
+}
+
+.mr_t2 ol {
+    width: 760px;
+    height: 48px;
+    background: #fff;
+    padding-left: 15px;
+    margin: 0 auto;
+}
+
+.mr_t2 ul.ulss {
+    background: #f9f9f9;
+    height: 60px;
+    line-height: 60px;
+    border-top: 3px solid #f0f0f0;
+}
+
+.mr_t2 ul.ulss li {
+    width: 52px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 16px;
+}
+
+.mr_t2 ul.ulss li a {
+    width: 52px;
+    height: 27px;
+    line-height: 27px;
+    font-size: 14px;
+}
+
+.mr_t2 ul.ulss li a.lis {
+    background: #e9534a;
+    display: inline-block;
+    color: #fff;
+}
+
+.mr_t2 ul.ulss li a:hover {
+    background: #e9534a;
+    display: inline-block;
+    color: #fff;
+}
+
+.mr_t2 ol:nth-of-type(even) {
+    background: #f7f7f7;
+}
+
+.mr_t2 ol li {
+    height: 48px;
+    line-height: 48px;
+    font-size: 14px;
+    float: left;
+
+}
+
+.mr_t2 ol li.lisadvance {
+    position: relative;
+}
+
+.mr_t2 ul li
+{
+    color: #333;
+
+}
+
+.mr_t2 ol li a {
+    color: #666;
+}
+
+.mr_t2 ol li:nth-child(1), .mr_t2 ul li:nth-child(1) {
+    width: 200px;
+    padding-left: 5px;
+}
+
+.mr_t2 ol li:nth-child(1) {
+    padding: 0 7px 0 0;
+    margin-left: -2px;
+}
+
+.mr_t2 ol li:nth-child(2), .mr_t2 ul li:nth-child(2) {
+    width: 90px;
+    padding-right: 32px;
+    text-align: right;
+}
+
+.mr_t2 ol li:nth-child(1), .mr_t2 ol li:nth-child(2) {
+    color: #666;
+}
+
+.mr_t2 ol li:nth-child(3), .mr_t2 ul li:nth-child(3) {
+    width: 95px;
+    padding-right: 54px;
+    text-align: right;
+}
+
+.mr_t2 ol li:nth-child(3) {
+    color: #ed5345;
+}
+
+.mr_t2 ol li:nth-child(4), .mr_t2 ul li:nth-child(4) {
+    width: 43px;
+    padding-right: 48px;
+}
+
+.mr_t2 ol li:nth-child(4), .mr_t2 ol li:nth-child(5) {
+    color: #999;
+}
+
+.mr_t2 ol li:nth-child(5), .mr_t2 ul li:nth-child(5) {
+    width: 100px;
+}
+
+.mr_t2 ol li:nth-child(6), .mr_t2 ul li:nth-child(6) {
+    width: 58px;
+    padding-left: 30px;
+}
+
+.mr_t2 ol li:nth-child(7) {
+    width: 55px;
+    padding-left: 20px;
+}
+
+.mr_t2 .h2 {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #333;
+}
+
+/*我的普惠----手机，邮箱，银行卡，鼠标滑动显示气泡*/
+.phone_r {
+    position: relative;
+}
+
+.phone_r div.bubble1 {
+    margin-bottom: 10px;
+    display: block;
+    position: absolute;
+    left: 30px;
+    bottom: -10px;
+    display: none;
+}
+
+.phone_r div.bubble1 img {
+    display: inline-block;
+    width: 220px;
+    height: 35px;
+    position: relative;
+}
+
+.phone_r div.bubble1 > span {
+    position: absolute;
+    left: -35px;
+    top: 21px;
+    color: #666666;
+}
+
+.phone_r div.bubble1 > span > a {
+    color: #ed345a;
+}
+
+.phone_r div.bubble2 {
+    margin-bottom: 10px;
+    display: block;
+    position: absolute;
+    left: 70px;
+    bottom: -10px;
+    display: none;
+}
+
+.phone_r div.bubble2 img {
+    display: inline-block;
+    width: 250px;
+    height: 35px;
+    position: relative;
+}
+
+.phone_r div.bubble2 > span {
+    position: absolute;
+    left: -35px;
+    top: 21px;
+    color: #666666;
+}
+
+.phone_r div.bubble2 > span > a {
+    color: #ed345a;
+}
+
+.phone_r div.bubble3 {
+    margin-bottom: 10px;
+    display: block;
+    position: absolute;
+    left: 95px;
+    bottom: -10px;
+    display: none;
+}
+
+.phone_r div.bubble3 img {
+    display: inline-block;
+    width: 280px;
+    height: 35px;
+    position: relative;
+}
+
+.phone_r div.bubble3 > span {
+    position: absolute;
+    left: -35px;
+    top: 21px;
+    color: #666666;
+}
+
+.phone_r div.bubble3 > span > a {
+    color: #ed345a;
+}
+
+#attestation {
+    margin: 10px 0 0 10px;
+    position: relative;
+    height: 30px;
+}
+
+#attestation a {
+    color: #333;
+}
+
+#attestation img.wimg {
+    display: block;
+    position: absolute;
+    left: 72px;
+    top: -6px;
+}
+
+#attestation img.wimg1 {
+    display: block;
+    position: absolute;
+    left: 106px;
+    top: -6px;
+}
+
+#attestation img.wimg2 {
+    display: block;
+    position: absolute;
+    left: 140px;
+    top: -6px;
+}
+
+#attestation span {
+    margin-left: 100px;
+}
+
+.m_r .mr_t .phone .phone_r ul {
+    clear: both;
+    margin-left: 10px;
+}

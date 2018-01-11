@@ -1,0 +1,80 @@
+#center {
+	width: 1200px;/*原值1000*/
+	margin: 0 0;/*内容局左*/
+	/*padding-top:20px;*/
+}
+#center .m_l {
+	width: 300px;
+	height:760px;
+	background: #fff;
+	float: left;
+	margin-bottom:20px;
+}
+#center .m_r {
+	width: 880px;
+	float: right;
+	margin-bottom:20px;
+
+}
+.m_l h1 {
+	height: 50px;
+	text-align: center;
+	background: #ED5446;/*62B77A*/
+	line-height: 50px;
+	font-size: 20px;
+	color: #fff;
+}
+.m_l h1 i {
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	background: url(../img/c_w.jpg)no-repeat left center;
+	padding-left: 28px;
+}
+
+.m_l ul {
+	width: 300px;
+}
+
+.m_l ul li {
+	width: 300px;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	border-bottom: 1px solid #f1f1f1;
+	display: inline-block;
+	border-left: 5px solid #fff;
+}
+.m_l ul li a{
+	display:block;
+	width:300px;
+	font-size:14px;
+	color: #333;
+}
+#navt li a:hover {
+    background: #f5f5f5;
+}
+.m_l ul li.activ {
+	border-left: 5px solid #62B77A;/*ed5436*/
+}
+.m_l ul li:hover {
+	border-left: 5px solid #62B77A;/*ed5436*/
+	background:#f5f5f5;
+	width:156px;//
+}
+#navt li a:hover{
+	background:#f5f5f5;
+}
+
+.bot img{
+	padding-top:20px;
+	display: block;
+	width: 102px;
+	margin: 0 auto;
+}
+.bot p{
+	line-height: 20px;
+	font-size: 12px;
+	color: #666;
+	text-align: center;
+}
