@@ -1,97 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="${ctxPath}/front/css/center/hope/reset.css">
-    <link rel="stylesheet" href="${ctxPath}/front/css/center/hope/style-Whitney.css">
-    <link rel="stylesheet" href="${ctxPath}/front/css/center/hope/style-top.css">
-    <link rel="stylesheet" href="${ctxPath}/front/css/center/hope/style-right.css">
-    <link rel="stylesheet" href="${ctxPath}/front/css/center/hope/style-bottom.css">
-    <link rel="stylesheet" href="${ctxPath}/plugins/layui/lay/modules/theme/default/layer.css"
-          id="layui_layer_skinlayercss" style="">
-    <style type="text/css">
-        @keyframes fadeInOpacity {
-            0% {
-                opacity: 0
-            }
-            to {
-                opacity: 1
-            }
-        }
 
-        :hover > * > .fbvd--wrapper {
-            animation-name: fadeInOpacity;
-            animation-duration: .3s;
-            opacity: 1
-        }
-
-        .fbvd--wrapper {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            opacity: 0;
-            text-align: center;
-            margin: 0;
-            z-index: 5
-        }
-
-        .fbvd--wrapper a {
-            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzRiNGY1NiIgZD0iTTggMTUuNWw3LjUtNy41aC00LjV2LThoLTZ2OGgtNC41eiI+PC9wYXRoPjwvc3ZnPg==) no-repeat 3px 4.55px;
-            background-color: #fff;
-            display: inline-block;
-            font: 700 14px Helvetica, Arial, sans-serif;
-            color: #4b4f56;
-            text-decoration: none;
-            vertical-align: middle;
-            padding: 0px 8px 0px;
-            margin-right: 8px;
-            border-radius: 2px;
-            line-height: 22px;
-            padding-left: 19px;
-            border: 1px solid #e7e7e7;
-            background-size: 13px
-        }
-
-        .fbvd--wrapper a:last-child {
-            margin-right: 0
-        }
-
-        .fbvd--wrapper a:hover {
-            text-decoration: none
-        }
-
-        .fbvd--wrapper a:focus {
-            box-shadow: 0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15);
-            outline: none
-        }
-
-        .fbvd--wrapper b {
-            font-size: 13px;
-            position: relative;
-            top: 1px;
-            color: #3b5998;
-            font-weight: 400
-        }</style>
-</head>
-<body style="">
-
-<link rel="stylesheet" href="${ctxPath}/front/css/center/hope/active.css">
+<!-- 顶部一样式 -->
+<%
+include("common/header.html"){}
+%>
 
 <div id="center">
+
+    <!-- 个人中心-左侧导航栏 -->
     <div class="m_l" id="frame_left">
         <ul id="navt">
-            <li style="" id="toMyHope" class="activ"><a
-                    href="#">个人中心</a></li>
+            <li style="" id="toMyHope" class="activ"><a href="#">个人中心</a></li>
             <li style="" id="toInvests"><a href="#">出借记录</a></li>
             <li style="" id="toClaim"><a href="#">转让项目</a></li>
             <li style="" id="toAutoBid"><a href="#">自动投标</a></li>
             <li style="" id="toMoney"><a href="#">充值提现</a></li>
             <li style="" id="toDetail"><a href="#">交易记录</a></li>
             <li style="" id="userVoucher"><a href="#">我的卡券</a></li>
-            <li style="" id="toInviteByPC"><a href="#">邀请好友</a>
-            </li>
+            <li style="" id="toInviteByPC"><a href="#">邀请好友</a></li>
             <li style="" id="toIntegral"><a href="#">我的积分</a></li>
-            <li style="" id="toTaskCenterByPC"><a href="#">任务中心</a>
-            </li>
+            <li style="" id="toTaskCenterByPC"><a href="#">任务中心</a></li>
             <li style="" id="toSetting"><a href="#">账号设置</a></li>
             <li style="" id="toMessages"><a href="#">消息中心</a></li>
         </ul>
@@ -99,8 +26,9 @@
             <img src="${ctxPath}/front/images/center/app.jpg" alt="">
             <p>下载易分享APP</p>
         </div>
-
     </div>
+
+    <!-- 个人中心-右侧内容 -->
     <div class="m_r">
         <div class="mr_t">
             <div class="phone">
@@ -149,8 +77,7 @@
                         <li>消息中心：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toMessages.htm&#39;)">29条</a></i>
                         </li>
                         <li>累计登录：&nbsp;<i style="cursor: pointer;" onclick="toLoginSuccess()">2天</i></li>
-                        <li><a class="ols" href="#"
-                               style="color:#006ba9">【退出】</a></li>
+                        <!--<li><a class="ols" href="#" style="color:#006ba9">【退出】</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -366,10 +293,8 @@
         document.getElementById(obj).style.display = "none";
     }
 </script>
-<!--[if lte IE 9]>
-<link rel="stylesheet" type="text/css" href="${ctxPath}/front/css/center/hope/reset.css"/>
-<link rel="stylesheet" href="${ctxPath}/front/css/center/hope/speed-mode.css">
-<![endif]-->
 
-</body>
-</html>
+<!-- 底部一样式 -->
+<%
+include("common/header.html"){}
+%>

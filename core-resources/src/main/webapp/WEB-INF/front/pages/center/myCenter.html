@@ -1,0 +1,67 @@
+<div class="phone">
+
+    <a href="#">
+        <div class="phone_l">
+            <img id="headImg" src="${ctxPath}/front/images/center/20160526055138124.png">
+        </div>
+    </a>
+    <div class="phone_r">
+        <h1>某用户，欢迎您！</h1>
+        <p id="attestation">认证信息：
+
+            <img style="cursor:pointer;" src="${ctxPath}/front/images/center/ztel.png" class="wimg"
+                 onmouseover="showdiv(&#39;p_01&#39;);closediv(&#39;p_02&#39;);closediv(&#39;p_03&#39;);">
+
+            <img style="cursor:pointer;" src="${ctxPath}/front/images/center/z-mail.png" class="wimg1"
+                 onmouseover="showdiv(&#39;p_02&#39;);closediv(&#39;p_01&#39;);closediv(&#39;p_03&#39;)">
+
+            <img style="cursor:pointer;" src="${ctxPath}/front/images/center/z-tuoguan.png" class="wimg2"
+                 onmouseover="showdiv(&#39;p_03&#39;);closediv(&#39;p_01&#39;);closediv(&#39;p_02&#39;)">
+
+            <span style="color:#000000;"><a href="#">邀请好友，专享回报进行中~</a></span>
+        </p>
+        <div id="p_01" class="bubble1" onmouseout="closediv(&#39;p_01&#39;)">
+            <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_01&#39;)">
+            <span onmouseover="showdiv(&#39;p_01&#39;)">您已验证手机: 158****4363</span>
+        </div>
+
+        <div id="p_02" class="bubble2" onmouseout="closediv(&#39;p_02&#39;)">
+            <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_02&#39;)">
+            <span onmouseover="showdiv(&#39;p_02&#39;)">您已验证邮箱:huy***@foxmail.com</span>
+        </div>
+
+        <div id="p_03" class="bubble3" onmouseout="closediv(&#39;p_03&#39;)">
+            <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_03&#39;)">
+            <span onmouseover="showdiv(&#39;p_03&#39;)">您已绑定银行卡: ********2048</span>
+        </div>
+
+        <ul>
+            <li>我的积分：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toIntegral.htm&#39;)">138</a></i>
+            </li>
+            <li>我的卡券：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/userVoucher.htm&#39;)">0张</a></i>
+            </li>
+            <li>消息中心：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toMessages.htm&#39;)">29条</a></i>
+            </li>
+            <li>累计登录：&nbsp;<i style="cursor: pointer;" onclick="toLoginSuccess()">2天</i></li>
+            <!--<li><a class="ols" href="#" style="color:#006ba9">【退出】</a></li>-->
+        </ul>
+    </div>
+</div>
+
+<script>
+    //显示气泡
+    function showdiv(obj) {
+        if (obj == 1) {
+            $(".bubble1").hide();
+        } else if (obj == 2) {
+            $(".bubble2").hide();
+        } else if (obj == 3) {
+            $(".bubble3").hide();
+        }
+        document.getElementById(obj).style.display = "block";
+    }
+    //隐藏气泡
+    function closediv(obj) {
+        document.getElementById(obj).style.display = "none";
+    }
+</script>

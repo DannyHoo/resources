@@ -1,0 +1,289 @@
+<!-- 顶部一样式 -->
+<%
+include("frame_header.html"){}
+%>
+
+<div id="center">
+
+    <!-- 个人中心-左侧导航栏 -->
+    <div class="m_l" id="frame_left">
+        <ul id="navt">
+            <li style="" id="toMyCenter" class="activ"><a href="#">个人中心</a></li>
+            <li style="" id="toSetting"><a href="#">账号设置</a></li>
+            <li style="" id="toMyResources"><a href="#">我的贡献</a></li>
+            <li style="" id="toTaskCenter"><a href="#">任务中心</a></li>
+            <li style="" id="toVoucher"><a href="#">卡券积分</a></li>
+            <li style="" id="toMoney"><a href="#">充值提现</a></li>
+            <li style="" id="toInvite"><a href="#">邀请好友</a></li>
+            <li style="" id="toMessages"><a href="#">消息中心</a></li>
+        </ul>
+        <div class="bot">
+            <img src="${ctxPath}/front/images/center/app.jpg" alt="">
+            <p>下载易分享APP</p>
+        </div>
+    </div>
+
+    <!-- 个人中心-右侧内容 -->
+    <div class="m_r">
+
+        <div class="mr_t">
+            <div id="center_main_content" style="background: #fff;padding-left:10px;padding-right:10px;">
+
+            </div>
+        </div>
+        <!--<div class="mr_t">
+            <div class="phone">
+                <input type="hidden" id="certifiedStatus" name="certifiedStatus" value="1">
+                <input type="hidden" id="bankStatus" name="bankStatus" value="2">
+                <a href="#">
+                    <div class="phone_l">
+                        <img id="headImg" src="${ctxPath}/front/images/center/20160526055138124.png">
+                    </div>
+                </a>
+                <div class="phone_r">
+                    <h1>某用户，欢迎您！</h1>
+                    <p id="attestation">认证信息：
+
+                        <img style="cursor:pointer;" src="${ctxPath}/front/images/center/ztel.png" class="wimg"
+                             onmouseover="showdiv(&#39;p_01&#39;);closediv(&#39;p_02&#39;);closediv(&#39;p_03&#39;);">
+
+                        <img style="cursor:pointer;" src="${ctxPath}/front/images/center/z-mail.png" class="wimg1"
+                             onmouseover="showdiv(&#39;p_02&#39;);closediv(&#39;p_01&#39;);closediv(&#39;p_03&#39;)">
+
+                        <img style="cursor:pointer;" src="${ctxPath}/front/images/center/z-tuoguan.png" class="wimg2"
+                             onmouseover="showdiv(&#39;p_03&#39;);closediv(&#39;p_01&#39;);closediv(&#39;p_02&#39;)">
+
+                        <span style="color:#000000;"><a href="#">邀请好友，专享回报进行中~</a></span>
+                    </p>
+                    <div id="p_01" class="bubble1" onmouseout="closediv(&#39;p_01&#39;)">
+                        <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_01&#39;)">
+                        <span onmouseover="showdiv(&#39;p_01&#39;)">您已验证手机: 158****4363</span>
+                    </div>
+
+                    <div id="p_02" class="bubble2" onmouseout="closediv(&#39;p_02&#39;)">
+                        <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_02&#39;)">
+                        <span onmouseover="showdiv(&#39;p_02&#39;)">您已验证邮箱:huy***@foxmail.com</span>
+                    </div>
+
+                    <div id="p_03" class="bubble3" onmouseout="closediv(&#39;p_03&#39;)">
+                        <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_03&#39;)">
+                        <span onmouseover="showdiv(&#39;p_03&#39;)">您已绑定银行卡: ********2048</span>
+                    </div>
+
+                    <ul>
+                        <li>我的积分：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toIntegral.htm&#39;)">138</a></i>
+                        </li>
+                        <li>我的卡券：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/userVoucher.htm&#39;)">0张</a></i>
+                        </li>
+                        <li>消息中心：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toMessages.htm&#39;)">29条</a></i>
+                        </li>
+                        <li>累计登录：&nbsp;<i style="cursor: pointer;" onclick="toLoginSuccess()">2天</i></li>
+                        &lt;!&ndash;<li><a class="ols" href="#" style="color:#006ba9">【退出】</a></li>&ndash;&gt;
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mr_t1">
+            <div class="earnings_l">
+                <div class="earningsl">
+
+
+                    <h1>账户总额(元)</h1>
+                    <h2>12.81</h2>
+                    <p>待收回报(元)：0.71</p>
+                    <p>已收总额(元)：31.69</p>
+
+                </div>
+                <div class="earningsr">
+
+                    <h1>账户可用余额(元)</h1>
+
+                    <h2>0.00</h2>
+
+                    <p>待收总额(元)：12.81</p>
+
+                    <p>出借总额(元)：1,877.11</p>
+
+                </div>
+            </div>
+            <div class="earnings_r">
+
+                <button onclick="rechargeValidate(2)">提现</button>
+
+                <button onclick="rechargeValidate(1)">充值</button>
+                &lt;!&ndash; <button onclick="toCgtActivePlatUser()">用户激活</button>
+<form id="yeepay" name="yeepay" action="" method="post" target="_blank">
+<input type="hidden" id="serviceName" name="serviceName" value=""/>
+<input type="hidden" id="service" name="service" value=""/>
+<input type="hidden" id="platformNo" name="platformNo" value=""/>
+<input type="hidden" id="reqData" name="reqData" value=""/>
+<input type="hidden" id="keySerial" name="keySerial" value=""/>
+<input type="hidden" id="sign" name="sign" value=""/>
+<input type="hidden" id="requestNo" name="requestNo" value=""/>
+</form> &ndash;&gt;                        </div>
+        </div>
+        <div class="mr_t2">
+            <h1>出借记录</h1>
+            <ul>
+                <li class="lis">项目介绍</li>
+                <li>出借金额(元)</li>
+                <li class="lis">到期回报(元)</li>
+                <li class="lis">状态</li>
+                <li class="lis">到账时间</li>
+                <li class="lis">操作</li>
+            </ul>
+
+            <ol>
+                &lt;!&ndash; 项目介绍 &ndash;&gt;
+                &lt;!&ndash; <li >【核心保】974号：知名水漆品牌项目十八期</li> &ndash;&gt;
+                <li>
+                    <a class="ols" id="loanname" title="【核心保】974号：知名水漆品牌项目十八期" style="color:#006ba9"
+                       onclick="checkLogin(&#39;/invest/loanDetail.htm?id=9157&#39;)">
+                        【核心保】974号：知...
+
+                    </a>
+                </li>
+                &lt;!&ndash; 出借金额(元) &ndash;&gt;
+                <li>12.10</li>
+                &lt;!&ndash; 预计回报(元) &ndash;&gt;
+                <li style="color:#ed5345;">0.71</li>
+                &lt;!&ndash; 状态 &ndash;&gt;
+                <li class="lisadvance">
+                    还款中
+
+                </li>
+                <li title="2018-03-14 12:00:00"> 2018-03-14</li>
+
+
+                <li class="ols"><a class="ols" style="color:#006ba9"
+                                   onclick="checkLogin(&#39;/ssl/account/bidRecordDetail.htm?bidId=57257&amp;bidType=1&amp;proId=9157&amp;calWay=1&amp;bidStatus=2&#39;)">查看</a>
+                </li>
+
+            </ol>
+
+
+            <ol>
+                &lt;!&ndash; 项目介绍 &ndash;&gt;
+                &lt;!&ndash; <li >【核心保】717号：核装备公司轴承供应商保理项目二十二期</li> &ndash;&gt;
+                <li>
+                    <a class="ols" id="loanname" title="【核心保】717号：核装备公司轴承供应商保理项目二十二期" style="color:#006ba9"
+                       onclick="checkLogin(&#39;/invest/loanDetail.htm?id=8508&#39;)">
+                        【核心保】717号：核...
+
+                    </a>
+                </li>
+                &lt;!&ndash; 出借金额(元) &ndash;&gt;
+                <li>10.56</li>
+                &lt;!&ndash; 预计回报(元) &ndash;&gt;
+                <li style="color:#ed5345;">0.54</li>
+                &lt;!&ndash; 状态 &ndash;&gt;
+                <li class="lisadvance">
+                    已还清
+                </li>
+                <li title="2017-08-14 12:00:00"> 2017-08-14</li>
+
+
+                <li class="ols"><a class="ols" style="color:#006ba9"
+                                   onclick="checkLogin(&#39;/ssl/account/bidRecordDetail.htm?bidId=44175&amp;bidType=1&amp;proId=8508&amp;calWay=1&amp;bidStatus=2&#39;)">查看</a>
+                </li>
+
+            </ol>
+
+
+            <ol>
+                &lt;!&ndash; 项目介绍 &ndash;&gt;
+                &lt;!&ndash; <li >【核心保】612号：上海某新材料上市公司中厚板供应商保理项目四十八期</li> &ndash;&gt;
+                <li>
+                    <a class="ols" id="loanname" title="【核心保】612号：上海某新材料上市公司中厚板供应商保理项目四十八期" style="color:#006ba9"
+                       onclick="checkLogin(&#39;/invest/loanDetail.htm?id=8110&#39;)">
+                        【核心保】612号：上...
+
+                    </a>
+                </li>
+                &lt;!&ndash; 出借金额(元) &ndash;&gt;
+                <li>1,834.07</li>
+                &lt;!&ndash; 预计回报(元) &ndash;&gt;
+                <li style="color:#ed5345;">29.81</li>
+                &lt;!&ndash; 状态 &ndash;&gt;
+                <li class="lisadvance">
+                    已转让
+                </li>
+                <li title="2017-02-20 12:00:00"> 2017-02-20</li>
+
+
+                <li class="ols"><a class="ols" style="color:#006ba9"
+                                   onclick="checkLogin(&#39;/ssl/account/bidRecordDetail.htm?bidId=38552&amp;bidType=1&amp;proId=8110&amp;calWay=1&amp;bidStatus=5&#39;)">查看</a>
+                </li>
+
+            </ol>
+
+
+            <ol>
+                &lt;!&ndash; 项目介绍 &ndash;&gt;
+                &lt;!&ndash; <li >【惠民保】23号：国大36524便利店保理项目二十三期</li> &ndash;&gt;
+                <li>
+                    <a class="ols" id="loanname" title="【惠民保】23号：国大36524便利店保理项目二十三期" style="color:#006ba9"
+                       onclick="checkLogin(&#39;/invest/loanDetail.htm?id=8100&#39;)">
+                        【惠民保】23号：国大...
+                    </a>
+                </li>
+                &lt;!&ndash; 出借金额(元) &ndash;&gt;
+                <li>10.38</li>
+                &lt;!&ndash; 预计回报(元) &ndash;&gt;
+                <li style="color:#ed5345;">0.20</li>
+                &lt;!&ndash; 状态 &ndash;&gt;
+                <li class="lisadvance">
+                    已还清
+                </li>
+                <li title="2017-01-25 12:00:00"> 2017-01-25</li>
+
+
+                <li class="ols"><a class="ols" style="color:#006ba9"
+                                   onclick="checkLogin(&#39;/ssl/account/bidRecordDetail.htm?bidId=38295&amp;bidType=1&amp;proId=8100&amp;calWay=1&amp;bidStatus=2&#39;)">查看</a>
+                </li>
+
+            </ol>
+
+
+            <ol>
+                &lt;!&ndash; 项目介绍 &ndash;&gt;
+                &lt;!&ndash; <li >【核心保】425号：A股上市企业母公司浆纸供应商保理项目十八期</li> &ndash;&gt;
+                <li>
+                    <a class="ols" id="loanname" title="【核心保】425号：A股上市企业母公司浆纸供应商保理项目十八期" style="color:#006ba9"
+                       onclick="checkLogin(&#39;/invest/loanDetail.htm?id=6967&#39;)">
+                        【核心保】425号：A...
+
+                    </a>
+                </li>
+                &lt;!&ndash; 出借金额(元) &ndash;&gt;
+                <li>10.00</li>
+                &lt;!&ndash; 预计回报(元) &ndash;&gt;
+                <li style="color:#ed5345;">0.38</li>
+                &lt;!&ndash; 状态 &ndash;&gt;
+                <li class="lisadvance">
+                    已还清
+                </li>
+                <li title="2016-10-08 12:00:00"> 2016-10-08</li>
+
+
+                <li class="ols"><a class="ols" style="color:#006ba9"
+                                   onclick="checkLogin(&#39;/ssl/account/bidRecordDetail.htm?bidId=30030&amp;bidType=1&amp;proId=6967&amp;calWay=1&amp;bidStatus=2&#39;)">查看</a>
+                </li>
+
+            </ol>
+
+
+        </div>-->
+
+    </div>
+
+</div>
+
+
+<!-- 左侧导航栏动作 -->
+<script type="text/javascript" src="${ctxPath}/front/js/center/frame_center.js"></script>
+
+<!-- 底部一样式 -->
+<%
+include("frame_footer.html"){}
+%>
