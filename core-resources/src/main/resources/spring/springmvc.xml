@@ -35,6 +35,8 @@
     <mvc:resources location="/WEB-INF/plugins/layui/font/" mapping="/front/font/**"/>
     <mvc:resources location="/WEB-INF/common/" mapping="/common/**"/>
 
+    <mvc:resources location="/WEB-INF/common/chooseblacka/images/" mapping="/images/**"/>
+
     <!-- 配置SpringMvc视图解析器: 如何把 handler 方法返回值解析为实际的物理视图 -->
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/"></property>
