@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/chooseblacka")
 public class ChooseBlackA {
 
-    @RequestMapping("/index")
+    @RequestMapping(value="/index",produces="text/html;charset=UTF-8")
     @ResponseBody
     public String header(HttpServletRequest request) {
         return "霖哥你好~";
