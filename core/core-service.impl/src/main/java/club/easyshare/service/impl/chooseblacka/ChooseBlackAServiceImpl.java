@@ -41,22 +41,24 @@ public class ChooseBlackAServiceImpl implements ChooseBlackAService {
     public static void main(String[] args) {
         // 初始化数据
         ChooseBlackAServiceImpl chooseBlackAService = new ChooseBlackAServiceImpl();
-        User user1=(User) new User().setUserName("DannyHoo").setId(1l);
-        User user2=(User) new User().setUserName("DannySong").setId(2l);
-        User user3=(User) new User().setUserName("DannyHuXinRan").setId(3l);
-        User user4=(User) new User().setUserName("DannyHuXinYi").setId(4l);
+        User user1 = (User) new User().setUserName("DannyHoo").setId(1l);
+        User user2 = (User) new User().setUserName("DannySong").setId(2l);
+        User user3 = (User) new User().setUserName("DannyHuXinRan").setId(3l);
+        User user4 = (User) new User().setUserName("DannyHuXinYi").setId(4l);
 
         // 用户1创建房间，用户2、用户3、用户4接收邀请
         PokerGroup pokerGroup = chooseBlackAService.createPokerGroup(user1);
-        chooseBlackAService.accecptInvitation(user1,user2);
-        chooseBlackAService.accecptInvitation(user1,user3);
-        chooseBlackAService.accecptInvitation(user1,user4);
+        chooseBlackAService.accecptInvitation(user1, user2);
+        chooseBlackAService.accecptInvitation(user1, user3);
+        chooseBlackAService.accecptInvitation(user1, user4);
         // 开局
         chooseBlackAService.begin(pokerGroup.getPokerCode());
     }
 
     /**
      * 用户上线（在线用户列表增加）
+     *
+     * @param user 上线的用户
      */
     public void userGoOnLine(User user) {
         AllTournamentsCache.addOnLineUser(user);
@@ -73,9 +75,9 @@ public class ChooseBlackAServiceImpl implements ChooseBlackAService {
     }
 
     /**
-     * 当前用户创建房间
+     * 当前用户创建房间（创建房间且把当前用户加入到房间）
      *
-     * @param userCurrent
+     * @param userCurrent 当前用户
      * @return
      */
     public PokerGroup createPokerGroup(User userCurrent) {
@@ -86,7 +88,7 @@ public class ChooseBlackAServiceImpl implements ChooseBlackAService {
     }
 
     /**
-     * 当前用户接受邀请，进入房间
+     * 当前用户接受邀请，进入房间（把被邀请的用户加入到房间）
      *
      * @param userFrom    邀请人
      * @param userCurrent 当前用户（被邀请人）
@@ -96,17 +98,6 @@ public class ChooseBlackAServiceImpl implements ChooseBlackAService {
         PokerGroup pokerGroup = AllTournamentsCache.getPokerGroupByUser(userFrom);
         AllTournamentsCache.putUserGroupRelation(userCurrent, pokerGroup);//添加用户和组的关系到系统缓存
         return pokerGroup;
-    }
-
-    /**
-     * 匹配玩家
-     */
-    public void associatePlayers() {
-        PokerGroup pokerGroup = new PokerGroup();
-        // 获取本局对战用户
-        List<User> userList = chooseBlackABusiness.getRandomUserList();
-        pokerGroup.setUserList(userList);
-        AllTournamentsCache.putPokerGroup(pokerGroup);
     }
 
     /**
@@ -134,6 +125,19 @@ public class ChooseBlackAServiceImpl implements ChooseBlackAService {
                 userCardListMap.put(String.valueOf(userList.get(i).getId()), cardListCurr);
                 // 从总的牌中删除该张牌
                 allCardList.remove(card);
+                //如果该牌是黑A，把用户加入到黑对中
+                if (CardNoEnum.ONE.getCode().equals(card.getCardNo())) {//牌数是A
+                    List<User> blackTeamUserList = pokerGroup.getBlackTeamUserList();
+                    // 如果已经为该用户分过组，跳过
+                    if (blackTeamUserList.contains(userList.get(i))) {
+                        continue;
+                    }
+                    // 如果该牌花色为黑色，把该用户家到黑队中
+                    if (CardTypeEnum.BLACK_HEART.getCode().equals(card.getCardType())||
+                            CardTypeEnum.BLACK_CLUB.getCode().equals(card.getCardType())) {
+                        blackTeamUserList.add(userList.get(i));
+                    }
+                }
             }
         }
 
@@ -141,16 +145,70 @@ public class ChooseBlackAServiceImpl implements ChooseBlackAService {
     }
 
     /**
-     * 打牌（根据上家牌判断是否可以出牌）
+     * 判断有资格先出牌的玩家（红桃5先出）
      *
-     * @param preCards
+     * @param groupCode
      * @return
      */
-    @Override
-    public Card[] play(Card[] preCards) {
-        Card[] curCards = null;//当前用户最终出的牌
+    public User firstPlay(String groupCode) {
+        PokerGroup pokerGroup = AllTournamentsCache.getPokerGroup(groupCode);
+        List<User> userList = pokerGroup.getUserList();
+        if (ListUtil.isEmpty(userList)) return null;
+        for (User user : userList) {
+            List<Card> cardList = pokerGroup.getUserCardListMap().get(String.valueOf(user.getId()));
+            if (ListUtil.isEmpty(cardList)) continue;
+            for (Card card : cardList) {
+                // 红桃5先出
+                if (CardNoEnum.FIVE.getCode().equals(card.getCardNo())
+                        && CardTypeEnum.RED_HEART.getCode().equals(card.getCardType())) {
+                    return user;
+                }
+            }
+        }
+        return null;
+    }
 
-        return curCards;
+    public boolean isLegalFirstPlay(List<Card> cardList){
+        if (ListUtil.isEmpty(cardList)) {
+            return false;
+        }
+        int cardCount=cardList.size();
+        switch (cardCount){
+            case 1: return true;
+            case 3:{
+
+            }
+            case 4:{
+
+            }
+            case 5:{
+
+            }
+            case 6:{
+
+            }
+            case 7:{
+
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 打牌（根据上家牌判断是否可以出牌）
+     *
+     * @param preCards  上一家出的牌
+     * @param currCards 当前用户持有的牌
+     * @return
+     */
+    public Card[] play(String groupCode, List<Card> preCards, List<Card> currCards) {
+        if (ListUtil.isEmpty(preCards)) return null;
+
+                //出牌规则
+                //出牌张数 1、2、3、4
+
+        Card[] currPlayCards = null;//当前用户最终出的牌
+        return currPlayCards;
     }
 
     /**
@@ -165,5 +223,17 @@ public class ChooseBlackAServiceImpl implements ChooseBlackAService {
             }
         }
         return false;
+    }
+
+
+    /**
+     * 匹配玩家
+     */
+    public void associatePlayers() {
+        PokerGroup pokerGroup = new PokerGroup();
+        // 获取本局对战用户
+        List<User> userList = chooseBlackABusiness.getRandomUserList();
+        pokerGroup.setUserList(userList);
+        AllTournamentsCache.putPokerGroup(pokerGroup);
     }
 }

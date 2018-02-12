@@ -1,10 +1,14 @@
 package club.easyshare.business.cache;
 
+import club.easyshare.framework.utils.ListUtil;
+import club.easyshare.framework.utils.MapUtil;
 import club.easysharing.model.bean.chooseblacka.Card;
 import club.easysharing.model.bean.chooseblacka.PokerGroup;
 import club.easysharing.model.bean.system.User;
 import club.easysharing.model.enums.chooseblacka.CardNoEnum;
 import club.easysharing.model.enums.chooseblacka.CardTypeEnum;
+import org.apache.commons.collections.MapUtils;
+import org.springframework.web.socket.WebSocketSession;
 
 import java.util.*;
 
@@ -25,6 +29,9 @@ public class AllTournamentsCache {
     private static Map<String, PokerGroup> pokerGroupList = new HashMap<>();
     /* 所有用户-比赛关系信息(用户id：比赛) */
     private static Map<String, PokerGroup> userGroupRelationMap = new HashMap<>();
+
+    /* 所有比赛-用户-socket关系信息(groupCode：用户-socket) */
+    public static Map<String,GroupUserSessionMap> groupSocketSessionMap=new HashMap<>();
 
     /**
      * 用户上线
@@ -137,5 +144,13 @@ public class AllTournamentsCache {
         return null;
     }
 
+    public static List<WebSocketSession> getWebSocketSessionListOfGroup(String groupCode){
+        GroupUserSessionMap groupUserSessionMap=groupSocketSessionMap.get(groupCode);
+        if (groupUserSessionMap==null){
+            return new ArrayList<>();
+        }
+        List<WebSocketSession> webSocketSessionList= MapUtil.getListFromMap(groupUserSessionMap.getSessionMap());
+        return webSocketSessionList;
+    }
 
 }

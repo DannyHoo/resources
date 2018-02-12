@@ -12,5 +12,5 @@ import club.easysharing.model.bean.chooseblacka.Card;
  */
 public interface ChooseBlackAService {
 
-    Card[] play(Card[] preCards);
+
 }

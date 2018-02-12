@@ -18,4 +18,5 @@ public class ChooseBlackAController {
     public String index(){
         return "chooseblacka/index";
     }
+    
 }
