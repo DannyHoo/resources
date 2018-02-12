@@ -1,40 +1,41 @@
 var i = 1;
 var textArea = document.getElementById("receive");
-textArea.addEventListener('input', function () {
+textArea.addEventListener('change', function () {
     var obj = document.getElementById("receive");
     obj.value += i + "\n";
     i++;
     obj.scrollTop = obj.scrollHeight;
 });
 
-
 var Webchannel = {
-    wso: "",
-    wsUrl: "ws://" + window.location.host + "/myHandler/1/1",
+    websocket: "",
+    wsUrl: "ws://" + window.location.host + "/myHandler?groupCode="+$("#groupCode").val()+"&userId="+$("#userId").val(),
     busiTypes: {},
     initWebsocket: function () {
         if ("WebSocket" in window) {
-            wso = new WebSocket(Webchannel.wsUrl);
+            websocket = new WebSocket(Webchannel.wsUrl);
+            /*websocket = new ReconnectingWebSocket("ws://"
+                + host + "/webSocketIMServer", null, {debug:true, maxReconnectAttempts:4});*/
         } else if ("MozWebSocket" in window) {
-            wso = new MozWebSocket(Webchannel.wsUrl);
+            websocket = new MozWebSocket(Webchannel.wsUrl);
         } else {
             console.log("The browser don't support the WebSocket");
         }
-        wso.onopen = function () {
+        websocket.onopen = function () {
             console.log("connect success");
         };
-        wso.onclose = function () {
+        websocket.onclose = function () {
             try {
-                wso = new WebSocket(Webchannel.wsUrl);
+                websocket = new WebSocket(Webchannel.wsUrl);
             } catch (e) {
                 console.log("disconnect error" + e);
             }
             console.log("disconnect success");
         };
-        wso.onerror = function () {
+        websocket.onerror = function () {
             console.log("sorry,it get error");
         };
-        wso.onmessage = function (receiveMsg) {
+        websocket.onmessage = function (receiveMsg) {
             var str = $("#receive").val();
             var reMsg = receiveMsg.data.substring(1, receiveMsg.data.length - 1);
             reMsg = receiveMsg.data;
@@ -43,23 +44,24 @@ var Webchannel = {
     },
     sendMsg: function (data) {
         var jsonData = JSON.stringify(data);
-        wso.send(jsonData);
+        websocket.send(jsonData);
     },
 
     closeWebSocket: function () {
-        if (1 == wso.readyState) {
-            wso.close();
-            wso = "";
+        if (1 == websocket.readyState) {
+            websocket.close();
+            websocket = "";
         }
     },
     regBusitype: function (busiType, backFunction) {
         Webchannel.busiTypes[busiType] = backFunction;
     }
 };
+
 Webchannel.initWebsocket();
+
 function send() {
     var data = $("#send").val();
     $("#send").val("");
     Webchannel.sendMsg(data);
-
 }

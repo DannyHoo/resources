@@ -66,7 +66,6 @@ public class MyHandler extends TextWebSocketHandler {
         super.handleTextMessage(session, message);
         // 发送消息
         session.sendMessage(message);
-        System.out.println(String.valueOf(message.toString()));
     }
 
     /**
@@ -82,6 +81,7 @@ public class MyHandler extends TextWebSocketHandler {
         // 循环给本组内所有用户发送信息
         for (WebSocketSession webSocketSession : webSocketSessionList) {
             handleTextMessage(webSocketSession, textMessage);
+            System.out.println("log-----:EasySharing ===> Send Message To "+webSocketSession+",Content:"+textMessage);
         }
     }
 
@@ -94,7 +94,16 @@ public class MyHandler extends TextWebSocketHandler {
      */
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        System.out.println("Connection Closed！");
+        System.out.println("log-----:EasySharing ===> Connection Closed！");
+    }
+
+    //抛出异常时处理
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+        if(session.isOpen()){
+            session.close();
+        }
+        System.out.println("log-----:EasySharing ===> Connection Error！");
     }
 
     /**
