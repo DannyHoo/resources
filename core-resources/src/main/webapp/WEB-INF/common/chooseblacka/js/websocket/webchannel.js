@@ -12,6 +12,7 @@ var Webchannel = {
     wsUrl: "ws://" + window.location.host + "/myHandler?groupCode="+$("#groupCode").val()+"&userId="+$("#userId").val(),
     busiTypes: {},
     initWebsocket: function () {
+        console.log("ws访问地址："+Webchannel.wsUrl);
         if ("WebSocket" in window) {
             websocket = new WebSocket(Webchannel.wsUrl);
             /*websocket = new ReconnectingWebSocket("ws://"

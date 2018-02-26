@@ -7,6 +7,8 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.HandshakeInterceptor;
+import org.springframework.web.socket.server.standard.TomcatRequestUpgradeStrategy;
+import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
 /**
  * @author huyuyang@lxfintech.com
@@ -39,10 +41,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
         // 注册WebSocket Server实现类
         webSocketHandlerRegistry.addHandler(myHandler(), "/myHandler")
                 //设置来自那些域名的请求可访问，默认为localhost
-                //.setAllowedOrigins("*")
+                .setAllowedOrigins("*")
                 // WebSocket握手拦截器
                 .addInterceptors(handshakeInterceptor())
                 .addInterceptors(paramInterceptor())
+                //.setHandshakeHandler(new DefaultHandshakeHandler(new TomcatRequestUpgradeStrategy()))
+                //.withSockJS() //报404
         ;
     }
 
