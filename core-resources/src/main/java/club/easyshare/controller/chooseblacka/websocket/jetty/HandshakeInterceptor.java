@@ -11,7 +11,7 @@ import java.util.Map;
  * @author huyuyang@lxfintech.com
  * @Title: HandshakeInterceptor
  * @Copyright: Copyright (c) 2016
- * @Description:
+ * @Description: 握手前、握手后的处理
  * @Company: lxjr.com
  * @Created on 2018-02-12 13:09:41
  */
