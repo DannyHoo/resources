@@ -1,5 +1,7 @@
 package club.easyshare.framework.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -16,7 +18,18 @@ public class Generator {
         System.out.println(getStringRandom(8));
         System.out.println(getRandomNum(6));
         System.out.println(getRundomDiffNum());
+        for (int i=0;i<20;i++){
+            System.out.println(getRandomTimeStr());
+        }
     }
+
+    //按当前时间随机生成数字字符串+3位随机数
+    public static String getRandomTimeStr(){
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmssSSS"); //精确到毫秒
+        String suffix = fmt.format(new Date());
+        return suffix+getRandomNum(3);
+    }
+
     //生成随机数字和字母,
     public static String getStringRandom(int length) {
 

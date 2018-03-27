@@ -37,7 +37,7 @@
 
     <mvc:resources location="/WEB-INF/common/chooseblacka/images/" mapping="/images/**"/>
 
-    <mvc:resources location="/WEB-INF/alimama/" mapping="/**"/>
+    <mvc:resources location="/WEB-INF/test/" mapping="/test/**"/>
 
     <!-- 配置SpringMvc视图解析器: 如何把 handler 方法返回值解析为实际的物理视图 -->
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -90,5 +90,14 @@
                 <ref bean="mappingJacksonHttpMessageConverter"/><!-- json转换器 -->
             </list>
         </property>
+    </bean>
+
+    <!-- 定义文件上传解析器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!-- 设定文件上传的最大值50MB，50*1024*1024 -->
+        <property name="maxUploadSize" value="52428800"></property>
     </bean>
 </beans>
