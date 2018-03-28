@@ -30,6 +30,12 @@ public class TestController {
         return "test/jdbg/jdbg";
     }
 
+    @RequestMapping("/jdbg_base64")
+    public String jdbg_base64() {
+        return "test/jdbg/jdbg_base64";
+    }
+
+
     @RequestMapping("/downloadjdbg")
     public ResponseEntity<byte[]> download(HttpServletRequest request) throws IOException {
         //生成pdf
