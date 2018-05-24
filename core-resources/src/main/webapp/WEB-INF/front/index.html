@@ -14,12 +14,14 @@
     include("pages/common/topMenu.html"){}
     %>
 </div>
+
+
 <div class="wrap">
     <!-- 顶部固定菜单栏 -->
     <%
     include("pages/common/topPublishBorder.html"){}
     %>
-    <!-- 顶部 热词 引流 -->
+    <!-- 顶部 热词 引流 广告位 -->
     <div class="toutiao publicborder">
         <h2>
             <a href="#" target="_blank"><i class="tt10"></i>习主席2018新年贺词</a>
@@ -28,23 +30,27 @@
         </h2>
     </div>
 
+
     <div class="center-ad">
-        <!--<script src="http://www.easysharing.club/ad_js.php?aid=1" language="javascript"></script>-->
+        <!--<script src="http://www.easysharing.club" language="javascript"></script>-->
     </div>
 
+    <!-- 首页第一行内容 -->
     <div class="recommend">
+        <!-- 第一行左部-图片切换 -->
         <div class="slide publicborder">
             <div class=" layui-carousel" id="test1" lay-anim="fade" lay-indicator="inside" lay-arrow="hover"
                  style="width: 430px; height: 300px;">
                 <div carousel-item="">
                     <div class="">
                         <a href="#" target="_blank">
-                            <img src="${ctxPath}/front/images/index/1-1FR0235T23B.jpg" alt="易分享1">
+                            <img data-src="http://7xteop.com2.z0.glb.clouddn.com/test.png" class="lazyload" alt="易分享1">
                         </a>
                     </div>
                     <div class="layui-this">
                         <a href="#" target="_blank">
-                            <img src="${ctxPath}/front/images/index/1-1G01G0304X01.png" alt="易分享2">
+                            <img data-src="${ctxPath}/front/images/index/1-1G01G0304X01.png" class="lazyload"
+                                 alt="易分享2">
                         </a>
                     </div>
                 </div>
@@ -58,6 +64,7 @@
                 <button class="layui-icon layui-carousel-arrow" lay-type="add"></button>
             </div>
         </div>
+        <!-- 第一行右部-推荐阅读-->
         <div class="tuijian publicborder">
             <div class="title"><i></i><span>推荐阅读</span></div>
             <div class="tuijian-wz">
@@ -65,7 +72,8 @@
                     <div class="tu">
                         <div class="left">
                             <a href="#" title="巴拉巴拉">
-                                <img src="${ctxPath}/front/images/index/1-1F131235635539.jpg" alt="">
+                                <img data-src="${ctxPath}/front/images/index/1-1F131235635539.jpg" class="lazyload"
+                                     alt="">
                             </a>
                         </div>
                         <div class="right">
@@ -111,7 +119,8 @@
                         <div class="left">
                             <a href="#"
                                title="MySql从入门到精通再到跑路">
-                                <img src="${ctxPath}/front/images/index/1-1FR0235T23B.jpg" alt="MySql从入门到精通再到跑路">
+                                <img data-src="http://7xteop.com2.z0.glb.clouddn.com/image/coder.png" class="lazyload"
+                                     alt="MySql从入门到精通再到跑路">
                             </a>
                         </div>
                         <div class="right">
@@ -164,7 +173,10 @@
             </div>
         </div>
     </div>
+
+    <!-- 首页第二行内容-->
     <div class="index-main">
+        <!-- 第二行左部-最近更新-->
         <div class="index-main-news left publicborder">
             <div class="publictitle">
                 <i></i><span>最近更新</span>
@@ -683,6 +695,7 @@
 				</span>
             </div>
         </div>
+        <!-- 第二行右部-热门排行-->
         <div class="index-main-ph right publicborder">
             <div class="publictitle">
                 <i></i><span>热门排行</span>
@@ -765,10 +778,14 @@
             </div>
         </div>
     </div>
+
     <div class="center-ad">
-        <!--<script src="http://www.easysharing.club/plus/ad_js.php?aid=31" language="javascript"></script>-->
+        <!--<script src="http://www.easysharing.club" language="javascript"></script>-->
     </div>
+
+
     <div class="con">
+        <!-- 首页第三行内容-电影视频-->
         <div class="img_listbox publicborder">
             <div class="publictitle title-bottom">
                 <i></i><span><a href="http://www.easysharing.club/kankan/dianying/">电影视频</a></span><span class="more"><a
@@ -958,7 +975,9 @@
 
             </ul>
         </div>
+        <!-- 首页第四行以下内容-->
         <div class="zhanwei">
+            <!-- 自学教程-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
                     <i></i><span><a href="http://www.easysharing.club/zixue/">自学教程</a></span><span class="more"><a
@@ -1028,6 +1047,7 @@
 
                 </ul>
             </div>
+            <!-- 技术学习-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
                     <i></i><span><a href="http://www.easysharing.club/jishu/">技术学习</a></span><span class="more"><a
@@ -1097,6 +1117,7 @@
 
                 </ul>
             </div>
+            <!-- 网站源码-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
                     <i></i><span><a href="http://www.easysharing.club/yuanma/wangzhan/">网站源码</a></span><span
@@ -1167,6 +1188,7 @@
 
                 </ul>
             </div>
+            <!-- 软件下载-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
                     <i></i><span><a href="http://www.easysharing.club/soft/">软件下载</a></span><span class="more"><a
@@ -1236,76 +1258,7 @@
 
                 </ul>
             </div>
-            <div class="listbox publicborder">
-                <div class="publictitle title-bottom">
-                    <i></i><span><a href="http://www.easysharing.club/yuanma/yiyuyan/">易语言源码</a></span><span
-                        class="more"><a
-                        href="http://www.easysharing.club/yuanma/yiyuyan/" target="_blank"></a></span>
-                </div>
-                <ul>
-                    <li class="26">
-                        <span class="date">26日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/plus/view.php?aid=3606"
-                                                                            title="PC内涵段子无限点软件+易语言源码">PC内涵段子无限点软件+易语言源码</a></span>
-                    </li>
-                    <li class="11">
-                        <span class="date">11日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2527.html"
-                                                                            title="QQ点赞助手更新版易语言源码">QQ点赞助手更新版易语言源码</a></span>
-                    </li>
-                    <li class="04">
-                        <span class="date">04日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2439.html"
-                                                                            title="[E4A源码] 蜜桃影院诱惑充值源码+支付接口+后台统计">[E4A源码] 蜜桃影院诱惑充值源码+支付接口+后台统计</a></span>
-                    </li>
-                    <li class="04">
-                        <span class="date">04日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2438.html"
-                                                                            title="代挂网PC客户端源码+修改教程">代挂网PC客户端源码+修改教程</a></span>
-                    </li>
-                    <li class="21">
-                        <span class="date">21日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2244.html"
-                                                                            title="永硕E盘密码全自动暴力破解软件易语言源码">永硕E盘密码全自动暴力破解软件易语言源码</a></span>
-                    </li>
-                    <li class="16">
-                        <span class="date">16日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2174.html"
-                                                                            title="表情生成器V4软件易语言源码">表情生成器V4软件易语言源码</a></span>
-                    </li>
-                    <li class="15">
-                        <span class="date">15日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2168.html"
-                                                                            title="仿迅雷极速版界面源码">仿迅雷极速版界面源码</a></span>
-                    </li>
-                    <li class="15">
-                        <span class="date">15日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2162.html"
-                                                                            title="最新可用E大师快手刷播放量软件下载 快手刷人气软件">最新可用E大师快手刷播放量软件下载 快手刷人气软件</a></span>
-                    </li>
-                    <li class="15">
-                        <span class="date">15日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2161.html"
-                                                                            title="宅男福利美图下载器源码 带成品">宅男福利美图下载器源码 带成品</a></span>
-                    </li>
-                    <li class="14">
-                        <span class="date">14日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2144.html"
-                                                                            title="QQ空间多账号秒赞秒评接单版源码 带成品">QQ空间多账号秒赞秒评接单版源码 带成品</a></span>
-                    </li>
-                    <li class="12">
-                        <span class="date">12日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/2116.html"
-                                                                            title="Ex_dui自绘LOL换肤盒子源码">Ex_dui自绘LOL换肤盒子源码</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/yuanma/yiyuyan/html/1748.html"
-                                                                            title="NX助手QQ超级资料源码">NX助手QQ超级资料源码</a></span>
-                    </li>
-
-                </ul>
-            </div>
+            <!-- 网络新闻-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
                     <i></i><span><a href="http://www.easysharing.club/news/">网络新闻</a></span><span class="more"><a
@@ -1375,79 +1328,10 @@
 
                 </ul>
             </div>
+            <!-- 福利分享-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
-                    <i></i><span><a href="http://www.easysharing.club/huodong/fenxiang/">活动分享</a></span><span
-                        class="more"><a
-                        href="http://www.easysharing.club/huodong/fenxiang/" target="_blank"></a></span>
-                </div>
-                <ul>
-                    <li class="02">
-                        <span class="date">02日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3747.html"
-                                                                            title="安徽电信无限流量套餐原价99元：限时19元、仅限安徽省内">安徽电信无限流量套餐原价99元：限时19元、仅限安徽省内</a></span>
-                    </li>
-                    <li class="02">
-                        <span class="date">02日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3745.html"
-                                                                            title="支付宝元旦福利扫码领大包，线下到店抵扣">支付宝元旦福利扫码领大包，线下到店抵扣</a></span>
-                    </li>
-                    <li class="02">
-                        <span class="date">02日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3744.html"
-                                                                            title="去哪儿网送5元火车票立减券，12306账号购票使用">去哪儿网送5元火车票立减券，12306账号购票使用</a></span>
-                    </li>
-                    <li class="31">
-                        <span class="date">31日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3742.html"
-                                                                            title="游戏迎新年，精彩fun不停：登录任意小游戏即可抽Q币">游戏迎新年，精彩fun不停：登录任意小游戏即可抽Q币</a></span>
-                    </li>
-                    <li class="31">
-                        <span class="date">31日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3741.html"
-                                                                            title="微信关注爱奇艺VIP绑定账号，领取3天爱奇艺VIP会员">微信关注爱奇艺VIP绑定账号，领取3天爱奇艺VIP会员</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3735.html"
-                                                                            title="抓猫猫拿红包 支付1元购买道具100%得现金红包">抓猫猫拿红包 支付1元购买道具100%得现金红包</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3734.html"
-                                                                            title="和公益圣诞送好礼 免费抽取流量亲测100M下月到">和公益圣诞送好礼 免费抽取流量亲测100M下月到</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3733.html"
-                                                                            title="应用宝下载魂斗罗归来注册领2Q币秒到跨年狂欢">应用宝下载魂斗罗归来注册领2Q币秒到跨年狂欢</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3732.html"
-                                                                            title="全民抽紫钻折扣 最低0元开通紫钻 开通超级会员送紫钻">全民抽紫钻折扣 最低0元开通紫钻 开通超级会员送紫钻</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3731.html"
-                                                                            title="QQ浏览器充值特惠 免费领取3元话费劵满30可用">QQ浏览器充值特惠 免费领取3元话费劵满30可用</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3729.html"
-                                                                            title="腾讯信用开通领取微信红包 亲测1元微信红包 需定位">腾讯信用开通领取微信红包 亲测1元微信红包 需定位</a></span>
-                    </li>
-                    <li class="26">
-                        <span class="date">26日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/huodong/fenxiang/html/3727.html"
-                                                                            title="圣诞欢乐颂 20.1元购买两个月豪华黄钻 需要的上">圣诞欢乐颂 20.1元购买两个月豪华黄钻 需要的上</a></span>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="listbox publicborder">
-                <div class="publictitle title-bottom">
-                    <i></i><span><a href="http://www.easysharing.club/huodong/xianbao/">线报分享</a></span><span
+                    <i></i><span><a href="http://www.easysharing.club/huodong/xianbao/">福利分享</a></span><span
                         class="more"><a
                         href="http://www.easysharing.club/huodong/xianbao/" target="_blank"></a></span>
                 </div>
@@ -1516,84 +1400,7 @@
 
                 </ul>
             </div>
-            <div class="listbox publicborder">
-                <div class="publictitle title-bottom">
-                    <i></i><span><a href="http://www.easysharing.club/kankan/fuli/">福利美图</a></span><span class="more"><a
-                        href="http://www.easysharing.club/kankan/fuli/" target="_blank"></a></span>
-                </div>
-                <ul>
-                    <li class="17">
-                        <span class="date">17日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/kankan/fuli/html/3547.html"
-                                                                            title="">京东云校园优惠扶持：88元一年云主机加送COM域名</a></span>
-                    </li>
-                    <li class="12">
-                        <span class="date">12日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/kankan/fuli/html/3542.html"
-                                                                            title="">京东云校园优惠扶持：88元一年云主机加送COM域名</a></span>
-                    </li>
-                    <li class="13">
-                        <span class="date">13日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/kankan/fuli/html/2768.html"
-                                                                            title="">京东云校园优惠扶持：88元一年云主机加送COM域名</a></span>
-                    </li>
-                    <li class="04">
-                        <span class="date">04日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/kankan/fuli/html/2685.html"
-                                                                            title="">京东云校园优惠扶持：88元一年云主机加送COM域名</a></span>
-                    </li>
-                    <li class="04">
-                        <span class="date">04日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/kankan/fuli/html/2684.html"
-                                                                            title="">京东云校园优惠扶持：88元一年云主机加送COM域名</a></span>
-                    </li>
-                    <li class="18">
-                        <span class="date">18日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/kankan/fuli/html/2595.html"
-                                                                            title="">京东云校园优惠扶持：88元一年云主机加送COM域名</a></span>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="listbox publicborder">
-                <div class="publictitle title-bottom">
-                    <i></i><span><a href="http://www.easysharing.club/game/">游戏资讯</a></span><span class="more"><a
-                        href="http://www.easysharing.club/game/" target="_blank"></a></span>
-                </div>
-                <ul>
-                    <li class="02">
-                        <span class="date">02日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/game/shouyou/html/3743.html"
-                                                                            title="《王者荣耀》全新女英雄公孙离原画：肤若凝脂兔耳超萌">《王者荣耀》全新女英雄公孙离原画：肤若凝脂兔耳超萌</a></span>
-                    </li>
-                    <li class="28">
-                        <span class="date">28日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/game/chiji/html/3737.html"
-                                                                            title="《绝地求生》更新：缓解游戏卡顿，调整两张地图几率">《绝地求生》更新：缓解游戏卡顿，调整两张地图几率</a></span>
-                    </li>
-                    <li class="27">
-                        <span class="date">27日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/game/shouyou/html/3730.html"
-                                                                            title="QQ飞车正版手游首发 活跃度30领取2Q币秒到">QQ飞车正版手游首发 活跃度30领取2Q币秒到</a></span>
-                    </li>
-                    <li class="26">
-                        <span class="date">26日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/game/cf/html/3726.html"
-                                                                            title="CF双蛋庆典 元旦神枪节必得Q币最高可得1888QB">CF双蛋庆典 元旦神枪节必得Q币最高可得1888QB</a></span>
-                    </li>
-                    <li class="25">
-                        <span class="date">25日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/game/chiji/html/3718.html"
-                                                                            title="绝地求生1.0新版本玩老版地图方法">绝地求生1.0新版本玩老版地图方法</a></span>
-                    </li>
-                    <li class="24">
-                        <span class="date">24日</span><span class="title"><a target="_blank"
-                                                                            href="http://www.easysharing.club/game/shouyou/html/3715.html"
-                                                                            title="《王者荣耀》盛世长安预告：制作精良堪比电影大片">《王者荣耀》盛世长安预告：制作精良堪比电影大片</a></span>
-                    </li>
-
-                </ul>
-            </div>
+            <!-- 免费空间-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
                     <i></i><span><a href="http://www.easysharing.club/huodong/kongjian/">免费空间</a></span><span
@@ -1634,6 +1441,7 @@
 
                 </ul>
             </div>
+            <!-- VIP账号-->
             <div class="listbox publicborder">
                 <div class="publictitle title-bottom">
                     <i></i><span><a href="http://www.easysharing.club/huodong/VIP/">VIP帐号</a></span><span
@@ -1762,7 +1570,8 @@
 include("pages/common/navigationbar.html"){}
 %>
 
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272903954'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1272903954' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1272903954'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1272903954' type='text/javascript'%3E%3C/script%3E"));</script>
 
 </body>
 </html>

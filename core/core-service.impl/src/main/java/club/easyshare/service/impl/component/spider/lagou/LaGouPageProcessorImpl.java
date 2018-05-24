@@ -1,0 +1,538 @@
+package club.easyshare.service.impl.component.spider.lagou;
+
+import club.easyshare.dao.data.spider.LaGouCompanyDO;
+import club.easyshare.dao.jpa.spider.LaGouCompanyDAO;
+import club.easyshare.framework.htmlunit.base.RequestData;
+import club.easyshare.framework.htmlunit.base.RequestSender;
+import club.easyshare.service.component.spider.lagou.LaGouPageProcessor;
+import club.easyshare.service.impl.base.BaseServiceImpl;
+import club.easysharing.model.bean.spider.LaGouCompany;
+import club.easysharing.model.bean.spider.SpiderTask;
+import club.easysharing.model.entity.UrlCache;
+import com.alibaba.fastjson.JSON;
+import com.gargoylesoftware.htmlunit.html.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.io.*;
+import java.util.*;
+
+/**
+ * @author huyuyang@lxfintech.com
+ * @Title: LaGouPageProcessorImpl
+ * @Copyright: Copyright (c) 2016
+ * @Description:
+ * @Company: lxjr.com
+ * @Created on 2017-08-17 22:41:53
+ */
+@Service
+public class LaGouPageProcessorImpl extends BaseServiceImpl implements LaGouPageProcessor {
+    final static String htmlBaseUrl = "https://www.lagou.com/jobs/list_Java";
+    private static String htmlBeginPageUrl = "https://www.lagou.com/jobs/4022535.html";
+
+    /*待爬取的url缓存*/
+    public static UrlCache urlCache = UrlCache.getInstance();
+
+    public UrlCache getUrlCache() {
+        return urlCache;
+    }
+
+    static {
+        /*urlCache.push("番茄便利_JAVA开发工程师 ", "https://www.lagou.com/jobs/3415478.html");
+        String filePath = "/Users/dannyhoo/file/historytask";
+        String fileContent = readBaffleContent(filePath);
+        List<SpiderTask> spiderTaskList = JSON.parseArray(fileContent, SpiderTask.class);*/
+        //urlCache.initUrlCatch(spiderTaskList);
+    }
+
+    @Autowired
+    private LaGouCompanyDAO laGouCompanyDAO;
+
+
+    @Override
+    public boolean spider(String beginUrl) throws InterruptedException {
+        //添加程序结束监听
+        //Runtime.getRuntime().addShutdownHook(ShutDownWork.getInstance(this, "persistenceUrlCatch"));
+
+        System.out.println("进入主方法，开始爬取，上次遗留任务数量：" + urlCache.getSize());
+
+        LaGouCompany lagouCompany = getLaGouCompany(beginUrl);
+        if (laGouCompanyDAO.findByCompanyNameAndJobName(lagouCompany.getCompanyName(), lagouCompany.getJobName()) == null) {
+            LaGouCompanyDO lagouCompanyDOSaved = laGouCompanyDAO.save(convertIgnoreNullProperty(lagouCompany, LaGouCompanyDO.class));
+            System.out.println("入库成功：" + JSON.toJSONString(lagouCompanyDOSaved));
+        }
+
+        return true;
+    }
+
+
+    public LaGouCompany getLaGouCompany(String htmlPageUrl) {
+
+        //String htmlPageUrl = urlCache.pop();
+        System.out.println("开始爬取：" + htmlPageUrl);
+        RequestData requestData = new RequestData("UTF-8", htmlPageUrl, "GET");
+        HtmlPage requestResultPage = (HtmlPage) RequestSender.requestAndReturn(requestData);
+
+        //List bodyList = requestResultPage.getByXPath("//html/body");
+        //List container = requestResultPage.getByXPath("//html/body/div[@id='container']");
+        //List positionHead = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content-l']");
+        //List containerRight = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_r']");
+        //List containerLeft = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_r']/dl[@class='job_company']");
+        List salaryRangeNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[1]");
+
+        /*保存待爬取的URL*/
+        supplyUrlCache(urlCache, requestResultPage);
+
+        String pageUrl = htmlPageUrl;
+        String companyName = getCompanyName(requestResultPage);
+        Long areaId = 1L;
+        String areaName = getAreaName(requestResultPage);
+        double salaryMin = getSalaryMin(salaryRangeNode);
+        double salaryMax = getSalaryMax(salaryRangeNode);
+        double salaryAvg = (salaryMax + salaryMin) / 2;
+        Date publishTime = getPublishTime(requestResultPage);
+        String experience = getExperience(requestResultPage);//工作经验：不限、应届毕业生、3年及以下、3-5年、5-10年、10年以上、不要求
+        String education = getEcucation(requestResultPage);//学历要求：不限、大专、本科、硕士、博士、不要求
+        String financingStage = getFinancingStage(requestResultPage);//融资阶段：未融资、天使轮、A轮、B轮、C轮、D轮及以上、上市公司、不需要融资
+        String finalcingInstitution = getFinancingInstitution(requestResultPage);//行业领域：移动互联网、电子商务、金融、企业服务、教育、文化娱乐、游戏、O2O、硬件、社交网络、旅游、医疗健康、生活服务、信息安全、数据服务、广告营销、分类信息、招聘、其他
+        String companyLogo = "&*^#*(!(&@!@adsf8!@HKJND2e12987*(^%*^^^*";
+        String companySize = getCompanySize(requestResultPage);
+        String companyWebsite = getCompanyWebsite(requestResultPage);
+        String industry = getIndustry(requestResultPage);
+        String jobAddress = getJobAddress(requestResultPage);
+        String jobName = getJobName(requestResultPage);
+        String jobDescribe = getJobDescribe(requestResultPage);
+        String jobFeature = getJobFeature(requestResultPage);
+
+        LaGouCompany laGouCompany = new LaGouCompany();
+        laGouCompany
+                .setPageUrl(htmlPageUrl)
+                .setCompanyName(companyName)
+                .setAreaId(areaId)
+                .setAreaName(areaName)
+                .setSalaryMax(salaryMax)
+                .setSalaryMin(salaryMin)
+                .setSalaryAvg(salaryAvg)
+                .setPublishTime(publishTime)
+                .setExperience(experience)
+                .setEducation(education)
+                .setFinancingStage(financingStage)
+                .setFinancingInstitution(finalcingInstitution)
+                .setCompanyLogo(companyLogo)
+                .setCompanySize(companySize)
+                .setCompanyWebsite(companyWebsite)
+                .setIndustry(industry)
+                .setJobName(jobName)
+                .setJobAddress(jobAddress)
+                .setJobDescribe(jobDescribe)
+                .setJobFeature(jobFeature);
+        System.out.println("拼装爬取结果结束：" + JSON.toJSONString(laGouCompany));
+        return laGouCompany;
+    }
+
+    private static void supplyUrlCache(UrlCache urlCache, HtmlPage requestResultPage) {
+        List containerRight = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_r']/div[@id='jobs_similar']/div[@id='jobs_similar_content']/div[@id='jobs_similar_detail']/ul/li");
+        List<HtmlListItem> htmlListItemListRight = containerRight;
+        for (int i = 1; i <= htmlListItemListRight.size(); i++) {
+            List a = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_r']/div[@id='jobs_similar']/div[@id='jobs_similar_content']/div[@id='jobs_similar_detail']/ul/li[" + i + "]/a");
+            HtmlAnchor htmlAnchor = ((HtmlAnchor) a.get(0));
+            String url = htmlAnchor.getHrefAttribute();
+            List jobNameNode = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_r']/div[@id='jobs_similar']/div[@id='jobs_similar_content']/div[@id='jobs_similar_detail']/ul/li[" + i + "]/a[1]/div[@class='similar_list_item_pos']/h2[1]");
+            List companyNameNode = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_r']/div[@id='jobs_similar']/div[@id='jobs_similar_content']/div[@id='jobs_similar_detail']/ul/li[" + i + "]/a[1]/div[@class='similar_list_item_pos']/p[@class='similar_company_name']");
+            HtmlHeading2 htmlHeading2 = (HtmlHeading2) jobNameNode.get(0);
+            HtmlParagraph htmlParagraph = (HtmlParagraph) companyNameNode.get(0);
+            String jobName = htmlHeading2.getTextContent();
+            String companyName = htmlParagraph.getTextContent().replace(" ", "").replace("\n", "");//颗豆互动 [北京·朝阳区]
+            companyName = companyName.split("[\\[; ]")[0];//"[\\[\\]; ]"
+            urlCache.push(companyName + "_" + jobName, url);
+        }
+
+        List containerLeft = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_l fl']/dl[@class='view_again module-container']/div[@class='view_again_area']/ul/li");
+        List<HtmlListItem> htmlListItemListLeft = containerLeft;
+        for (int i = 1; i <= htmlListItemListLeft.size(); i++) {
+            List a1 = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_l fl']/dl[@class='view_again module-container']/div[@class='view_again_area']/ul/li[" + i + "]/a[2]");
+            HtmlAnchor htmlAnchor1 = ((HtmlAnchor) a1.get(0));
+            String url = htmlAnchor1.getHrefAttribute();
+            String jobName = htmlAnchor1.getTextContent().replace("\n", "").replace(" ", "");
+            List a2 = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_l fl']/dl[@class='view_again module-container']/div[@class='view_again_area']/ul/li[" + i + "]/a[3]");
+            HtmlAnchor htmlAnchor2 = ((HtmlAnchor) a2.get(0));
+            String companyName = htmlAnchor2.getTextContent().replace("\n", "").replace(" ", "");
+            urlCache.push(companyName + "_" + jobName, url);
+        }
+    }
+
+    /*行业*/
+    private static String getIndustry(HtmlPage requestResultPage) {
+        String areaName = "";
+        try {
+            List areaNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[2]");
+            return areaName;
+        } catch (Exception e) {
+            return areaName;
+        }
+    }
+
+    /*公司网址*/
+    private static String getCompanyWebsite(HtmlPage requestResultPage) {
+        String areaName = "";
+        try {
+            List areaNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[2]");
+            return areaName;
+        } catch (Exception e) {
+            return areaName;
+        }
+    }
+
+    /*公司规模*/
+    private static String getCompanySize(HtmlPage requestResultPage) {
+        String areaName = "";
+        try {
+            List areaNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[2]");
+            return areaName;
+        } catch (Exception e) {
+            return areaName;
+        }
+    }
+
+    /*融资机构*/
+    private static String getFinancingInstitution(HtmlPage requestResultPage) {
+        String areaName = "";
+        try {
+            List areaNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[2]");
+            return areaName;
+        } catch (Exception e) {
+            return areaName;
+        }
+    }
+
+    /*融资阶段*/
+    private static String getFinancingStage(HtmlPage requestResultPage) {
+        String areaName = "";
+        try {
+            List areaNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[2]");
+            areaName = ((HtmlSpan) areaNameNode.get(0)).getFirstChild().asText().replace("/", "").trim();
+            return areaName;
+        } catch (Exception e) {
+            return areaName;
+        }
+    }
+
+
+    /**
+     * 发布日期
+     *
+     * @param requestResultPage
+     */
+    private static Date getPublishTime(HtmlPage requestResultPage) {
+        Date publisTime = null;
+        try {
+            List areaNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[2]");
+            String publisTimeStr = ((HtmlParagraph) areaNameNode.get(0)).getFirstChild().asText().trim();
+            publisTime = new Date();
+            return publisTime;
+        } catch (Exception e) {
+            return new Date();
+        }
+    }
+
+    /**
+     * 公司名称
+     */
+    private static String getCompanyName(HtmlPage requestResultPage) {
+        try {
+            List companyNameTempList = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_r']/dl[@class='job_company']/dt[1]/a[1]/div[1]/h2[1]");
+            String companyNameTemp = ((HtmlHeading2) companyNameTempList.get(0)).getFirstChild().asText().trim();
+            return companyNameTemp;
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    /**
+     * 薪资最大值
+     */
+    private static double getSalaryMax(List salaryRangeNode) {
+        double salaryMax = 0;
+        try {
+            String salaryRange = ((HtmlSpan) salaryRangeNode.get(0)).getFirstChild().asText().trim();//20k-40k
+            String[] salaryRanges = salaryRange.split("-");
+            salaryMax = salaryRanges.length > 1
+                    ? getDoubleVal(salaryRanges[1].replace("k", ""))
+                    : getDoubleVal(salaryRanges[0].replace("k", ""));
+            return salaryMax * 1000;
+        } catch (Exception e) {
+            return salaryMax;
+        }
+    }
+
+    /**
+     * 薪资最小值
+     */
+    private static double getSalaryMin(List salaryRangeNode) {
+        double salaryMin = 0;
+        try {
+            String salaryRange = ((HtmlSpan) salaryRangeNode.get(0)).getFirstChild().asText().trim();//20k-40k
+            String[] salaryRanges = salaryRange.split("-");
+            salaryMin = salaryRanges.length > 0
+                    ? getDoubleVal(salaryRanges[0].replace("k", ""))
+                    : 0;
+            return salaryMin * 1000;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public static double getDoubleVal(String doubleVal) {
+        return Double.valueOf(doubleVal);
+    }
+
+    /**
+     * 地区名称
+     */
+    private static String getAreaName(HtmlPage requestResultPage) {
+        String areaName = "";
+        try {
+            List areaNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[2]");
+            areaName = ((HtmlSpan) areaNameNode.get(0)).getFirstChild().asText().replace("/", "").trim();
+            return areaName;
+        } catch (Exception e) {
+            return areaName;
+        }
+    }
+
+    /*工作经验*/
+    private static String getExperience(HtmlPage requestResultPage) {
+        String experience = "";
+        try {
+            List experienceNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[3]");
+            experience = ((HtmlSpan) experienceNode.get(0)).getFirstChild().asText().replace("经验", "").replace("/", "").trim();
+            return experience;
+        } catch (Exception e) {
+            return experience;
+        }
+    }
+
+    /*学历*/
+    private static String getEcucation(HtmlPage requestResultPage) {
+        String education = "";
+        try {
+            List educationNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/dd[1]/p[1]/span[4]");
+            education = ((HtmlSpan) educationNode.get(0)).getFirstChild().asText().replace("及以上", "").replace("/", "").trim();
+            return education;
+        } catch (Exception e) {
+            return education;
+        }
+    }
+
+    /*职位诱惑*/
+    private static String getJobFeature(HtmlPage requestResultPage) {
+        String jobFeature = "";
+        try {
+            List jobFeatureNode = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_l fl']/dl[@class='job_detail']/dd[@class='job-advantage']/p[1]");
+            jobFeature = ((HtmlParagraph) jobFeatureNode.get(0)).getFirstChild().asText().trim();
+            return jobFeature;
+        } catch (Exception e) {
+            return jobFeature;
+        }
+    }
+
+    /*工作地址*/
+    private static String getJobAddress(HtmlPage requestResultPage) {
+        String jobAddress = "";
+        try {
+            List jobAddressNode = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_l fl']/dl[@class='job_detail']/dd[@class='job-address clearfix']/div[1]");
+            jobAddress = ((HtmlDivision) jobAddressNode.get(0)).getTextContent().replace("\n", "").replace(" ", "").replace("查看地图", "");
+            return jobAddress;
+        } catch (Exception e) {
+            return jobAddress;
+        }
+    }
+
+    /*职位名称*/
+    private static String getJobName(HtmlPage requestResultPage) {
+        String jobName = "";
+        try {
+            List jobNameNode = requestResultPage.getByXPath("//html/body/div[@class='position-head']/div[@class='position-content ']/div[@class='position-content-l']/div[@class='job-name']/span[1]");
+            jobName = ((HtmlSpan) jobNameNode.get(0)).getFirstChild().asText().trim();
+            return jobName;
+        } catch (Exception e) {
+            return jobName;
+        }
+    }
+
+    /*职位描述*/
+    private static String getJobDescribe(HtmlPage requestResultPage) {
+        String jobDescribe = "";
+        try {
+            List jobDescribeNode = requestResultPage.getByXPath("//html/body/div[@id='container']/div[@class='content_l fl']/dl[@class='job_detail']/dd[@class='job_bt']/div[1]");
+            jobDescribe = ((HtmlDivision) jobDescribeNode.get(0)).getTextContent();
+            return jobDescribe;
+        } catch (Exception e) {
+            return jobDescribe;
+        }
+    }
+
+    /*持久化待爬取的任务*/
+    public void persistenceUrlCatch() {
+        try {
+            List<SpiderTask> spiderTaskList = getSpiderTaskList(urlCache.getUrlCacheMap());
+            System.out.println("中断爬取任务，开始持久化遗留任务…… request:" + JSON.toJSONString(spiderTaskList));
+            //spiderTaskDAO.batchInsert(convertList(spiderTaskList, SpiderTaskDO.class));
+            String path = System.getProperty("user.dir");
+            //String filePath =path+"/core/core-service.impl/src/test/resources/resource/file/"+ UUID.randomUUID();
+            String filePath = "/Users/dannyhoo/file/" + UUID.randomUUID();
+            createFile(filePath, JSON.toJSONString(spiderTaskList));
+            System.out.println("中断爬取任务，持久化遗留任务结束…… 遗留任务数量：" + spiderTaskList.size() + "，执行数量：" + urlCache.getUrlCacheMapHistory().size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private List<SpiderTask> getSpiderTaskList(Map<String, String> urlCacheMap) {
+        List<SpiderTask> spiderTaskList = new ArrayList<>();
+        for (String key : urlCacheMap.keySet()) {
+            SpiderTask spiderTask = new SpiderTask()
+                    .setTaskName("拉勾网")
+                    .setTitle(key)
+                    .setUrl(urlCacheMap.get(key).toString());
+            spiderTaskList.add(spiderTask);
+        }
+        return spiderTaskList;
+    }
+
+    /**
+     * 读取数据挡板模板的内容
+     *
+     * @param filePath
+     * @return
+     */
+    public static String readBaffleContent(String filePath) {
+        try {
+            File file = new File(filePath);
+            FileInputStream in = new FileInputStream(file);
+            int size = in.available(); //size为字串的长度这里一次性读完
+            byte[] buffer = new byte[size];
+            in.read(buffer);
+            in.close();
+            String str = new String(buffer, "UTF-8");
+            return str;
+        } catch (IOException e) {
+            return "";
+        }
+    }
+
+    public static boolean createFile(String fileName, String filecontent) {
+        Boolean bool = false;
+        String filenameTemp = fileName;//文件路径+名称+文件类型
+        File file = new File(filenameTemp);
+        try {
+            //如果文件不存在，则创建新的文件
+            if (!file.exists()) {
+                file.createNewFile();
+                bool = true;
+                System.out.println("success create file,the file is " + filenameTemp);
+                //创建文件成功后，写入内容到文件里
+                writeFileContent(filenameTemp, filecontent);
+                System.out.println("遗留任务已经写入文件：" + filenameTemp + "写入内容：" + filecontent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bool;
+    }
+
+    /**
+     * 向文件中写入内容
+     *
+     * @param filepath 文件路径与名称
+     * @param newstr   写入的内容
+     * @return
+     * @throws IOException
+     */
+    public static boolean writeFileContent(String filepath, String newstr) throws IOException {
+        Boolean bool = false;
+        String filein = newstr + "\r\n";//新写入的行，换行
+        String temp = "";
+
+        FileInputStream fis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+        FileOutputStream fos = null;
+        PrintWriter pw = null;
+        try {
+            File file = new File(filepath);//文件路径(包括文件名称)
+            //将文件读入输入流
+            fis = new FileInputStream(file);
+            isr = new InputStreamReader(fis);
+            br = new BufferedReader(isr);
+            StringBuffer buffer = new StringBuffer();
+
+            //文件原有内容
+            for (int i = 0; (temp = br.readLine()) != null; i++) {
+                buffer.append(temp);
+                // 行与行之间的分隔符 相当于“\n”
+                buffer = buffer.append(System.getProperty("line.separator"));
+            }
+            buffer.append(filein);
+
+            fos = new FileOutputStream(file);
+            pw = new PrintWriter(fos);
+            pw.write(buffer.toString().toCharArray());
+            pw.flush();
+            bool = true;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            //不要忘记关闭
+            if (pw != null) {
+                pw.close();
+            }
+            if (fos != null) {
+                fos.close();
+            }
+            if (br != null) {
+                br.close();
+            }
+            if (isr != null) {
+                isr.close();
+            }
+            if (fis != null) {
+                fis.close();
+            }
+        }
+        return bool;
+    }
+
+    public static void main(String[] args) {
+        String filePath = "/Users/dannyhoo/file/" + UUID.randomUUID();
+        createFile(filePath, "adfadf");
+        System.out.println();
+    }
+
+    public void cleanData() {
+        List<SpiderTask> spiderTaskList = getSpiderTaskList(urlCache.getUrlCacheMap());
+        int originalTaskCount = spiderTaskList.size();
+        Iterator<SpiderTask> iterator = spiderTaskList.iterator();
+        while (iterator.hasNext()) {
+            SpiderTask s = iterator.next();
+            List<LaGouCompanyDO> laGouCompanyDOList = laGouCompanyDAO.findByPageUrl(s.getUrl());
+
+            if (laGouCompanyDOList != null && laGouCompanyDOList.size() > 0) {
+                LaGouCompanyDO laGouCompanyDO = laGouCompanyDOList.get(0);
+                System.out.println("该任务已经执行过，即将过滤……" + laGouCompanyDO.getCompanyName() + "_" + laGouCompanyDO.getJobName());
+                iterator.remove();
+                if (laGouCompanyDOList.size() > 1) {//如果数据库中存在多条重复数据，滞留一条
+                    System.out.println("数据库中已经存在多条数据，即将清理：" + JSON.toJSONString(laGouCompanyDOList));
+                    for (int i = 1; i < laGouCompanyDOList.size(); i++) {
+                        laGouCompanyDAO.delete(laGouCompanyDOList.get(i).getId());
+                    }
+                }
+            }
+        }
+        String filePath = "/Users/dannyhoo/file/" + UUID.randomUUID();
+        createFile(filePath, JSON.toJSONString(spiderTaskList));
+        System.out.println("数据清洗结束，原来任务数量：" + originalTaskCount + "；清洗后的任务数量：" + spiderTaskList.size());
+    }
+}

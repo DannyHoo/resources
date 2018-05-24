@@ -1,18 +1,19 @@
 package club.easyshare.controller.test;
 
+import com.itextpdf.text.pdf.BaseFont;
 import org.apache.commons.io.FileUtils;
+import org.dom4j.DocumentException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.xhtmlrenderer.pdf.ITextFontResolver;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * @author huyuyang@lxfintech.com
@@ -35,11 +36,24 @@ public class TestController {
         return "test/jdbg/jdbg_base64";
     }
 
+    public static void main(String[] args) throws Exception {
+
+        ITextRenderer renderer = new ITextRenderer();
+        ITextFontResolver fontResolver = renderer.getFontResolver();
+        fontResolver.addFont("/Users/dannyhoo/Desktop/Fonts/simsun.ttc", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+        OutputStream os = new FileOutputStream("/Users/dannyhoo/Desktop/FlyingSaucer_base641.pdf");
+        String htmlstr = HttpHandler.sendGet("http://localhost:10086/test/jdbg_base64.html");
+        //解决图片的相对路径问题
+        //renderer.getSharedContext().setBaseURL("file:/D:/");
+        renderer.setDocumentFromString(htmlstr);
+        renderer.layout();
+        renderer.createPDF(os);
+    }
 
     @RequestMapping("/downloadjdbg")
     public ResponseEntity<byte[]> download(HttpServletRequest request) throws IOException {
         //生成pdf
-        String htmlPageUrl=request.getParameter("htmlPageUrl")==null?"":request.getParameter("htmlPageUrl").toString();
+        String htmlPageUrl = request.getParameter("htmlPageUrl") == null ? "" : request.getParameter("htmlPageUrl").toString();
         if ("".equals(htmlPageUrl)) return null;
 
         //下载pdf
@@ -53,9 +67,9 @@ public class TestController {
                 headers, HttpStatus.CREATED);
     }
 
-    public void createPdf(){
+    public void createPdf() {
         try {
-            String shellPath="/home/felven/word2vec/demo-classes.sh";
+            String shellPath = "/home/felven/word2vec/demo-classes.sh";
             Process ps = Runtime.getRuntime().exec(shellPath);
             ps.waitFor();
 
@@ -67,8 +81,7 @@ public class TestController {
             }
             String result = sb.toString();
             System.out.println(result);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -2,12 +2,14 @@ package club.easyshare.controller.front;
 
 import club.easyshare.service.common.system.ViewRecordService;
 import club.easysharing.model.parameter.system.ViewRecordParameter;
+import org.bouncycastle.asn1.ocsp.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
@@ -38,12 +40,19 @@ public class FrontIndexController {
         return "front/index";
     }
 
+    @RequestMapping("/jsontest")
+    public void test(@RequestBody Map<String,Object> params){
+        System.out.println("username: " + params.get("username"));
+        System.out.println("password: " + params.get("password"));
+    }
+
     private void saveViewRecords(HttpServletRequest request) {
         if (!isSkipSaveViewRecord){
             ViewRecordParameter viewRecordParameter = getViewRecordParameter(request);
             viewRecordService.saveViewRecord(viewRecordParameter);
         }
     }
+
 
     private ViewRecordParameter getViewRecordParameter(HttpServletRequest request) {
         String agent = request.getHeader("user-agent");

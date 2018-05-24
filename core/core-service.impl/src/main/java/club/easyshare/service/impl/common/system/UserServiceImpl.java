@@ -2,7 +2,7 @@ package club.easyshare.service.impl.common.system;
 
 import club.easyshare.glue.system.UserGlue;
 import club.easyshare.service.common.system.UserService;
-import club.easyshare.service.impl.common.BaseServiceImpl;
+import club.easyshare.service.impl.base.BaseServiceImpl;
 import club.easysharing.model.bean.system.User;
 import club.easysharing.model.parameter.system.UserParameter;
 import org.springframework.beans.factory.annotation.Autowired;

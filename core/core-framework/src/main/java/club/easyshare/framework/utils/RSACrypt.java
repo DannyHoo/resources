@@ -12,6 +12,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -21,7 +22,22 @@ import javax.crypto.NoSuchPaddingException;
 public class RSACrypt {
 
 	public static void main(String[] args) throws Exception {
-		String miyao="MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJKc2JrdrfLXfjl7hGBza8n+W/Hkq8ypEd7otByGfcqIX1z+y2Atfyxb9DCFAap5M/5VTFNXkgVxdZcMI0glbKQsNuu4VxRTwlAd6wDfINtdUCuy2pO8uq65behljhJwhqLjs74LTLvIysDNhxWFmTjWA4x5ivjGqRW1z7hSeZJRAgMBAAECgYB0o9njo1dfareeLblMLqdjhTxK/pz7bsqr58BbLVhoSARubLsKYkfZ17I246pGoLSPs/bMG1Atim195Qcwv61k1qbUqNCXDDlCjHcvyZ/AexOuc5KIKQ53Jl4iry58HhrqDkAMlZc1NKELFc/Y6Cmxn9iNgwEWsJU0A1SVRZOPwQJBAPSaYpm5ENwiYJHc0O02jFDJeTtcWoHcsx47qhknQKbc3c6xEjn5VQpi8kb/ulQilRiq4DhbmmbuqHR+n7Dh4rkCQQCZcaLGnWzOap1hYSE+2gCX+REk5d559jtpcTudtal6oyfFdDbxZMnaGe+xZJhbP8Rb1DXeN5MeRjDIE8rhn8BZAkEAk0W9JjcyOoiMQmaEeL7GHwIfdyk06UmboxFjaf+jQpRrDD667aL8m+NVYoAojO3BfXesxuIIhf8d9/4hYhuvKQJAFxx9hurJK6H1SGiHyF6vfjRed69DvhzvP+d1MkDdYQJYCC6D5AHpQTds2cwsAnptSeOBpZG7T/EEge4xPaCBKQJAUUGJFAGx+wDYl8oEaLoC4M5XUe7gQFV8F9+tt8nOcZecnUF31ngYsg7TJ6YDF1XiGrUyA5NJAg7/1oJ0fYWUrQ==";
+		//初始化阶段
+		HashMap<String, String> map = RSACrypt.getKeys();
+		String privateKeyStr=map.get("privateKey");
+		String publicKeyStr=map.get("publicKey");
+		System.out.println("初始化私钥为："+privateKeyStr);
+		System.out.println("初始化共钥为："+publicKeyStr);
+		//http发送方（Client）
+		String originData="周末约你看电影吧";
+		System.out.println("信息原文："+originData);
+		String encryptData=RSACrypt.encrypt(RSACrypt.loadPublicKey(publicKeyStr),originData.getBytes());
+		System.out.println("加密后："+encryptData);
+		//http接收方（Server）
+		String decryptData=RSACrypt.decrypt(RSACrypt.loadPrivateKey(privateKeyStr),RSACrypt.strToBase64(encryptData));
+		System.out.println("解密后："+decryptData);
+
+		/*String miyao="MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJKc2JrdrfLXfjl7hGBza8n+W/Hkq8ypEd7otByGfcqIX1z+y2Atfyxb9DCFAap5M/5VTFNXkgVxdZcMI0glbKQsNuu4VxRTwlAd6wDfINtdUCuy2pO8uq65behljhJwhqLjs74LTLvIysDNhxWFmTjWA4x5ivjGqRW1z7hSeZJRAgMBAAECgYB0o9njo1dfareeLblMLqdjhTxK/pz7bsqr58BbLVhoSARubLsKYkfZ17I246pGoLSPs/bMG1Atim195Qcwv61k1qbUqNCXDDlCjHcvyZ/AexOuc5KIKQ53Jl4iry58HhrqDkAMlZc1NKELFc/Y6Cmxn9iNgwEWsJU0A1SVRZOPwQJBAPSaYpm5ENwiYJHc0O02jFDJeTtcWoHcsx47qhknQKbc3c6xEjn5VQpi8kb/ulQilRiq4DhbmmbuqHR+n7Dh4rkCQQCZcaLGnWzOap1hYSE+2gCX+REk5d559jtpcTudtal6oyfFdDbxZMnaGe+xZJhbP8Rb1DXeN5MeRjDIE8rhn8BZAkEAk0W9JjcyOoiMQmaEeL7GHwIfdyk06UmboxFjaf+jQpRrDD667aL8m+NVYoAojO3BfXesxuIIhf8d9/4hYhuvKQJAFxx9hurJK6H1SGiHyF6vfjRed69DvhzvP+d1MkDdYQJYCC6D5AHpQTds2cwsAnptSeOBpZG7T/EEge4xPaCBKQJAUUGJFAGx+wDYl8oEaLoC4M5XUe7gQFV8F9+tt8nOcZecnUF31ngYsg7TJ6YDF1XiGrUyA5NJAg7/1oJ0fYWUrQ==";
 		String mima="OZEvJ6zzWyuFICxLmK6odiGz7dauAUIFbX4V/HxeBNHMD/xd5FuB6sWl08W/9MVfwqOxQMVvozCy884PbTrRPD4iizqfplzfDYumW0hqBix7P6glm0F3O20bpq8eZH1HksuNj7eunu9ShiHEVk+sH+76lQPqdwSy13AzhDEnkLY=";
 		String jiemi=RSACrypt.decrypt(RSACrypt.loadPrivateKey(miyao), RSACrypt.strToBase64(mima));
 		String password = "qazwsx123当前线程上";
@@ -42,7 +58,7 @@ public class RSACrypt {
 			System.out.println("解密后："+passwordJiem);
 		}catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**

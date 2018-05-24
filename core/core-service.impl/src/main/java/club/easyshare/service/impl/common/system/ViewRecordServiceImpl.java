@@ -2,7 +2,7 @@ package club.easyshare.service.impl.common.system;
 
 import club.easyshare.glue.system.ViewRecordGlue;
 import club.easyshare.service.common.system.ViewRecordService;
-import club.easyshare.service.impl.common.BaseServiceImpl;
+import club.easyshare.service.impl.base.BaseServiceImpl;
 import club.easysharing.model.parameter.system.ViewRecordParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
