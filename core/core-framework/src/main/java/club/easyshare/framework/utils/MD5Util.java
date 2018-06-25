@@ -46,7 +46,6 @@ public class MD5Util {
                 hs = hs + stmp;
             }
         }
-
         return hs.toUpperCase();
     }
 
