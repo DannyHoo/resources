@@ -2,42 +2,72 @@
 
 <form class="layui-form layui-form-pane" action="">
     <div class="layui-form-item">
-        <label class="layui-form-label">长输入框</label>
+        <label class="layui-form-label">资源标题</label>
         <div class="layui-input-block">
             <input type="text" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">短输入框</label>
-        <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off"
-                   class="layui-input">
+        <div class="layui-inline">
+            <label class="layui-form-label">资源大小</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" lay-verify="required" placeholder="资源大小(单位K、M、G)" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">资源语言</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" lay-verify="required" placeholder="请输入语言" autocomplete="off"
+                       class="layui-input">
+            </div>
         </div>
     </div>
-
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">短输入框</label>
+        <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="required" placeholder="请输入语言" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>-->
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">日期选择</label>
+            <label class="layui-form-label">资源时间</label>
             <div class="layui-input-inline">
                 <input type="text" class="layui-input" id="date1" placeholder="yyyy-MM-dd">
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">行内表单</label>
+            <label class="layui-form-label">分享方式</label>
             <div class="layui-input-inline">
                 <input type="text" name="number" autocomplete="off" class="layui-input">
             </div>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-inline">
-            <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        <div class="layui-inline">
+            <label class="layui-form-label">资源类型</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" lay-verify="required" placeholder="资源大小(单位K、M、G)" autocomplete="off"
+                       class="layui-input">
+            </div>
         </div>
-        <div class="layui-form-mid layui-word-aux">请务必填写用户名</div>
+        <div class="layui-inline">
+            <label class="layui-form-label">星级评分</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" lay-verify="required" placeholder="请选择星级评分" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
     </div>
-
     <div class="layui-form-item">
+        <label class="layui-form-label">适用环境</label>
+        <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="required" placeholder="请输入环境" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <!--<div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">范围</label>
             <div class="layui-input-inline" style="width: 100px;">
@@ -48,72 +78,7 @@
                 <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
             </div>
         </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">单行选择框</label>
-        <div class="layui-input-block">
-            <select name="interest" lay-filter="aihao">
-                <option value=""></option>
-                <option value="0">写作</option>
-                <option value="1" selected="">阅读</option>
-                <option value="2">游戏</option>
-                <option value="3">音乐</option>
-                <option value="4">旅行</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">行内选择框</label>
-        <div class="layui-input-inline">
-            <select name="quiz1">
-                <option value="">请选择省</option>
-                <option value="浙江" selected="">浙江省</option>
-                <option value="你的工号">江西省</option>
-                <option value="你最喜欢的老师">福建省</option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-            <select name="quiz2">
-                <option value="">请选择市</option>
-                <option value="杭州">杭州</option>
-                <option value="宁波" disabled="">宁波</option>
-                <option value="温州">温州</option>
-                <option value="温州">台州</option>
-                <option value="温州">绍兴</option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-            <select name="quiz3">
-                <option value="">请选择县/区</option>
-                <option value="西湖区">西湖区</option>
-                <option value="余杭区">余杭区</option>
-                <option value="拱墅区">临安市</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item" pane="">
-        <label class="layui-form-label">开关-开</label>
-        <div class="layui-input-block">
-            <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" title="开关">
-        </div>
-    </div>
-    <div class="layui-form-item" pane="">
-        <label class="layui-form-label">单选框</label>
-        <div class="layui-input-block">
-            <input type="radio" name="sex" value="男" title="男" checked="">
-            <input type="radio" name="sex" value="女" title="女">
-            <input type="radio" name="sex" value="禁" title="禁用" disabled="">
-        </div>
-    </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">文本域</label>
-        <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
-        </div>
-    </div>
-    <!--<textarea id="demo" style="display: none;"></textarea>-->
+    </div>-->
 
     <div id="divTextEditor">
         <p>初始化的内容</p>
@@ -122,28 +87,85 @@
     <script type="text/javascript" src="${ctxPath}/plugins/editor/wangEditor.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/qiniu-js@<version>/dist/qiniu.min.js"></script>
 
-
 </form>
+
 <div class="layui-form-item">
     <button id="submitEdit" class="layui-btn" lay-submit="" lay-filter="demo2-">提 交 编 辑</button>
 </div>
 
 <script>
-    //创建富文本编辑器
+    //创建富文本编辑器 http://www.wangeditor.com/index.html
     var E = window.wangEditor;
     var editor = new E('#divTextEditor');
+    // 自定义菜单配置
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'list',  // 列表
+        'justify',  // 对齐方式
+        'quote',  // 引用
+        'emoticon',  // 表情
+        'image',  // 插入图片
+        'table',  // 表格
+        'video',  // 插入视频
+        'code',  // 插入代码
+        'undo',  // 撤销
+        'redo'  // 重复
+    ];
     // 下面两个配置，使用其中一个即可显示“上传图片”的tab。但是两者不要同时使用！！！
-    // editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
+    //editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片，简单方便，但可能对显示性能有影响
+    editor.customConfig.uploadImgServer = '/gateway/fileupload/image';  // 上传图片到服务器
+
     editor.customConfig.uploadFileName = 'uploadPic';
-    editor.customConfig.uploadImgServer = '/gateway/fileupload/image'  // 上传图片到服务器
-    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024 // 图片大小限制为 3M
-    editor.customConfig.uploadImgMaxLength = 5 //限制一次最多上传 5 张图片
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024; // 图片大小限制为 3M
+    editor.customConfig.uploadImgMaxLength = 5; //限制一次最多上传 5 张图片
+    editor.customConfig.uploadImgTimeout = 100000;//timeout时间改为10s
+
+    editor.customConfig.pasteFilterStyle = false;//关闭粘贴样式的过滤，保留粘贴内容格式，默认不保留原格式
+    //editor.customConfig.pasteIgnoreImg = true;//忽略掉粘贴内容中的图片，默认可粘贴
+
+    editor.customConfig.onblur = function (html) {//失去焦点的动作
+        // html 即编辑器中的内容
+        console.log('onblur', html)
+    };
+
+    editor.customConfig.customAlert = function (info) {//上传图片的错误提示默认使用alert弹出，你也可以自定义用户体验更好的提示方式
+        // info 是需要提示的内容
+        alert('自定义提示：' + info)
+    }
+
+    // 自定义配置颜色（字体颜色、背景色）
+    editor.customConfig.colors = [
+        '#000000',
+        '#eeece0',
+        '#1c487f',
+        '#4d80bf',
+        '#c24f4a',
+        '#8baa4a',
+        '#7b5ba1',
+        '#46acc8',
+        '#f9963b',
+        '#ffffff'
+    ];
+
     editor.create();
+
+    //editor.txt.html('<p>用 JS 设置的内容</p>');//初始化editor内容
+    //editor.txt.append('<p>追加的内容</p>');//向editor追加内容
+    //editor.txt.clear();//清空编辑器内容
 
     // 插入网络图片，url即插入图片的地址
     /*editor.customConfig.linkImgCallback = function (url) {
-        console.log(url)
-    }*/
+     console.log(url)
+     }*/
 
     //上传到服务器
     editor.customConfig.uploadImgHooks = {
@@ -160,18 +182,22 @@
         success: function (xhr, editor, result) {
             // 图片上传并返回结果，图片插入成功之后触发
             // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+            alert("success:"+result);
         },
         fail: function (xhr, editor, result) {
             // 图片上传并返回结果，但图片插入错误时触发
             // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+            alert("fail:"+result);
         },
         error: function (xhr, editor) {
             // 图片上传出错时触发
             // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+            alert("error");
         },
         timeout: function (xhr, editor) {
             // 图片上传超时时触发
             // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+            alert("timeout");
         },
 
         // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
@@ -185,6 +211,7 @@
             insertImg(url)
 
             // result 必须是一个 JSON 格式字符串！！！否则报错
+            alert("customInsert");
         }
     }
 
@@ -291,27 +318,6 @@
         window.console && console.log(title, info);
     }
 
-    /*layui.use('layedit', function () {
-     var layedit = layui.layedit;
-     layedit.build('demo', {
-     height: 180 //设置编辑器高度
-     /!*,tool: [
-     'strong' //加粗
-     , 'italic' //斜体
-     , 'underline' //下划线
-     , 'del' //删除线
-     , '|' //分割线
-     , 'left' //左对齐
-     , 'center' //居中对齐
-     , 'right' //右对齐
-     , 'link' //超链接
-     , 'unlink' //清除链接
-     , 'face' //表情
-     , 'image' //插入图片
-     , 'help' //帮助
-     ]*!/
-     }); //建立编辑器
-     });*/
 </script>
 
 

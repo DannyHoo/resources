@@ -52,7 +52,7 @@ public class FileUploadController {
         //如果文件不为空，写入上传路径
         if(!file.isEmpty()) {
             //上传文件路径
-            String path = "/data/files/images/";
+            String path = "/Users/dannyhoo/data/files/images/";
             //上传文件名
             String filename = file.getOriginalFilename();
             File filepath = new File(path,filename);
@@ -102,7 +102,7 @@ public class FileUploadController {
             //解析上传成功的结果
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             if (response.statusCode==200){
-                return key+qiniuFileUrlPrex;
+                return qiniuFileUrlPrex+key;
             }
         } catch (QiniuException ex) {
             Response r = ex.response;
