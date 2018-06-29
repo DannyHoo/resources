@@ -1,3 +1,4 @@
+
 package club.easyshare.controller.gateway;
 
 import club.easyshare.framework.utils.Generator;
@@ -51,7 +52,7 @@ public class FileUploadController {
         //如果文件不为空，写入上传路径
         if(!file.isEmpty()) {
             //上传文件路径
-            String path = "/Users/dannyhoo/Downloads/images/";
+            String path = "/data/files/images/";
             //上传文件名
             String filename = file.getOriginalFilename();
             File filepath = new File(path,filename);

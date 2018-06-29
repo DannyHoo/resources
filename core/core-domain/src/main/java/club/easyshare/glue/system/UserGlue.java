@@ -72,7 +72,7 @@ public class UserGlue extends BaseGlue {
         user.setEmail(userParameter.getEmail())
                 .setUserName(userParameter.getUserName())
                 .setSalt(salt)
-                .setPassword(MD5Util.md5HexTwoSourceAndSalt(userParameter.getPassword(), salt));
+                .setPassword(MD5Util.md5HexTwoSourceAndSalt(password, salt));
         UserDO userDO = convertIgnoreNullProperty(user, UserDO.class);
         userDO = userDAO.save(userDO);
         user = convertIgnoreNullProperty(userDO, User.class);
