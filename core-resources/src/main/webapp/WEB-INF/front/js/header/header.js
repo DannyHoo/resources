@@ -11,6 +11,6 @@ function showLoginModal() {
         closeBtn: 2,
         shade: 0.8,
         area: ['540px', '320px'],
-        content: '../user/loginPage.html'
+        content: '/user/loginPage.html'
     });
 }

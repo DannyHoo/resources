@@ -4,99 +4,203 @@
     <div class="layui-form-item">
         <label class="layui-form-label">资源标题</label>
         <div class="layui-input-block">
-            <input type="text" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            <input type="text" id="title" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">模板类型</label>
+        <div class="layui-input-block">
+            <select id="pageTemplate" name="interest" lay-filter="aihao">
+                <option value="read">阅读类型</option>
+                <option value="download">下载类型</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">一级分类</label>
+            <div class="layui-input-inline">
+                <select lay-filter="firstCategory" name="modules" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+                    <option value="Softwares">软件下载</option>
+                    <option value="Course">教程资源</option>
+                    <option value="SourceCode">源码分享</option>
+                    <option value="News">今日头条</option>
+                    <option value="Entertainment">娱乐放松</option>
+                    <option value="Activity">社区活动</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">二级分类</label>
+            <div class="layui-input-inline">
+                <select id="secondCategorySelect" name="modules" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">资源语言</label>
+            <div class="layui-input-inline">
+                <input type="text" id="language" name="language" lay-verify="required" placeholder="请输入语言"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">资源时间</label>
+            <div class="layui-input-inline">
+                <input id="resourceDate" type="resourceDate" class="layui-input" id="date1" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">分享方式</label>
+            <div class="layui-input-inline">
+                <input id="shareWay" type="text" name="number" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">资源类型</label>
+            <div class="layui-input-inline">
+                <input id="type" type="text" name="type" lay-verify="required" placeholder="资源类型" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">星级评分</label>
+            <div class="layui-input-inline">
+                <select id="star" lay-filter="star" name="modules" lay-verify="required" lay-search="">
+                    <option value="">请选择星级评分</option>
+                    <option value="5">★★★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="3">★★★</option>
+                    <option value="2">★★</option>
+                    <option value="1">★</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">适用环境</label>
+            <div class="layui-input-inline">
+                <input id="environment" type="text" name="environment" lay-verify="required" placeholder="请输入环境" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+    </div>
+
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">资源大小</label>
             <div class="layui-input-inline">
-                <input type="text" name="username" lay-verify="required" placeholder="资源大小(单位K、M、G)" autocomplete="off"
+                <input id="size" type="text" name="username" lay-verify="required" placeholder="单位KB,MB,GB,如:68KB"
+                       autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">资源语言</label>
+            <label class="layui-form-label">资源标签</label>
             <div class="layui-input-inline">
-                <input type="text" name="username" lay-verify="required" placeholder="请输入语言" autocomplete="off"
+                <input id="marks" type="text" name="username" lay-verify="required" placeholder='标签用逗号","隔开'
+                       autocomplete="off"
                        class="layui-input">
             </div>
         </div>
     </div>
-    <!--<div class="layui-form-item">
-        <label class="layui-form-label">短输入框</label>
-        <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" placeholder="请输入语言" autocomplete="off"
-                   class="layui-input">
-        </div>
-    </div>-->
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">资源时间</label>
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="date1" placeholder="yyyy-MM-dd">
-            </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">分享方式</label>
-            <div class="layui-input-inline">
-                <input type="text" name="number" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">资源类型</label>
-            <div class="layui-input-inline">
-                <input type="text" name="username" lay-verify="required" placeholder="资源大小(单位K、M、G)" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">星级评分</label>
-            <div class="layui-input-inline">
-                <input type="text" name="username" lay-verify="required" placeholder="请选择星级评分" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">适用环境</label>
-        <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" placeholder="请输入环境" autocomplete="off"
-                   class="layui-input">
-        </div>
-    </div>
-    <!--<div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">范围</label>
-            <div class="layui-input-inline" style="width: 100px;">
-                <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid">-</div>
-            <div class="layui-input-inline" style="width: 100px;">
-                <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-    </div>-->
 
-    <div id="divTextEditor">
-        <p>初始化的内容</p>
-        <p>初始化的内容</p>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">资源描述</label>
+        <div class="layui-input-block">
+            <textarea id="note" placeholder="可以在这里对资源进行一个简短的描述哦！" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div id="divTextEditor_toolbar" class="toolbar">
+    </div>
+    <div id="divTextEditor_text" class="text" style="min-height:600px;">
     </div>
     <script type="text/javascript" src="${ctxPath}/plugins/editor/wangEditor.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/qiniu-js@<version>/dist/qiniu.min.js"></script>
 
 </form>
 
 <div class="layui-form-item">
+    <button id="saveEdit" class="layui-btn" lay-submit="" lay-filter="demo2-">保 存 草 稿</button>
     <button id="submitEdit" class="layui-btn" lay-submit="" lay-filter="demo2-">提 交 编 辑</button>
 </div>
+
+<script type="text/javascript">
+
+    layui.use('form', function () {
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+        form.render();
+        form.on('select(firstCategory)', function (data) {
+            changeSecondCategory(data.value);
+        });
+    });
+
+    function changeSecondCategory(firstValue) {
+        if (firstValue == "Softwares") {
+            $('#secondCategorySelect').empty();
+            $("#secondCategorySelect").append("<option value='Softwares_Security'>安全杀毒</option>");
+            $("#secondCategorySelect").append("<option value='Softwares_StudyOffice'>学习办公</option>");
+            $("#secondCategorySelect").append("<option value='Softwares_Tools'>实用工具</option>");
+            $("#secondCategorySelect").append("<option value='Softwares_System'>系统软件</option>");
+        }
+        if (firstValue == "Course") {
+            $('#secondCategorySelect').empty();
+            $("#secondCategorySelect").append("<option value='Course_ProgramLanguage'>编程语言</option>");
+            $("#secondCategorySelect").append("<option value='Course_FrontDesign'>前端设计</option>");
+            $("#secondCategorySelect").append("<option value='Course_SysOperation'>系统运维</option>");
+            $("#secondCategorySelect").append("<option value='Course_Security'>安全攻防</option>");
+            $("#secondCategorySelect").append("<option value='Course_Architecture'>架构设计</option>");
+        }
+        if (firstValue == "SourceCode") {
+            $('#secondCategorySelect').empty();
+            $("#secondCategorySelect").append("<option value='SourceCode_Front'>前端源码</option>");
+            $("#secondCategorySelect").append("<option value='SourceCode_PageFunction'>网页特效</option>");
+            $("#secondCategorySelect").append("<option value='SourceCode_DevelopDemo'>开发实例</option>");
+            $("#secondCategorySelect").append("<option value='SourceCode_SystemCode'>系统源码</option>");
+        }
+        if (firstValue == "News") {
+            $('#secondCategorySelect').empty();
+            $("#secondCategorySelect").append("<option value='News_Life'>生活资讯</option>");
+            $("#secondCategorySelect").append("<option value='News_Culturl'>文化娱乐</option>");
+            $("#secondCategorySelect").append("<option value='News_Finance'>金融动态</option>");
+            $("#secondCategorySelect").append("<option value='News_SportsEconomic'>体育财经</option>");
+            $("#secondCategorySelect").append("<option value='News_HotNews'>时事热点</option>");
+        }
+        if (firstValue == "Entertainment") {
+            $('#secondCategorySelect').empty();
+            $("#secondCategorySelect").append("<option value='Entertainment_Movies'>电影资讯</option>");
+            $("#secondCategorySelect").append("<option value='Entertainment_Pictures'>福利美图</option>");
+        }
+        if (firstValue == "Activity") {
+            $('#secondCategorySelect').empty();
+            $("#secondCategorySelect").append("<option value='Activity_OnLine'>线上互动</option>");
+            $("#secondCategorySelect").append("<option value='Activity_OffLine'>线下分享</option>");
+            $("#secondCategorySelect").append("<option value='Activity_Party'>交友聚会</option>");
+        }
+        layui.use('form', function () {
+            var form = layui.form; //重新渲染表单，否则显示不出来
+            form.render();
+            form.on('select(firstCategory)', function (data) {
+                changeSecondCategory(data.value);
+            });
+        });
+    }
+</script>
 
 <script>
     //创建富文本编辑器 http://www.wangeditor.com/index.html
     var E = window.wangEditor;
-    var editor = new E('#divTextEditor');
+    var editor = new E('#divTextEditor_toolbar', '#divTextEditor_text');
     // 自定义菜单配置
     editor.customConfig.menus = [
         'head',  // 标题
@@ -182,12 +286,12 @@
         success: function (xhr, editor, result) {
             // 图片上传并返回结果，图片插入成功之后触发
             // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-            alert("success:"+result);
+            alert("success:" + result);
         },
         fail: function (xhr, editor, result) {
             // 图片上传并返回结果，但图片插入错误时触发
             // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-            alert("fail:"+result);
+            alert("fail:" + result);
         },
         error: function (xhr, editor) {
             // 图片上传出错时触发
@@ -215,102 +319,63 @@
         }
     }
 
-    /*// 初始化七牛上传
-     uploadInit()
-     // 初始化七牛上传的方法
-     function uploadInit() {
-     // 获取相关 DOM 节点的 ID
-     var btnId = editor.imgMenuId;
-     var containerId = editor.toolbarElemId;
-     var textElemId = editor.textElemId;
-
-     // 创建上传对象
-     var uploader = Qiniu.uploader({
-     runtimes: 'html5,flash,html4',    //上传模式,依次退化
-     browse_button: btnId,       //上传选择的点选按钮，**必需**
-     uptoken_url: '/gateway/qiniu/uptoken',
-     //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
-     // uptoken : '<Your upload token>',
-     //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
-     // unique_names: true,
-     // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
-     // save_key: true,
-     // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
-     domain: 'http://7xrjl5.com1.z0.glb.clouddn.com/',
-     //bucket 域名，下载资源时用到，**必需**
-     container: containerId,           //上传区域DOM ID，默认是browser_button的父元素，
-     max_file_size: '100mb',           //最大文件体积限制
-     flash_swf_url: '../js/plupload/Moxie.swf',  //引入flash,相对路径
-     filters: {
-     mime_types: [
-     //只允许上传图片文件 （注意，extensions中，逗号后面不要加空格）
-     {title: "图片文件", extensions: "jpg,gif,png,bmp"}
-     ]
-     },
-     max_retries: 3,                   //上传失败最大重试次数
-     dragdrop: true,                   //开启可拖曳上传
-     drop_element: textElemId,        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-     chunk_size: '4mb',                //分块上传时，每片的体积
-     auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
-     init: {
-     'FilesAdded': function (up, files) {
-     plupload.each(files, function (file) {
-     // 文件添加进队列后,处理相关的事情
-     printLog('on FilesAdded');
-     });
-     },
-     'BeforeUpload': function (up, file) {
-     // 每个文件上传前,处理相关的事情
-     printLog('on BeforeUpload');
-     },
-     'UploadProgress': function (up, file) {
-     // 显示进度
-     printLog('进度 ' + file.percent)
-     },
-     'FileUploaded': function (up, file, info) {
-     // 每个文件上传成功后,处理相关的事情
-     // 其中 info 是文件上传成功后，服务端返回的json，形式如
-     // {
-     //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-     //    "key": "gogopher.jpg"
-     //  }
-     printLog(info);
-     // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
-
-     var domain = up.getOption('domain');
-     var res = $.parseJSON(info);
-     var sourceLink = domain + res.key; //获取上传成功后的文件的Url
-
-     printLog(sourceLink);
-
-     // 插入图片到editor
-     editor.cmd.do('insertHtml', '<img src="' + sourceLink + '" style="max-width:100%;"/>')
-     },
-     'Error': function (up, err, errTip) {
-     //上传出错时,处理相关的事情
-     printLog('on Error');
-     },
-     'UploadComplete': function () {
-     //队列文件处理完毕后,处理相关的事情
-     printLog('on UploadComplete');
-     }
-     // Key 函数如果有需要自行配置，无特殊需要请注释
-     //,
-     // 'Key': function(up, file) {
-     //     // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
-     //     // 该配置必须要在 unique_names: false , save_key: false 时才生效
-     //     var key = "";
-     //     // do something with key here
-     //     return key
-     // }
-     }
-     // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
-     // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
-     });
-     }*/
     //提交编辑
     document.getElementById('submitEdit').addEventListener('click', function () {
-        alert(editor.txt.html())
+        var title = $("#title").val();
+        var note = $("#note").val();
+        var secondCategorySelect = $("#secondCategorySelect").val();
+        var language = $("#language").val();
+        var resourceDate = $("#resourceDate").val();
+        var shareWay = $("#shareWay").val();
+        var type = $("#type").val();
+        var star = $("#star").val();
+        var environment = $("#environment").val();
+        var marks = $("#marks").val();
+        var size = $("#size").val();
+        var pageTemplate = $("#pageTemplate").val();
+        var content = editor.txt.html();
+        console.log("title="+title);
+        console.log("note="+note);
+        console.log("secondCategorySelect="+secondCategorySelect);
+        console.log("language="+language);
+        console.log("resourceDate="+resourceDate);
+        console.log("shareWay="+shareWay);
+        console.log("type="+type);
+        console.log("star="+star);
+        console.log("environment="+environment);
+        console.log("marks="+marks);
+        console.log("size="+size);
+        console.log("pageTemplate="+pageTemplate);
+        console.log("content="+content);
+        $.ajax({
+            async: false,
+            data: {
+                "title": title,
+                "note": note,
+                "secondCategorySelect": secondCategorySelect,
+                "language": language,
+                "resourceDate": resourceDate,
+                "shareWay": shareWay,
+                "type": type,
+                "star": star,
+                "environment": environment,
+                "marks": marks,
+                "size": size,
+                "pageTemplate": pageTemplate,
+                "content": content
+            },
+            type: "post",
+            url: "/front/resource/doSave/new.action",
+            datatype: 'json',
+            success: function (data) {
+                temp = data;
+                if (temp == "true") {
+                    layer.msg('成功~');
+                } else {
+                    layer.msg(data);
+                }
+            }
+        });
     }, false)
 
     // 封装 console.log 函数

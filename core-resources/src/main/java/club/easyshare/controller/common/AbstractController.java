@@ -48,6 +48,26 @@ public class AbstractController {
      * @param request
      */
     protected void deleteCurrentUser(HttpServletRequest request) {
-        request.getSession().setAttribute(USER_INFO_SESSION_ID,null);
+        request.getSession().setAttribute(USER_INFO_SESSION_ID, null);
+    }
+
+    protected String getStringValueFromRequest(HttpServletRequest request, String paramName) {
+        if (request != null) {
+            Object paramValue = request.getParameter(paramName);
+            if (paramValue != null) {
+                return paramValue.toString();
+            }
+        }
+        return null;
+    }
+
+    protected Integer getIntValueFromRequest(HttpServletRequest request, String paramName) {
+        if (request != null) {
+            Object paramValue = request.getParameter(paramName);
+            if (paramValue != null) {
+                return Integer.parseInt(paramValue.toString());
+            }
+        }
+        return 0;
     }
 }
