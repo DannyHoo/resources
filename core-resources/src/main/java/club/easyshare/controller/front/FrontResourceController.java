@@ -37,6 +37,7 @@ public class FrontResourceController extends AbstractController {
     @Autowired
     private ResourceService resourceService;
 
+
     @RequestMapping("/category/{categoryCode}")
     public String category(HttpServletRequest request, @PathVariable String categoryCode) {
         if (true) {
