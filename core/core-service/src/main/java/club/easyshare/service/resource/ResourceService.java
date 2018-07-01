@@ -14,8 +14,18 @@ public interface ResourceService {
 
     /**
      * 添加资源
+     *
      * @param resource
      * @return
      */
     Resource saveResource(Resource resource);
+
+    /**
+     * 根据资源编码查找资源
+     *
+     * @param resourceCode
+     * @return
+     */
+    Resource findByResourceCode(String resourceCode);
+
 }

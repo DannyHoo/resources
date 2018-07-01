@@ -26,6 +26,8 @@ public class ResourceDO extends BaseEntity {
     private String title;
     /* 资源概述 */
     private String note;
+    /* 封面图片 */
+    private String picture;
     /* 资源大小 */
     private String size;
     /* 所属语言 */
@@ -84,6 +86,15 @@ public class ResourceDO extends BaseEntity {
 
     public ResourceDO setNote(String note) {
         this.note = note;
+        return this;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public ResourceDO setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 

@@ -25,4 +25,9 @@ public class ResourceServiceImpl extends BaseServiceImpl implements ResourceServ
     public Resource saveResource(Resource resource) {
         return resourceGlue.saveResource(resource);
     }
+
+    @Override
+    public Resource findByResourceCode(String resourceCode) {
+        return resourceGlue.findByResourceCode(resourceCode);
+    }
 }

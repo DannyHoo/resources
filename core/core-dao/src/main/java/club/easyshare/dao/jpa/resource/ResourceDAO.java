@@ -14,4 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface ResourceDAO extends BaseDao<ResourceDO>,PagingAndSortingRepository<ResourceDO,Long> {
 
+    ResourceDO findByResourceCode(String resourceCode);
+
 }

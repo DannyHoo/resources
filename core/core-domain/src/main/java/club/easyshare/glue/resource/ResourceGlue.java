@@ -26,4 +26,9 @@ public class ResourceGlue extends BaseGlue {
         ResourceDO saveResult = resourceDAO.save(convertIgnoreNullProperty(resource, ResourceDO.class));
         return convertIgnoreNullProperty(saveResult, Resource.class);
     }
+
+    public Resource findByResourceCode(String resourceCode) {
+        ResourceDO findResult = resourceDAO.findByResourceCode(resourceCode);
+        return convertIgnoreNullProperty(findResult, Resource.class);
+    }
 }
