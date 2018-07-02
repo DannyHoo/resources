@@ -7,8 +7,9 @@
             <input type="text" id="title" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">模板类型</label>
+        <label class="layui-form-label">资源类型</label>
         <div class="layui-input-block">
             <select id="pageTemplate" name="interest" lay-filter="aihao">
                 <option value="read">阅读类型</option>
@@ -16,6 +17,7 @@
             </select>
         </div>
     </div>
+
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">一级分类</label>
@@ -43,21 +45,22 @@
 
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">资源语言</label>
-            <div class="layui-input-inline">
-                <input type="text" id="language" name="language" lay-verify="required" placeholder="请输入语言"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-inline">
             <label class="layui-form-label">资源时间</label>
             <div class="layui-input-inline">
                 <input id="resourceDate" type="resourceDate" class="layui-input" id="date1" placeholder="yyyy-MM-dd">
             </div>
         </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">资源标签</label>
+            <div class="layui-input-inline">
+                <input id="marks" type="text" name="username" lay-verify="required" placeholder='标签用英文逗号","隔开'
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
     </div>
-    <div class="layui-form-item">
+
+    <div class="layui-form-item" id="downloadForm1" style="display:none;">
         <div class="layui-inline">
             <label class="layui-form-label">分享方式</label>
             <div class="layui-input-inline">
@@ -73,7 +76,7 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <div class="layui-form-item" id="downloadForm2" style="display:none;">
         <div class="layui-inline">
             <label class="layui-form-label">星级评分</label>
             <div class="layui-input-inline">
@@ -90,13 +93,14 @@
         <div class="layui-inline">
             <label class="layui-form-label">适用环境</label>
             <div class="layui-input-inline">
-                <input id="environment" type="text" name="environment" lay-verify="required" placeholder="请输入环境" autocomplete="off"
+                <input id="environment" type="text" name="environment" lay-verify="required" placeholder="请输入环境"
+                       autocomplete="off"
                        class="layui-input">
             </div>
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <div class="layui-form-item" id="downloadForm3" style="display:none;">
         <div class="layui-inline">
             <label class="layui-form-label">资源大小</label>
             <div class="layui-input-inline">
@@ -106,9 +110,9 @@
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">资源标签</label>
+            <label class="layui-form-label">资源语言</label>
             <div class="layui-input-inline">
-                <input id="marks" type="text" name="username" lay-verify="required" placeholder='标签用逗号","隔开'
+                <input type="text" id="language" name="language" lay-verify="required" placeholder="请输入语言"
                        autocomplete="off"
                        class="layui-input">
             </div>
@@ -135,66 +139,18 @@
     <button id="submitEdit" class="layui-btn" lay-submit="" lay-filter="demo2-">提 交 编 辑</button>
 </div>
 
-<script type="text/javascript">
 
+<script type="text/javascript">
     layui.use('form', function () {
         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
         form.render();
         form.on('select(firstCategory)', function (data) {
             changeSecondCategory(data.value);
         });
-    });
-
-    function changeSecondCategory(firstValue) {
-        if (firstValue == "Softwares") {
-            $('#secondCategorySelect').empty();
-            $("#secondCategorySelect").append("<option value='Softwares_Security'>安全杀毒</option>");
-            $("#secondCategorySelect").append("<option value='Softwares_StudyOffice'>学习办公</option>");
-            $("#secondCategorySelect").append("<option value='Softwares_Tools'>实用工具</option>");
-            $("#secondCategorySelect").append("<option value='Softwares_System'>系统软件</option>");
-        }
-        if (firstValue == "Course") {
-            $('#secondCategorySelect').empty();
-            $("#secondCategorySelect").append("<option value='Course_ProgramLanguage'>编程语言</option>");
-            $("#secondCategorySelect").append("<option value='Course_FrontDesign'>前端设计</option>");
-            $("#secondCategorySelect").append("<option value='Course_SysOperation'>系统运维</option>");
-            $("#secondCategorySelect").append("<option value='Course_Security'>安全攻防</option>");
-            $("#secondCategorySelect").append("<option value='Course_Architecture'>架构设计</option>");
-        }
-        if (firstValue == "SourceCode") {
-            $('#secondCategorySelect').empty();
-            $("#secondCategorySelect").append("<option value='SourceCode_Front'>前端源码</option>");
-            $("#secondCategorySelect").append("<option value='SourceCode_PageFunction'>网页特效</option>");
-            $("#secondCategorySelect").append("<option value='SourceCode_DevelopDemo'>开发实例</option>");
-            $("#secondCategorySelect").append("<option value='SourceCode_SystemCode'>系统源码</option>");
-        }
-        if (firstValue == "News") {
-            $('#secondCategorySelect').empty();
-            $("#secondCategorySelect").append("<option value='News_Life'>生活资讯</option>");
-            $("#secondCategorySelect").append("<option value='News_Culturl'>文化娱乐</option>");
-            $("#secondCategorySelect").append("<option value='News_Finance'>金融动态</option>");
-            $("#secondCategorySelect").append("<option value='News_SportsEconomic'>体育财经</option>");
-            $("#secondCategorySelect").append("<option value='News_HotNews'>时事热点</option>");
-        }
-        if (firstValue == "Entertainment") {
-            $('#secondCategorySelect').empty();
-            $("#secondCategorySelect").append("<option value='Entertainment_Movies'>电影资讯</option>");
-            $("#secondCategorySelect").append("<option value='Entertainment_Pictures'>福利美图</option>");
-        }
-        if (firstValue == "Activity") {
-            $('#secondCategorySelect').empty();
-            $("#secondCategorySelect").append("<option value='Activity_OnLine'>线上互动</option>");
-            $("#secondCategorySelect").append("<option value='Activity_OffLine'>线下分享</option>");
-            $("#secondCategorySelect").append("<option value='Activity_Party'>交友聚会</option>");
-        }
-        layui.use('form', function () {
-            var form = layui.form; //重新渲染表单，否则显示不出来
-            form.render();
-            form.on('select(firstCategory)', function (data) {
-                changeSecondCategory(data.value);
-            });
+        form.on('select(aihao)', function (data) {
+            readDownloadDisable(data.value);
         });
-    }
+    });
 </script>
 
 <script>
@@ -334,19 +290,19 @@
         var size = $("#size").val();
         var pageTemplate = $("#pageTemplate").val();
         var content = editor.txt.html();
-        console.log("title="+title);
-        console.log("note="+note);
-        console.log("secondCategorySelect="+secondCategorySelect);
-        console.log("language="+language);
-        console.log("resourceDate="+resourceDate);
-        console.log("shareWay="+shareWay);
-        console.log("type="+type);
-        console.log("star="+star);
-        console.log("environment="+environment);
-        console.log("marks="+marks);
-        console.log("size="+size);
-        console.log("pageTemplate="+pageTemplate);
-        console.log("content="+content);
+        console.log("title=" + title);
+        console.log("note=" + note);
+        console.log("secondCategorySelect=" + secondCategorySelect);
+        console.log("language=" + language);
+        console.log("resourceDate=" + resourceDate);
+        console.log("shareWay=" + shareWay);
+        console.log("type=" + type);
+        console.log("star=" + star);
+        console.log("environment=" + environment);
+        console.log("marks=" + marks);
+        console.log("size=" + size);
+        console.log("pageTemplate=" + pageTemplate);
+        console.log("content=" + content);
         $.ajax({
             async: false,
             data: {

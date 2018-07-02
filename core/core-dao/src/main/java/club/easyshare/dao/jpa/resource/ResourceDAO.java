@@ -2,6 +2,8 @@ package club.easyshare.dao.jpa.resource;
 
 import club.easyshare.dao.data.resource.ResourceDO;
 import club.easyshare.dao.jpa.base.BaseDao;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -16,4 +18,5 @@ public interface ResourceDAO extends BaseDao<ResourceDO>,PagingAndSortingReposit
 
     ResourceDO findByResourceCode(String resourceCode);
 
+    Page<ResourceDO> findAllByCategoryCode(String categoryCode,Pageable pageable);
 }
