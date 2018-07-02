@@ -24,7 +24,9 @@ $(function () {
             var note = resourceDataList[i].note;
             var resourceDate = resourceDataList[i].resourceDate;
             var categoryName = resourceDataList[i].categoryName;
-            $("#resourceData").append("<li class='publicborder'> <a href='' target='_blank' title='" + title + "'><img src='" + resourceDataList[i].picture + "' alt='" + title + "'></a><h2 class='layui-elip'><a href='' target='_blank' title='" + title + "'>" + substringAndReplace(title, 20) + "</a></h2><p>" + substringAndReplace(note, 30) + "</p><div class='info'><span class='time'><i class='iconfont icon-shijian'></i>" + resourceDate + "</span><span class='source'><i class='iconfont icon-laiyuan1'></i><a href=''>" + categoryName + "</a></span></div></li>");
+            var resourceCode=resourceDataList[i].resourceCode;
+
+            $("#resourceData").append("<li class='publicborder'> <a href='/front/resource/view/"+resourceCode+".html' title='" + title + "'><img src='" + resourceDataList[i].picture + "' alt='" + title + "'></a><h2 class='layui-elip'><a href='/front/resource/view/"+resourceCode+".html' title='" + title + "'>" + substringAndReplace(title, 20) + "</a></h2><p>" + substringAndReplace(note, 30) + "</p><div class='info'><span class='time'><i class='iconfont icon-shijian'></i>" + resourceDate + "</span><span class='source'><i class='iconfont icon-laiyuan1'></i><a href='#'>" + categoryName + "</a></span></div></li>");
         }
 
         /* 分页处理 */

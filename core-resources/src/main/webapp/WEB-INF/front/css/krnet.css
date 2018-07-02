@@ -811,6 +811,11 @@ address, caption, cite, code, dfn, em, strong, th, var {
     border-bottom: 1px solid #d9d9d9
 }
 
+.artlist .current_nav,.softlist .current_nav{margin:auto;width:830px;height:40px;border-bottom:1px solid #e6e6e6;color:#888;font-size:14px}
+
+.artlist .current_nav .layui-breadcrumb,.softlist .current_nav .layui-breadcrumb{display:block;padding:10px;padding-left:10px;height:20px;line-height:20px;font-size:1pc;float: left;}
+
+
 .list-img {
     margin: 15px 0
 }
