@@ -367,7 +367,7 @@
                             }
                         }
 
-                        if(pageCount>7 && pageNum+3<=pageCount){
+                       else if(pageCount>7 && pageNum+3<=pageCount){
                             print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum-3)+"'><li>"+pageNum-3+"</li></a>");
                             print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum-2)+"'><li>"+pageNum-2+"</li></a>");
                             print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum-1)+"'><li>"+pageNum-1+"</li></a>");
@@ -377,8 +377,8 @@
                             print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum+3)+"'><li>"+pageNum+3+"</li></a>");
                         }
 
-                        if(parseInt(pageCount)>7 && pageNum+3<parseInt(pageCount)){
-                            for(var i=(parseInt(pageCount)-6);i<=parseInt(pageCount);i++){
+                       else{
+                            for(var i=(pageCount-6);i<=pageCount;i++){
                                 if(pageNum==i){
                                     print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+i+"'><li class='thisclass'>"+i+"</li></a>");
                                 }else{
