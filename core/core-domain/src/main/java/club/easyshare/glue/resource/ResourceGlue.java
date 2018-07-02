@@ -84,14 +84,14 @@ public class ResourceGlue extends BaseGlue {
         categoryMap.put("SourceCode_Front","前端源码");
         categoryMap.put("SourceCode_PageFunction","网页特效");
         categoryMap.put("SourceCode_DevelopDemo","开发实例");
-        categoryMap.put("SourceCode_SystemCode","SourceCode");
+        categoryMap.put("SourceCode_SystemCode","系统源码");
         categoryMap.put("News_Life","生活咨询");
         categoryMap.put("News_Culturl","文化娱乐");
         categoryMap.put("News_Finance","金融动态");
         categoryMap.put("News_SportsEconomic","体育财经");
         categoryMap.put("News_HotNews","实时热点");
         categoryMap.put("Entertainment_Movies","电影资源");
-        categoryMap.put("Entertainment_Movies","福利美图");
+        categoryMap.put("Entertainment_Pictures","精美壁纸");
         categoryMap.put("Activity_OnLine","线上互动");
         categoryMap.put("Activity_OffLine","线下分享");
         categoryMap.put("Activity_Party","交友聚会");

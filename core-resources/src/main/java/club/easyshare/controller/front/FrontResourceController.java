@@ -52,7 +52,7 @@ public class FrontResourceController extends AbstractController {
     @RequestMapping("/category/{categoryCode}")
     public ModelAndView categoryPage(HttpServletRequest request, @PathVariable String categoryCode) {
         ModelAndView modelAndView = new ModelAndView("front/pages/resource_category");
-        Integer pageNum = getIntValueFromRequest(request, "pageNum") <= 0 ? 0 : getIntValueFromRequest(request, "pageNum");
+        Integer pageNum = getIntValueFromRequest(request, "pageNum") <= 0 ? 1 : getIntValueFromRequest(request, "pageNum");
         modelAndView.addObject("pageNum", pageNum);
         modelAndView.addObject("categoryCode", categoryCode);
         return modelAndView;
@@ -70,7 +70,7 @@ public class FrontResourceController extends AbstractController {
     @ResponseBody
     public JSONObject categoryDetail(HttpServletRequest request, @PathVariable String categoryCode, @PathVariable Integer pageNum) {
         JSONObject jsonObject = new JSONObject();
-        int pageSize = 1;
+        int pageSize = 20;
         Pagenation<ResourceVO> resourceData = resourceService.findAllByCategoryCodeAndStatus(categoryCode, pageNum - 1, pageSize, "40", true);
         jsonObject.put("pageNum", pageNum);
         jsonObject.put("pageSize", pageSize);

@@ -33,7 +33,7 @@ function changeSecondCategory(firstValue) {
     if (firstValue == "Entertainment") {
         $('#secondCategorySelect').empty();
         $("#secondCategorySelect").append("<option value='Entertainment_Movies'>电影资讯</option>");
-        $("#secondCategorySelect").append("<option value='Entertainment_Pictures'>福利美图</option>");
+        $("#secondCategorySelect").append("<option value='Entertainment_Pictures'>精美壁纸</option>");
     }
     if (firstValue == "Activity") {
         $('#secondCategorySelect').empty();
