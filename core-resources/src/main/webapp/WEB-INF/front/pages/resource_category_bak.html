@@ -26,7 +26,39 @@
         <div class="softlist left publicborder">
             <input type="hidden" id="pageNum" value="${pageNum}"/>
             <input type="hidden" id="categoryCode" value="${categoryCode}"/>
-            <ul class="softli" id="resourceData">
+            <ul class="softli">
+
+                <%
+                    for(resource in resourceDataList){
+                %>
+                    <li class="publicborder">
+                        <a href="#" target="_blank" title="${resource.title}">
+                            <img src="${resource.picture}" alt="${resource.title}">
+                        </a>
+                        <h2 class="layui-elip">
+                            <a href="#" target="_blank" title="${resource.title}">
+                                <% if(strutil.length(resource.title)<=20){
+                                        print(resource.title);
+                                    }else{
+                                        print(strutil.subStringTo(resource.title,0,20)+"......");
+                                    }%>
+                            </a>
+                        </h2>
+                        <p>
+                            <% if(strutil.length(resource.note)<=20){
+                                print(resource.note);
+                            }else{
+                                print(strutil.subStringTo(resource.note,0,20)+"......");
+                            }%>
+                        </p>
+                        <div class="info">
+                            <span class="time"><i class="iconfont icon-shijian"></i>${resource.resourceDate}</span>
+                            <span class="source"><i class="iconfont icon-laiyuan1"></i><a href="#">${resource.categoryName}</a></span>
+                        </div>
+                    </li>
+                <%
+                    }
+                %>
 
                 <!--<li class="publicborder">
                     <a href="#" target="_blank" title="绝地求生稳定插件2.5版本">
@@ -315,7 +347,58 @@
 
             </ul>
             <div class="fenyes">
-                <div class="page" id="page">
+                <div class="page">
+
+
+                    <% if(pageNum==1){
+                        print("<li>首页</li>");
+                    }else{
+                        print("<li><a href='/front/resource/category/"+categoryCode+".html?pageNum=1'>首页</a></li>");
+                        print("<li><a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum-1)+"'>上一页</a></li>");
+                    }
+                    %>
+
+                    <%
+                        if(pageCount<=7 || pageNum<=4){
+                            for(var i=1;i<=(pageCount>7?7:pageCount);i++){
+                                if(pageNum==i){
+                                    print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+i+"'><li class='thisclass'>"+i+"</li></a>");
+                                }else{
+                                    print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+i+"'><li>"+i+"</li></a>");
+                                }
+                            }
+                        }
+
+                       else if(pageCount>7 && pageNum+3<=pageCount){
+                            print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum-3)+"'><li>"+pageNum-3+"</li></a>");
+                            print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum-2)+"'><li>"+pageNum-2+"</li></a>");
+                            print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum-1)+"'><li>"+pageNum-1+"</li></a>");
+                            print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+pageNum+"'><li class='thisclass'>"+pageNum+"</li></a>");
+                            print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum+1)+"'><li>"+pageNum+1+"</li></a>");
+                            print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum+2)+"'><li>"+pageNum+2+"</li></a>");
+                            print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum+3)+"'><li>"+pageNum+3+"</li></a>");
+                        }
+
+                       else{
+                            for(var i=pageCount-6;i<=pageCount;i++){
+                                if(pageNum==i){
+                                    print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+i+"'><li class='thisclass'>"+i+"</li></a>");
+                                }else{
+                                    print("<a href='/front/resource/category/"+categoryCode+".html?pageNum="+i+"'><li>"+i+"</li></a>");
+                                }
+                            }
+                        }
+                    %>
+
+                    <% if(pageNum==pageCount){
+                        print("<li>末页</li>");
+                    }else{
+                        print("<li><a href='/front/resource/category/"+categoryCode+".html?pageNum="+pageCount+"'>末页</a></li>");
+                        print("<li><a href='/front/resource/category/"+categoryCode+".html?pageNum="+(pageNum+1)+"'>下一页</a></li>");
+                    }
+                    %>
+
+                    <li><span class="pageinfo">共 <strong>${pageCount}</strong>页 <strong>${dataCount}</strong>条</span></li>
 
                 </div>
             </div>
@@ -467,7 +550,7 @@
             </ul>
         </div>
     </div>
-    <script src="${ctxPath}/front/js/center/resourceCategory.js"></script>
+
 </div>
 <div class="footer">
     <!-- footer公共内容 -->
@@ -475,7 +558,13 @@
     include("../pages/common/footer.html"){}
     %>
 </div>
-
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            effect: "fadeIn"
+        });
+    });
+</script>
 <script src="${ctxPath}/plugins/layui/layui.js"></script>
 <script>
     layui.use('element', function () {

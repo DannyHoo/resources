@@ -8,6 +8,7 @@ import club.easysharing.model.enums.resource.ResourceStatusEnum;
 import club.easysharing.model.vo.Pagenation;
 import club.easysharing.model.vo.ResourceVO;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,25 +43,42 @@ public class FrontResourceController extends AbstractController {
     private ResourceService resourceService;
 
     /**
-     * 查看某个资源分类详情
+     * 查看某个资源分类详情页面
      *
      * @param request
      * @param categoryCode
      * @return
      */
     @RequestMapping("/category/{categoryCode}")
-    public ModelAndView category(HttpServletRequest request, @PathVariable String categoryCode) {
-        int pageSize =1;
+    public ModelAndView categoryPage(HttpServletRequest request, @PathVariable String categoryCode) {
         ModelAndView modelAndView = new ModelAndView("front/pages/resource_category");
-        Integer pageNum = getIntValueFromRequest(request, "pageNum") <= 0 ? 0 : getIntValueFromRequest(request, "pageNum") - 1;
-        Pagenation<ResourceVO> resourceData = resourceService.findAllByCategoryCodeAndStatus(categoryCode, pageNum, pageSize, "40", true);
-        modelAndView.addObject("pageNum", pageNum + 1);
-        modelAndView.addObject("pageSize", pageSize);
+        Integer pageNum = getIntValueFromRequest(request, "pageNum") <= 0 ? 0 : getIntValueFromRequest(request, "pageNum");
+        modelAndView.addObject("pageNum", pageNum);
         modelAndView.addObject("categoryCode", categoryCode);
-        modelAndView.addObject("pageCount", resourceData.getPageCount());
-        modelAndView.addObject("dataCount", resourceData.getDataCount());
-        modelAndView.addObject("resourceDataList", resourceData.getDataList());
         return modelAndView;
+    }
+
+    /**
+     * 分页查询某个资源分类详情页面
+     *
+     * @param request
+     * @param categoryCode
+     * @param pageNum
+     * @return
+     */
+    @RequestMapping("/category/{categoryCode}/{pageNum}")
+    @ResponseBody
+    public JSONObject categoryDetail(HttpServletRequest request, @PathVariable String categoryCode, @PathVariable Integer pageNum) {
+        JSONObject jsonObject = new JSONObject();
+        int pageSize = 1;
+        Pagenation<ResourceVO> resourceData = resourceService.findAllByCategoryCodeAndStatus(categoryCode, pageNum - 1, pageSize, "40", true);
+        jsonObject.put("pageNum", pageNum);
+        jsonObject.put("pageSize", pageSize);
+        jsonObject.put("categoryCode", categoryCode);
+        jsonObject.put("pageCount", resourceData.getPageCount());
+        jsonObject.put("dataCount", resourceData.getDataCount());
+        jsonObject.put("resourceDataList", resourceData.getDataList());
+        return jsonObject;
     }
 
     /**
