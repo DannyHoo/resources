@@ -18,5 +18,5 @@ public interface ResourceDAO extends BaseDao<ResourceDO>,PagingAndSortingReposit
 
     ResourceDO findByResourceCode(String resourceCode);
 
-    Page<ResourceDO> findAllByCategoryCode(String categoryCode,Pageable pageable);
+    Page<ResourceDO> findAllByCategoryCodeAndStatus(String categoryCode,String status,Pageable pageable);
 }

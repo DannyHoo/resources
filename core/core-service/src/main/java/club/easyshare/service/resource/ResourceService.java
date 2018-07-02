@@ -39,5 +39,5 @@ public interface ResourceService {
      * @param isRealPage 是否真分页
      * @return
      */
-    Pagenation<ResourceVO> findPageByCategoryCode(String categoryCode, int pageNum, int pageSize, boolean isRealPage);
+    Pagenation<ResourceVO> findAllByCategoryCodeAndStatus(String categoryCode, int pageNum, int pageSize,String status, boolean isRealPage);
 }

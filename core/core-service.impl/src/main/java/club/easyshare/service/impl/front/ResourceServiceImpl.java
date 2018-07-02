@@ -55,8 +55,8 @@ public class ResourceServiceImpl extends BaseServiceImpl implements ResourceServ
      * @return
      */
     @Override
-    public Pagenation<ResourceVO> findPageByCategoryCode(String categoryCode, int pageNum, int pageSize, boolean isRealPage) {
-        Pagenation<ResourceVO> result = resourceGlue.findPageByCategoryCode(categoryCode, pageNum, pageSize, isRealPage);
+    public Pagenation<ResourceVO> findAllByCategoryCodeAndStatus(String categoryCode, int pageNum, int pageSize,String status, boolean isRealPage) {
+        Pagenation<ResourceVO> result = resourceGlue.findAllByCategoryCodeAndStatus(categoryCode, pageNum, pageSize,status, isRealPage);
         return result;
     }
 }

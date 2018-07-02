@@ -48,9 +48,15 @@ public class FrontResourceController extends AbstractController {
      */
     @RequestMapping("/category/{categoryCode}")
     public ModelAndView category(HttpServletRequest request, @PathVariable String categoryCode) {
+        int pageSize = 2;
         ModelAndView modelAndView = new ModelAndView("front/pages/resource_category");
-        Integer pageNum = getIntValueFromRequest(request, "pageNum") <=0 ? 0 : getIntValueFromRequest(request, "pageNum") -1;
-        Pagenation<ResourceVO> resourceData = resourceService.findPageByCategoryCode(categoryCode, pageNum, 20, true);
+        Integer pageNum = getIntValueFromRequest(request, "pageNum") <= 0 ? 0 : getIntValueFromRequest(request, "pageNum") - 1;
+        Pagenation<ResourceVO> resourceData = resourceService.findAllByCategoryCodeAndStatus(categoryCode, pageNum, pageSize, "40", true);
+        modelAndView.addObject("pageNum", pageNum + 1);
+        modelAndView.addObject("pageSize", pageSize);
+        modelAndView.addObject("categoryCode", categoryCode);
+        modelAndView.addObject("pageCount", resourceData.getPageCount());
+        modelAndView.addObject("dataCount", resourceData.getDataCount());
         modelAndView.addObject("resourceDataList", resourceData.getDataList());
         return modelAndView;
     }

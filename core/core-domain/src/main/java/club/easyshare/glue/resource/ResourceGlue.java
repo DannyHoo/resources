@@ -44,13 +44,13 @@ public class ResourceGlue extends BaseGlue {
         return convertIgnoreNullProperty(findResult, Resource.class);
     }
 
-    public Pagenation<ResourceVO> findPageByCategoryCode(String categoryCode, int pageNum, int pageSize, boolean isRealPage) {
+    public Pagenation<ResourceVO> findAllByCategoryCodeAndStatus(String categoryCode, int pageNum, int pageSize, String status,boolean isRealPage) {
         Pagenation<ResourceVO> result = null;
         //真分页
         if (isRealPage) {
             Sort sort = new Sort(Sort.Direction.DESC,"createTime");
             Pageable pageable = new PageRequest(pageNum,pageSize,sort);
-            Page<ResourceDO> pageResult=resourceDAO.findAllByCategoryCode(categoryCode,pageable);
+            Page<ResourceDO> pageResult=resourceDAO.findAllByCategoryCodeAndStatus(categoryCode,status,pageable);
             if (ListUtil.isNotEmpty(pageResult.getContent())){
                 result=new Pagenation<>(pageNum,pageSize,pageResult.getTotalElements(),pageResult.getTotalPages());
                 List<ResourceDO> resourceDOList=pageResult.getContent();
