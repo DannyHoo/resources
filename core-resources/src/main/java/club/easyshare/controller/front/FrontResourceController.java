@@ -5,6 +5,8 @@ import club.easyshare.framework.utils.ListUtil;
 import club.easyshare.service.resource.ResourceService;
 import club.easysharing.model.bean.resource.Resource;
 import club.easysharing.model.enums.resource.ResourceStatusEnum;
+import club.easysharing.model.vo.Pagenation;
+import club.easysharing.model.vo.ResourceVO;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,7 @@ public class FrontResourceController extends AbstractController {
 
     @RequestMapping("/category/{categoryCode}")
     public String category(HttpServletRequest request, @PathVariable String categoryCode) {
+        Pagenation<ResourceVO> dataList=resourceService.findPageByCategoryCode(categoryCode,1,20,true);
         if (true) {
             return "front/pages/resource_category";//阅读类资源
         } else if (true) {
