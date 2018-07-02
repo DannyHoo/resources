@@ -25,25 +25,58 @@
     <div class="wrapper">
         <div class="softlist left publicborder">
             <ul class="softli">
-                <li class="publicborder"><a href="#" target="_blank"
-                                            title="绝地求生稳定插件2.5版本"><img
-                        src="/front/images/category/1-1P206230543A6-lp.jpg"
-                        alt="绝地求生稳定插件2.5版本"></a>
-                    <h2 class="layui-elip"><a href="#" target="_blank"
-                                              title="绝地求生稳定插件2.5版本">绝地求生稳定插件2.5版本 ...</a></h2>
+
+                <%
+                    for(resource in resourceDataList){
+                %>
+                    <li class="publicborder">
+                        <a href="#" target="_blank" title="${resource.title}">
+                            <img src="${resource.picture}" alt="${resource.title}">
+                        </a>
+                        <h2 class="layui-elip">
+                            <a href="#" target="_blank" title="${resource.title}">
+                                <% if(strutil.length(resource.title)<=20){
+                                        print(resource.title);
+                                    }else{
+                                        print(strutil.subStringTo(resource.title,0,20)+"......");
+                                    }%>
+                            </a>
+                        </h2>
+                        <p>
+                            <% if(strutil.length(resource.note)<=20){
+                                print(resource.note);
+                            }else{
+                                print(strutil.subStringTo(resource.note,0,20)+"......");
+                            }%>
+                        </p>
+                        <div class="info">
+                            <span class="time"><i class="iconfont icon-shijian"></i>${resource.resourceDate}</span>
+                            <span class="source"><i class="iconfont icon-laiyuan1"></i><a href="#">${resource.categoryName}</a></span>
+                        </div>
+                    </li>
+                <%
+                    }
+                %>
+
+                <!--<li class="publicborder">
+                    <a href="#" target="_blank" title="绝地求生稳定插件2.5版本">
+                        <img src="/front/images/category/1-1P206230543A6-lp.jpg" alt="绝地求生稳定插件2.5版本">
+                    </a>
+                    <h2 class="layui-elip">
+                        <a href="#" target="_blank" title="绝地求生稳定插件2.5版本">绝地求生稳定插件2.5版本 ...</a>
+                    </h2>
                     <p>
                         功能说明 主播模式：开镜微抖一个点 终极模式：开镜不抖一个点 ...
                     </p>
                     <div class="info">
-                        <span class="time"><i class="iconfont icon-shijian"></i>2018/02/07</span><span class="source"><i
-                            class="iconfont icon-laiyuan1"></i><a
-                            href="#">游戏相关</a></span>
+                        <span class="time"><i class="iconfont icon-shijian"></i>2018/02/07</span>
+                        <span class="source"><i class="iconfont icon-laiyuan1"></i><a href="#">游戏相关</a></span>
                     </div>
                 </li>
-                <li class="publicborder"><a href="#html/3793.html" target="_blank"
-                                            title="绝地求生AK吃鸡画质补丁v1.1"><img
-                        src="/front/images/category/1-1P204230252207-lp.jpg"
-                        alt="绝地求生AK吃鸡画质补丁v1.1"></a>
+
+
+                <li class="publicborder"><a href="#html/3793.html" target="_blank" title="绝地求生AK吃鸡画质补丁v1.1">
+                    <img src="/front/images/category/1-1P204230252207-lp.jpg" alt="绝地求生AK吃鸡画质补丁v1.1"></a>
                     <h2 class="layui-elip"><a href="#html/3793.html" target="_blank"
                                               title="绝地求生AK吃鸡画质补丁v1.1">绝地求生AK吃鸡画质补丁v1.1 ...</a></h2>
                     <p>
@@ -308,7 +341,8 @@
                             class="iconfont icon-laiyuan1"></i><a
                             href="#">游戏相关</a></span>
                     </div>
-                </li>
+                </li>-->
+
             </ul>
             <div class="fenyes">
                 <div class="page">

@@ -39,30 +39,24 @@ public class FrontResourceController extends AbstractController {
     @Autowired
     private ResourceService resourceService;
 
-
+    /**
+     * 查看某个资源分类详情
+     *
+     * @param request
+     * @param categoryCode
+     * @return
+     */
     @RequestMapping("/category/{categoryCode}")
-    public String category(HttpServletRequest request, @PathVariable String categoryCode) {
-        Pagenation<ResourceVO> dataList=resourceService.findPageByCategoryCode(categoryCode,1,20,true);
-        if (true) {
-            return "front/pages/resource_category";//阅读类资源
-        } else if (true) {
-            return "";//下载类资源
-        }
-        return "common/pages/404";
-    }
-
-    @RequestMapping("/savePage/{resourceCode}")
-    public String savePage(HttpServletRequest request, @PathVariable String resourceCode) {
-        if (true) {
-            return "front/pages/resource_read";//阅读类资源
-        } else if (true) {
-            return "front/pages/resource_download";//下载类资源
-        }
-        return "common/pages/404";
+    public ModelAndView category(HttpServletRequest request, @PathVariable String categoryCode) {
+        ModelAndView modelAndView = new ModelAndView("front/pages/resource_category");
+        Integer pageNum = getIntValueFromRequest(request, "pageNum") <=0 ? 0 : getIntValueFromRequest(request, "pageNum") -1;
+        Pagenation<ResourceVO> resourceData = resourceService.findPageByCategoryCode(categoryCode, pageNum, 20, true);
+        modelAndView.addObject("resourceDataList", resourceData.getDataList());
+        return modelAndView;
     }
 
     /**
-     * 保存资源
+     * 新增/保存资源
      *
      * @param request
      * @param resourceCode
@@ -80,52 +74,13 @@ public class FrontResourceController extends AbstractController {
         }
     }
 
-    private Resource getResource(HttpServletRequest request) {
-        String title = getStringValueFromRequest(request, "title");
-        String note = getStringValueFromRequest(request, "note");
-        String secondCategorySelect = getStringValueFromRequest(request, "secondCategorySelect");
-        String language = getStringValueFromRequest(request, "language");
-        String resourceDate = getStringValueFromRequest(request, "resourceDate");
-        String shareWay = getStringValueFromRequest(request, "shareWay");
-        String type = getStringValueFromRequest(request, "type");
-        int star = getIntValueFromRequest(request, "star");
-        String environment = getStringValueFromRequest(request, "environment");
-        String marks = getStringValueFromRequest(request, "marks");
-        String size = getStringValueFromRequest(request, "size");
-        String pageTemplate = getStringValueFromRequest(request, "pageTemplate");
-        String content = getStringValueFromRequest(request, "content");
-        String picture = getPictureFromContent(content);
-        Resource resource = new Resource()
-                .setResourceCode("R_" + getRandomTimeStr())
-                .setTitle(title)
-                .setNote(note)
-                .setCategoryCode(secondCategorySelect)
-                .setLanguage(language)
-                .setResourceDate(resourceDate)
-                .setShareWay(shareWay)
-                .setType(type)
-                .setStar(star)
-                .setEnvironment(environment)
-                .setMarks(marks)
-                .setSize(size)
-                .setPageTemplate(pageTemplate)
-                .setContent(content)
-                .setStatus(ResourceStatusEnum.DRAFT.getStatus())
-                .setAuthorUserName(getCurrentUser(request) != null ? getCurrentUser(request).getUserName() : "游客");
-        ;
-        return resource;
-    }
-
-    private String getPictureFromContent(String content) {
-        List<String> list = getImg(content);
-        if (ListUtil.isNotEmpty(list)) {
-            String imgUrl=list.get(0);
-            imgUrl=imgUrl.substring(imgUrl.indexOf("\"")+1,imgUrl.length()-1);
-            return imgUrl;
-        }
-        return null;
-    }
-
+    /**
+     * 查看资源页面
+     *
+     * @param request
+     * @param resourceCode
+     * @return
+     */
     @RequestMapping("/view/{resourceCode}")
     public ModelAndView view(HttpServletRequest request, @PathVariable String resourceCode) {
         ModelAndView modelAndView = new ModelAndView();
@@ -145,6 +100,13 @@ public class FrontResourceController extends AbstractController {
         return modelAndView;
     }
 
+    /**
+     * 编辑资源页面
+     *
+     * @param request
+     * @param resourceCode
+     * @return
+     */
     @RequestMapping("/editPage/{resourceCode}")
     public String editPage(HttpServletRequest request, @PathVariable String resourceCode) {
         if (true) {
@@ -156,42 +118,41 @@ public class FrontResourceController extends AbstractController {
     }
 
 
-    /**
-     * @param s
-     * @return 获得图片
-     */
-    public static List<String> getImg(String s) {
-        String regex;
-        List<String> list = new ArrayList<String>();
-        regex = "src=\"(.*?)\"";
-        Pattern pa = Pattern.compile(regex, Pattern.DOTALL);
-        Matcher ma = pa.matcher(s);
-        while (ma.find()) {
-            list.add(ma.group());
-        }
-        return list;
+    private Resource getResource(HttpServletRequest request) {
+        String title = getStringValueFromRequest(request, "title");
+        String note = getStringValueFromRequest(request, "note");
+        String secondCategorySelect = getStringValueFromRequest(request, "secondCategorySelect");
+        String language = getStringValueFromRequest(request, "language");
+        String resourceDate = getStringValueFromRequest(request, "resourceDate");
+        String shareWay = getStringValueFromRequest(request, "shareWay");
+        String type = getStringValueFromRequest(request, "type");
+        int star = getIntValueFromRequest(request, "star");
+        String environment = getStringValueFromRequest(request, "environment");
+        String marks = getStringValueFromRequest(request, "marks");
+        String size = getStringValueFromRequest(request, "size");
+        String pageTemplate = getStringValueFromRequest(request, "pageTemplate");
+        String content = getStringValueFromRequest(request, "content");
+        String picture = getFirstPictureUrlFromContent(content);
+        Resource resource = new Resource()
+                .setResourceCode("R_" + getRandomTimeStr())
+                .setTitle(title)
+                .setNote(note)
+                .setPicture(picture)
+                .setCategoryCode(secondCategorySelect)
+                .setLanguage(language)
+                .setResourceDate(resourceDate)
+                .setShareWay(shareWay)
+                .setType(type)
+                .setStar(star)
+                .setEnvironment(environment)
+                .setMarks(marks)
+                .setSize(size)
+                .setPageTemplate(pageTemplate)
+                .setContent(content)
+                .setStatus(ResourceStatusEnum.DRAFT.getStatus())
+                .setAuthorUserName(getCurrentUser(request) != null ? getCurrentUser(request).getUserName() : "游客");
+        ;
+        return resource;
     }
 
-    /**
-     * 返回存有图片地址的数组
-     *
-     * @param tar
-     * @return
-     */
-    public static String[] getImgaddress(String tar) {
-        List<String> imgList = getImg(tar);
-
-        String res[] = new String[imgList.size()];
-
-        if (imgList.size() > 0) {
-            for (int i = 0; i < imgList.size(); i++) {
-                int begin = imgList.get(i).indexOf("\"") + 1;
-                int end = imgList.get(i).lastIndexOf("\"");
-                String url[] = imgList.get(i).substring(begin, end).split("/");
-                res[i] = url[url.length - 1];
-            }
-        } else {
-        }
-        return res;
-    }
 }
