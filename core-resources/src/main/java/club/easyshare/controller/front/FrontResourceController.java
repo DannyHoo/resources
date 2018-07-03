@@ -99,8 +99,10 @@ public class FrontResourceController extends AbstractController {
         JSONObject jsonObject = new JSONObject();
         Pagenation<ResourceVO> resourceData=null;
         if (iCache.get(categoryCode)!=null){
+            System.out.println("缓存命中，key："+categoryCode);
             resourceData=iCache.get(categoryCode);
         }else{
+            System.out.println("缓存未命中，key："+categoryCode);
             resourceData = resourceService.findAllByCategoryCodeAndStatus(categoryCode, pageNum - 1, pageSize, "40", true);
             iCache.put(categoryCode,resourceData);
         }
@@ -126,8 +128,10 @@ public class FrontResourceController extends AbstractController {
         JSONObject jsonObject = new JSONObject();
         List<ResourceVO> resourceDataList=null;
         if (iCache.get(cacheKey)!=null){
+            System.out.println("缓存命中，key："+cacheKey);
             resourceDataList=iCache.get(cacheKey);
         }else{
+            System.out.println("缓存未命中，key："+cacheKey);
             resourceDataList = resourceService.queryByViewCount("40",recordCount);
             iCache.put(cacheKey,resourceDataList);
         }
@@ -149,7 +153,9 @@ public class FrontResourceController extends AbstractController {
         List<ResourceVO> resourceDataList=null;
         if (iCache.get(cacheKey)!=null){
             resourceDataList=iCache.get(cacheKey);
+            System.out.println("缓存命中，key："+cacheKey);
         }else{
+            System.out.println("缓存未命中，key："+cacheKey);
             resourceDataList = resourceService.queryOrderByCreateTime("40",recordCount);
             iCache.put(cacheKey,resourceDataList);
         }
@@ -164,14 +170,17 @@ public class FrontResourceController extends AbstractController {
         JSONObject jsonObject = new JSONObject();
         List<ResourceVO> resourceDataList=null;
         if (iCache.get(cacheKey)!=null){
+            System.out.println("缓存命中，key："+cacheKey);
             resourceDataList=iCache.get(cacheKey);
         }else{
+            System.out.println("缓存未命中，key："+cacheKey);
             resourceDataList = resourceService.queryOrderByRand("40",recordCount);
             iCache.put(cacheKey,resourceDataList);
         }
         jsonObject.put("resourceDataList", resourceDataList);
         return jsonObject;
     }
+
     /**
      * 新增/保存资源
      *
