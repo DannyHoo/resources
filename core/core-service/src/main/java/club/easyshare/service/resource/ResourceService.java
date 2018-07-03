@@ -59,4 +59,12 @@ public interface ResourceService {
      * @return
      */
     List<ResourceVO> queryOrderByCreateTime(String s, int recordCount);
+
+    /**
+     * 随机查询若干条数据
+     * @param s
+     * @param recordCount
+     * @return
+     */
+    List<ResourceVO> queryOrderByRand(String s, int recordCount);
 }

@@ -73,4 +73,10 @@ public class ResourceServiceImpl extends BaseServiceImpl implements ResourceServ
         List<ResourceVO> result=resourceGlue.queryOrderByCreateTime(status,recordCount);
         return result;
     }
+
+    @Override
+    public List<ResourceVO> queryOrderByRand(String status, int recordCount) {
+        List<ResourceVO> result=resourceGlue.queryOrderByRand(status,recordCount);
+        return result;
+    }
 }

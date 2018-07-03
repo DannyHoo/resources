@@ -5,10 +5,12 @@ import club.easyshare.dao.jpa.base.BaseDao;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import javax.persistence.QueryHint;
+import java.util.List;
 
 /**
  * @author huyuyang@lxfintech.com
@@ -18,10 +20,14 @@ import javax.persistence.QueryHint;
  * @Company: lxjr.com
  * @Created on 2018-06-30 15:05:50
  */
-public interface ResourceDAO extends BaseDao<ResourceDO>,PagingAndSortingRepository<ResourceDO,Long> {
+public interface ResourceDAO extends BaseDao<ResourceDO>, PagingAndSortingRepository<ResourceDO, Long> {
 
     ResourceDO findByResourceCode(String resourceCode);
 
-    Page<ResourceDO> findAllByCategoryCodeAndStatus(String categoryCode,String status,Pageable pageable);
-    Page<ResourceDO> findAllByStatus(String status,Pageable pageable);
+    Page<ResourceDO> findAllByCategoryCodeAndStatus(String categoryCode, String status, Pageable pageable);
+
+    Page<ResourceDO> findAllByStatus(String status, Pageable pageable);
+
+    @Query(value = "select * from t_resource where status=?1 order by rand() limit ?2 ", nativeQuery = true)
+    List<ResourceDO> queryOrderByRand(String status, int recordCount);
 }

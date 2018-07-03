@@ -157,6 +157,21 @@ public class FrontResourceController extends AbstractController {
         return jsonObject;
     }
 
+    @RequestMapping("/queryOrderByRand/{recordCount}")
+    @ResponseBody
+    public JSONObject queryOrderByRand(HttpServletRequest request,@PathVariable int recordCount) {
+        String cacheKey="queryOrderByRand";
+        JSONObject jsonObject = new JSONObject();
+        List<ResourceVO> resourceDataList=null;
+        if (iCache.get(cacheKey)!=null){
+            resourceDataList=iCache.get(cacheKey);
+        }else{
+            resourceDataList = resourceService.queryOrderByRand("40",recordCount);
+            iCache.put(cacheKey,resourceDataList);
+        }
+        jsonObject.put("resourceDataList", resourceDataList);
+        return jsonObject;
+    }
     /**
      * 新增/保存资源
      *

@@ -121,6 +121,19 @@ public class ResourceGlue extends BaseGlue {
         return result.getDataList();
     }
 
+
+    public List<ResourceVO> queryOrderByRand(String status, int recordCount) {
+        List<ResourceDO> resourceDOList = resourceDAO.queryOrderByRand(status, recordCount);
+        if (ListUtil.isEmpty(resourceDOList)) {
+            return new ArrayList();
+        }
+        List<ResourceVO> resourceVOList = convertList(resourceDOList, ResourceVO.class);
+        for (ResourceVO resourceVO : resourceVOList) {
+            resourceVO.setCategoryName(getCategoryName(resourceVO.getCategoryCode()));
+        }
+        return resourceVOList;
+    }
+
     private String getCategoryName(String categoryCode) {
         Map<String, String> categoryMap = new HashMap<>();
         categoryMap.put("SourceCode", "源码分享");
@@ -152,6 +165,5 @@ public class ResourceGlue extends BaseGlue {
         categoryMap.put("Activity_Party", "交友聚会");
         return categoryMap.get(categoryCode);
     }
-
 
 }
