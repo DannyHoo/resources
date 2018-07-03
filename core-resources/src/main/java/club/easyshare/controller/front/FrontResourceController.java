@@ -114,6 +114,50 @@ public class FrontResourceController extends AbstractController {
     }
 
     /**
+     * 根据浏览量倒序查询
+     * @param request
+     * @param recordCount
+     * @return
+     */
+    @RequestMapping("/queryOrderByViewCount/{recordCount}")
+    @ResponseBody
+    public JSONObject queryOrderByViewCount(HttpServletRequest request,@PathVariable int recordCount) {
+        String cacheKey="queryOrderByViewCount";
+        JSONObject jsonObject = new JSONObject();
+        List<ResourceVO> resourceDataList=null;
+        if (iCache.get(cacheKey)!=null){
+            resourceDataList=iCache.get(cacheKey);
+        }else{
+            resourceDataList = resourceService.queryByViewCount("40",recordCount);
+            iCache.put(cacheKey,resourceDataList);
+        }
+        jsonObject.put("resourceDataList", resourceDataList);
+        return jsonObject;
+    }
+
+    /**
+     * 根据时间倒序查询
+     * @param request
+     * @param recordCount
+     * @return
+     */
+    @RequestMapping("/queryOrderByCreateTime/{recordCount}")
+    @ResponseBody
+    public JSONObject queryOrderByCreateTime(HttpServletRequest request,@PathVariable int recordCount) {
+        String cacheKey="queryOrderByCreateTime";
+        JSONObject jsonObject = new JSONObject();
+        List<ResourceVO> resourceDataList=null;
+        if (iCache.get(cacheKey)!=null){
+            resourceDataList=iCache.get(cacheKey);
+        }else{
+            resourceDataList = resourceService.queryOrderByCreateTime("40",recordCount);
+            iCache.put(cacheKey,resourceDataList);
+        }
+        jsonObject.put("resourceDataList", resourceDataList);
+        return jsonObject;
+    }
+
+    /**
      * 新增/保存资源
      *
      * @param request

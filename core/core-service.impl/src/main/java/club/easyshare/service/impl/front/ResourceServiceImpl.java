@@ -9,6 +9,8 @@ import club.easysharing.model.vo.ResourceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author huyuyang@lxfintech.com
  * @Title: ResourceServiceImpl
@@ -57,6 +59,18 @@ public class ResourceServiceImpl extends BaseServiceImpl implements ResourceServ
     @Override
     public Pagenation<ResourceVO> findAllByCategoryCodeAndStatus(String categoryCode, int pageNum, int pageSize,String status, boolean isRealPage) {
         Pagenation<ResourceVO> result = resourceGlue.findAllByCategoryCodeAndStatus(categoryCode, pageNum, pageSize,status, isRealPage);
+        return result;
+    }
+
+    @Override
+    public List<ResourceVO> queryByViewCount(String status,int recordCount) {
+        List<ResourceVO> result=resourceGlue.queryOrderByViewCount(status,recordCount);
+        return result;
+    }
+
+    @Override
+    public List<ResourceVO> queryOrderByCreateTime(String status, int recordCount) {
+        List<ResourceVO> result=resourceGlue.queryOrderByCreateTime(status,recordCount);
         return result;
     }
 }

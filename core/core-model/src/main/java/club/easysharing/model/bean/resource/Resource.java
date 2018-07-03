@@ -45,6 +45,8 @@ public class Resource extends BaseBean {
     private String pageTemplate;
     /* 资源状态10草稿20提交审核30审核失败40审核成功 */
     private String status;
+    /* 浏览量 */
+    private int viewCount;
 
     public String getResourceCode() {
         return resourceCode;
@@ -196,6 +198,15 @@ public class Resource extends BaseBean {
 
     public Resource setStatus(String status) {
         this.status = status;
+        return this;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public Resource setViewCount(int viewCount) {
+        this.viewCount = viewCount;
         return this;
     }
 }
