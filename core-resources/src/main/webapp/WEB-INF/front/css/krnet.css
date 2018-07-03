@@ -815,6 +815,12 @@ address, caption, cite, code, dfn, em, strong, th, var {
 
 .artlist .current_nav .layui-breadcrumb,.softlist .current_nav .layui-breadcrumb{display:block;padding:10px;padding-left:10px;height:20px;line-height:20px;font-size:1pc;float: left;}
 
+.slide{float:left;background-color:#333}
+.slide,.slide img{width:430px;height:300px}
+.slide p{bottom:5px;height:30px;font-size:10px}
+.slide p,.slide span{position:absolute;width:100%;color:#fff;text-indent:10px}
+.slide span{bottom:0;height:75pt;background:linear-gradient(to bottom,transparent 0,rgba(4,4,4,.6) 100%);font-weight:900;font-size:1pc;line-height:105px}
+
 
 .list-img {
     margin: 15px 0

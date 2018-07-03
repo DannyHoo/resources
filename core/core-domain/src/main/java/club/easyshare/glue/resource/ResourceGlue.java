@@ -45,7 +45,7 @@ public class ResourceGlue extends BaseGlue {
     }
 
     public Pagenation<ResourceVO> findAllByCategoryCodeAndStatus(String categoryCode, int pageNum, int pageSize, String status,boolean isRealPage) {
-        Pagenation<ResourceVO> result = null;
+        Pagenation<ResourceVO> result = new Pagenation<ResourceVO>();
         //真分页
         if (isRealPage) {
             Sort sort = new Sort(Sort.Direction.DESC,"createTime");

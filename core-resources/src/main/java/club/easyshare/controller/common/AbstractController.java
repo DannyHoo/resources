@@ -93,7 +93,7 @@ public class AbstractController {
             imgUrl = imgUrl.substring(imgUrl.indexOf("\"") + 1, imgUrl.length() - 1);
             return imgUrl;
         }
-        return null;
+        return "http://p57nljn39.bkt.clouddn.com/%E5%81%87%E8%A3%85%E6%9C%89%E5%9B%BE.jpeg";
     }
 
     /**

@@ -1,6 +1,8 @@
 package club.easyshare.controller.front;
 
 import club.easyshare.controller.common.AbstractController;
+import club.easyshare.framework.cache.ICache;
+import club.easyshare.framework.cache.ICacheImpl;
 import club.easyshare.framework.utils.ListUtil;
 import club.easyshare.service.resource.ResourceService;
 import club.easysharing.model.bean.resource.Resource;
@@ -38,6 +40,8 @@ import static club.easyshare.framework.utils.Generator.getRandomTimeStr;
 @Controller
 @RequestMapping("/front/resource")
 public class FrontResourceController extends AbstractController {
+
+    private ICache iCache=new ICacheImpl();
 
     @Autowired
     private ResourceService resourceService;
@@ -82,6 +86,34 @@ public class FrontResourceController extends AbstractController {
     }
 
     /**
+     * 分页查询某个资源分类详情页面
+     *
+     * @param request
+     * @param categoryCode
+     * @param pageNum
+     * @return
+     */
+    @RequestMapping("/category/{categoryCode}/{pageNum}/{pageSize}")
+    @ResponseBody
+    public JSONObject pageResourceList(HttpServletRequest request, @PathVariable String categoryCode, @PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+        JSONObject jsonObject = new JSONObject();
+        Pagenation<ResourceVO> resourceData=null;
+        if (iCache.get(categoryCode)!=null){
+            resourceData=iCache.get(categoryCode);
+        }else{
+            resourceData = resourceService.findAllByCategoryCodeAndStatus(categoryCode, pageNum - 1, pageSize, "40", true);
+            iCache.put(categoryCode,resourceData);
+        }
+        jsonObject.put("pageNum", pageNum);
+        jsonObject.put("pageSize", pageSize);
+        jsonObject.put("categoryCode", categoryCode);
+        jsonObject.put("pageCount", resourceData.getPageCount());
+        jsonObject.put("dataCount", resourceData.getDataCount());
+        jsonObject.put("resourceDataList", resourceData.getDataList());
+        return jsonObject;
+    }
+
+    /**
      * 新增/保存资源
      *
      * @param request
@@ -116,9 +148,7 @@ public class FrontResourceController extends AbstractController {
         } else {
             if ("read".equals(resource.getPageTemplate())) {
                 modelAndView.setViewName("front/pages/resource_read");//阅读类资源
-                modelAndView.addObject("title", resource.getTitle());
-                modelAndView.addObject("note", resource.getNote());
-                modelAndView.addObject("content", resource.getContent());
+                modelAndView.addObject("resource", resource);
             } else if ("download".equals(resource.getPageTemplate())) {
                 modelAndView.setViewName("front/pages/resource_download");//下载类资源
             }

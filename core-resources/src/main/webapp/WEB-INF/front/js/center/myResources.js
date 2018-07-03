@@ -28,7 +28,7 @@ function changeSecondCategory(firstValue) {
         $("#secondCategorySelect").append("<option value='News_Culturl'>文化娱乐</option>");
         $("#secondCategorySelect").append("<option value='News_Finance'>金融动态</option>");
         $("#secondCategorySelect").append("<option value='News_SportsEconomic'>体育财经</option>");
-        $("#secondCategorySelect").append("<option value='News_HotNews'>时事热点</option>");
+        $("#secondCategorySelect").append("<option value='News_HotNews'>实时热点</option>");
     }
     if (firstValue == "Entertainment") {
         $('#secondCategorySelect').empty();

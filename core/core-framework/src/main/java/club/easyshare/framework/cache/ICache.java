@@ -9,6 +9,6 @@ package club.easyshare.framework.cache;
  * @Created on 2018-02-05 23:17:14
  */
 public interface ICache {
-    Object put(Object key, Object value);
-    Object get(Object key);
+    <K,V>V put(K key, V value);
+    <K,V>V get(K key);
 }

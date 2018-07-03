@@ -2,9 +2,13 @@ package club.easyshare.dao.jpa.resource;
 
 import club.easyshare.dao.data.resource.ResourceDO;
 import club.easyshare.dao.jpa.base.BaseDao;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import javax.persistence.QueryHint;
 
 /**
  * @author huyuyang@lxfintech.com

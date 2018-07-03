@@ -1,5 +1,6 @@
 package club.easysharing.model.vo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +17,14 @@ public class Pagenation<T> {
     /* 页面大小 */
     private int pageSize;
     /* 记录总数 */
-    private long dataCount;
+    private long dataCount=0;
     /* 页面总数 */
-    private int pageCount;
+    private int pageCount=0;
     /* 数据集合 */
-    private List<T> dataList;
+    private List<T> dataList=new ArrayList<>();
+
+    public Pagenation() {
+    }
 
     public Pagenation(int pageNum, int pageSize, long dataCount, int pageCount) {
         this.pageNum = pageNum;
