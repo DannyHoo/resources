@@ -10,13 +10,13 @@ var $, tab, skyconsWeather;
 layui.config({
     base: "js/"
 }).use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
-    var form = layui.form(),
+    var form = layui.form,
         layer = layui.layer,
-        element = layui.element();
+        element = layui.element;
     $ = layui.jquery;
     tab = layui.bodyTab({
         openTabNum: "50",  //最大可打开窗口数量
-        url: "../json/navs.json" //获取菜单json地址
+        url: "/bg/json/navs.json" //获取菜单json地址
     });
 
     //更换皮肤
@@ -371,10 +371,10 @@ function donation() {
         area: ['260px', '367px'],
         tab: [{
             title: "微信",
-            content: "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/wechat.png'></div>"
+            content: "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/wechat.png' height='240' width='200'></div>"
         }, {
             title: "支付宝",
-            content: "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/alipay.png'></div>"
+            content: "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/alipay.png' height='240' width='200'></div>"
         }]
     })
 }

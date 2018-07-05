@@ -24,10 +24,12 @@
     <mvc:annotation-driven/>
 
     <!--配置静态资源，mapping为访问地址 -->
+    <mvc:resources location="/html/bg/" mapping="/html/bg/**"/>
     <mvc:resources location="/WEB-INF/bg/js/" mapping="/bg/js/**"/>
     <mvc:resources location="/WEB-INF/bg/css/" mapping="/bg/css/**"/>
     <mvc:resources location="/WEB-INF/bg/images/" mapping="/bg/images/**"/>
     <mvc:resources location="/WEB-INF/bg/layui/" mapping="/bg/layui/**"/>
+    <mvc:resources location="/WEB-INF/bg/json/" mapping="/bg/json/**"/>
     <mvc:resources location="/WEB-INF/front/js/" mapping="/front/js/**"/>
     <mvc:resources location="/WEB-INF/front/css/" mapping="/front/css/**"/>
     <mvc:resources location="/WEB-INF/front/images/" mapping="/front/images/**"/>
