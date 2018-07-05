@@ -165,7 +165,7 @@ public class FrontResourceController extends AbstractController {
 
     @RequestMapping("/queryOrderByRand/{recordCount}")
     @ResponseBody
-    public JSONObject queryOrderByRand(HttpServletRequest request,@PathVariable int recordCount) {
+    public String queryOrderByRand(HttpServletRequest request,@PathVariable int recordCount) {
         String cacheKey="queryOrderByRand";
         JSONObject jsonObject = new JSONObject();
         List<ResourceVO> resourceDataList=null;
@@ -178,7 +178,7 @@ public class FrontResourceController extends AbstractController {
             iCache.put(cacheKey,resourceDataList);
         }
         jsonObject.put("resourceDataList", resourceDataList);
-        return jsonObject;
+        return JSON.toJSONString(jsonObject);
     }
 
     /**
