@@ -59,4 +59,11 @@ public class SessionUtils {
         request.getSession().setAttribute(USER_INFO_SESSION_ID, null);
     }
 
+    public static boolean isLogin(HttpServletRequest request){
+        if(request.getSession().getAttribute(USER_INFO_SESSION_ID)!=null){
+            return true;
+        }
+        return false;
+    }
+
 }

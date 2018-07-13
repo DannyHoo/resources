@@ -101,7 +101,6 @@ public class ResourceGlue extends BaseGlue {
         return result.getDataList();
     }
 
-
     public List<ResourceVO> queryOrderByCreateTime(String status, int recordCount) {
         Pagenation<ResourceVO> result = new Pagenation<ResourceVO>();
         Sort sort = new Sort(Sort.Direction.DESC, "createTime");
