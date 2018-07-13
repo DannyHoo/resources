@@ -1,6 +1,7 @@
 package club.easyshare.controller.common.system;
 
 import club.easyshare.controller.common.AbstractController;
+import club.easyshare.controller.utils.SessionUtils;
 import club.easyshare.service.common.system.UserService;
 import club.easysharing.model.bean.system.User;
 import club.easysharing.model.parameter.system.UserParameter;
@@ -39,7 +40,7 @@ public class UserController extends AbstractController {
     @RequestMapping("/checkLogin")
     @ResponseBody
     public String header(HttpServletRequest request) {
-        User currentUser=getCurrentUser(request);
+        User currentUser= SessionUtils.getCurrentUser(request);
         if (currentUser!=null){
             return "true";
         }
@@ -55,7 +56,7 @@ public class UserController extends AbstractController {
         userParameter.setUserName(userName).setPassword(password);
         User user=userService.login(userParameter);
         if (user!=null){
-            setCurrentUser(request,user);
+            SessionUtils.setCurrentUser(request,user);
             return "true";
         }
         return "false";
@@ -71,7 +72,7 @@ public class UserController extends AbstractController {
         userParameter.setEmail(email).setUserName(userName).setPassword(password);
         User user=userService.register(userParameter);
         if (user!=null){
-            setCurrentUser(request,user);
+            SessionUtils.setCurrentUser(request,user);
             return "true";
         }
         return "false";
@@ -80,9 +81,9 @@ public class UserController extends AbstractController {
     @RequestMapping("/exitLogin")
     @ResponseBody
     public String exitLogin(HttpServletRequest request) {
-        User currentUser=getCurrentUser(request);
+        User currentUser=SessionUtils.getCurrentUser(request);
         if (currentUser!=null){
-            deleteCurrentUser(request);
+            SessionUtils.deleteCurrentUser(request);
         }
         return "true";
     }

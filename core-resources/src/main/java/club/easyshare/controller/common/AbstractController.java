@@ -20,42 +20,6 @@ import java.util.regex.Pattern;
  */
 public class AbstractController {
 
-    private static final String USER_INFO_SESSION_ID = "USER_INFO_SESSION_ID";
-
-    /**
-     * 获取当前登录用户
-     *
-     * @param request
-     * @return
-     */
-    public User getCurrentUser(HttpServletRequest request) {
-        Object currentUserInfo = request.getSession().getAttribute(USER_INFO_SESSION_ID);
-        if (currentUserInfo == null) {
-            return null;
-        }
-        User currentUser = JSON.parseObject(currentUserInfo.toString(), User.class);
-        return currentUser;
-    }
-
-    /**
-     * 向Session中存储当前登录用户
-     *
-     * @param request
-     * @param user
-     */
-    protected void setCurrentUser(HttpServletRequest request, User user) {
-        request.getSession().setAttribute(USER_INFO_SESSION_ID, JSON.toJSONString(user));
-    }
-
-    /**
-     * 从Session中清除当前登录用户
-     *
-     * @param request
-     */
-    protected void deleteCurrentUser(HttpServletRequest request) {
-        request.getSession().setAttribute(USER_INFO_SESSION_ID, null);
-    }
-
     protected String getStringValueFromRequest(HttpServletRequest request, String paramName) {
         if (request != null) {
             Object paramValue = request.getParameter(paramName);

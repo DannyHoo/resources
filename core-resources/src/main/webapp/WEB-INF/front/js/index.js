@@ -24,7 +24,7 @@ $(function () {
     function queryRecentList() {
         var recordCount=60;
         $.ajax({
-                async: true,
+                async: false,
                 type: "get",
                 data: "",
                 url: "/front/resource/queryOrderByCreateTime/" + recordCount + ".action",

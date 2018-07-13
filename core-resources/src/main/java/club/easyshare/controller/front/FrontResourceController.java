@@ -1,6 +1,7 @@
 package club.easyshare.controller.front;
 
 import club.easyshare.controller.common.AbstractController;
+import club.easyshare.controller.utils.SessionUtils;
 import club.easyshare.framework.cache.ICache;
 import club.easyshare.framework.cache.ICacheImpl;
 import club.easyshare.framework.utils.ListUtil;
@@ -41,7 +42,7 @@ import static club.easyshare.framework.utils.Generator.getRandomTimeStr;
 @RequestMapping("/front/resource")
 public class FrontResourceController extends AbstractController {
 
-    private ICache iCache=new ICacheImpl();
+    private ICache iCache = new ICacheImpl();
 
     @Autowired
     private ResourceService resourceService;
@@ -81,7 +82,7 @@ public class FrontResourceController extends AbstractController {
         jsonObject.put("categoryCode", categoryCode);
         jsonObject.put("pageCount", resourceData.getPageCount());
         jsonObject.put("dataCount", resourceData.getDataCount());
-        jsonObject.put("resourceDataList", resourceData.getDataList());
+        jsonObject.put("resourceDataList", removeContentFilter(resourceData.getDataList()));
         return jsonObject;
     }
 
@@ -97,87 +98,96 @@ public class FrontResourceController extends AbstractController {
     @ResponseBody
     public JSONObject pageResourceList(HttpServletRequest request, @PathVariable String categoryCode, @PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         JSONObject jsonObject = new JSONObject();
-        Pagenation<ResourceVO> resourceData=null;
-        if (iCache.get(categoryCode)!=null){
-            System.out.println("缓存命中，key："+categoryCode);
-            resourceData=iCache.get(categoryCode);
-        }else{
-            System.out.println("缓存未命中，key："+categoryCode);
+        Pagenation<ResourceVO> resourceData = null;
+        if (iCache.get(categoryCode) != null) {
+            System.out.println("缓存命中，key：" + categoryCode);
+            resourceData = iCache.get(categoryCode);
+        } else {
+            System.out.println("缓存未命中，key：" + categoryCode);
             resourceData = resourceService.findAllByCategoryCodeAndStatus(categoryCode, pageNum - 1, pageSize, "40", true);
-            iCache.put(categoryCode,resourceData);
+            iCache.put(categoryCode, resourceData);
         }
         jsonObject.put("pageNum", pageNum);
         jsonObject.put("pageSize", pageSize);
         jsonObject.put("categoryCode", categoryCode);
         jsonObject.put("pageCount", resourceData.getPageCount());
         jsonObject.put("dataCount", resourceData.getDataCount());
-        jsonObject.put("resourceDataList", resourceData.getDataList());
+        jsonObject.put("resourceDataList", removeContentFilter(resourceData.getDataList()));
         return jsonObject;
     }
 
     /**
      * 根据浏览量倒序查询
+     *
      * @param request
      * @param recordCount
      * @return
      */
     @RequestMapping("/queryOrderByViewCount/{recordCount}")
     @ResponseBody
-    public JSONObject queryOrderByViewCount(HttpServletRequest request,@PathVariable int recordCount) {
-        String cacheKey="queryOrderByViewCount";
+    public JSONObject queryOrderByViewCount(HttpServletRequest request, @PathVariable int recordCount) {
+        String cacheKey = "queryOrderByViewCount";
         JSONObject jsonObject = new JSONObject();
-        List<ResourceVO> resourceDataList=null;
-        if (iCache.get(cacheKey)!=null){
-            System.out.println("缓存命中，key："+cacheKey);
-            resourceDataList=iCache.get(cacheKey);
-        }else{
-            System.out.println("缓存未命中，key："+cacheKey);
-            resourceDataList = resourceService.queryByViewCount("40",recordCount);
-            iCache.put(cacheKey,resourceDataList);
+        List<ResourceVO> resourceDataList = null;
+        if (iCache.get(cacheKey) != null) {
+            System.out.println("缓存命中，key：" + cacheKey);
+            resourceDataList = iCache.get(cacheKey);
+        } else {
+            System.out.println("缓存未命中，key：" + cacheKey);
+            resourceDataList = resourceService.queryByViewCount("40", recordCount);
+            iCache.put(cacheKey, resourceDataList);
         }
-        jsonObject.put("resourceDataList", resourceDataList);
+        jsonObject.put("resourceDataList", removeContentFilter(resourceDataList));
         return jsonObject;
     }
 
+
     /**
      * 根据时间倒序查询
+     *
      * @param request
      * @param recordCount
      * @return
      */
     @RequestMapping("/queryOrderByCreateTime/{recordCount}")
     @ResponseBody
-    public JSONObject queryOrderByCreateTime(HttpServletRequest request,@PathVariable int recordCount) {
-        String cacheKey="queryOrderByCreateTime";
+    public JSONObject queryOrderByCreateTime(HttpServletRequest request, @PathVariable int recordCount) {
+        String cacheKey = "queryOrderByCreateTime";
         JSONObject jsonObject = new JSONObject();
-        List<ResourceVO> resourceDataList=null;
-        if (iCache.get(cacheKey)!=null){
-            resourceDataList=iCache.get(cacheKey);
-            System.out.println("缓存命中，key："+cacheKey);
-        }else{
-            System.out.println("缓存未命中，key："+cacheKey);
-            resourceDataList = resourceService.queryOrderByCreateTime("40",recordCount);
-            iCache.put(cacheKey,resourceDataList);
+        List<ResourceVO> resourceDataList = null;
+        if (iCache.get(cacheKey) != null) {
+            resourceDataList = iCache.get(cacheKey);
+            System.out.println("缓存命中，key：" + cacheKey);
+        } else {
+            System.out.println("缓存未命中，key：" + cacheKey);
+            resourceDataList = resourceService.queryOrderByCreateTime("40", recordCount);
+            iCache.put(cacheKey, resourceDataList);
         }
-        jsonObject.put("resourceDataList", resourceDataList);
+        jsonObject.put("resourceDataList", removeContentFilter(resourceDataList));
         return jsonObject;
     }
 
+    /**
+     * 热门排行
+     * @param request
+     * @param recordCount
+     * @return
+     */
     @RequestMapping("/queryOrderByRand/{recordCount}")
     @ResponseBody
-    public String queryOrderByRand(HttpServletRequest request,@PathVariable int recordCount) {
-        String cacheKey="queryOrderByRand";
+    public String queryOrderByRand(HttpServletRequest request, @PathVariable int recordCount) {
+        String cacheKey = "queryOrderByRand";
         JSONObject jsonObject = new JSONObject();
-        List<ResourceVO> resourceDataList=null;
-        if (iCache.get(cacheKey)!=null){
-            System.out.println("缓存命中，key："+cacheKey);
-            resourceDataList=iCache.get(cacheKey);
-        }else{
-            System.out.println("缓存未命中，key："+cacheKey);
-            resourceDataList = resourceService.queryOrderByRand("40",recordCount);
-            iCache.put(cacheKey,resourceDataList);
+        List<ResourceVO> resourceDataList = null;
+        if (iCache.get(cacheKey) != null) {
+            System.out.println("缓存命中，key：" + cacheKey);
+            resourceDataList = iCache.get(cacheKey);
+        } else {
+            System.out.println("缓存未命中，key：" + cacheKey);
+            resourceDataList = resourceService.queryOrderByRand("40", recordCount);
+            iCache.put(cacheKey, resourceDataList);
         }
-        jsonObject.put("resourceDataList", resourceDataList);
+        jsonObject.put("resourceDataList", removeContentFilter(resourceDataList));
         return JSON.toJSONString(jsonObject);
     }
 
@@ -274,9 +284,19 @@ public class FrontResourceController extends AbstractController {
                 .setPageTemplate(pageTemplate)
                 .setContent(content)
                 .setStatus(ResourceStatusEnum.DRAFT.getStatus())
-                .setAuthorUserName(getCurrentUser(request) != null ? getCurrentUser(request).getUserName() : "游客");
+                .setAuthorUserName(SessionUtils.getCurrentUser(request) != null ? SessionUtils.getCurrentUser(request).getUserName() : "游客");
         ;
         return resource;
+    }
+
+    private List<ResourceVO> removeContentFilter(List<ResourceVO> resourceDataList) {
+        if (ListUtil.isEmpty(resourceDataList)) {
+            return resourceDataList;
+        }
+        for (ResourceVO resourceVO : resourceDataList) {
+            resourceVO.setContent("");
+        }
+        return resourceDataList;
     }
 
 }
