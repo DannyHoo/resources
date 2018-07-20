@@ -6,7 +6,7 @@
         </div>
     </a>
     <div class="phone_r">
-        <h1>某用户，欢迎您！</h1>
+        <h1>${userName}，欢迎您！</h1>
         <p id="attestation">认证信息：
 
             <img style="cursor:pointer;" src="${ctxPath}/front/images/center/ztel.png" class="wimg"
@@ -18,31 +18,34 @@
             <img style="cursor:pointer;" src="${ctxPath}/front/images/center/z-tuoguan.png" class="wimg2"
                  onmouseover="showdiv(&#39;p_03&#39;);closediv(&#39;p_01&#39;);closediv(&#39;p_02&#39;)">
 
-            <span style="color:#000000;"><a href="#">邀请好友，专享回报进行中~</a></span>
+            <span style="color:#000000;"><a href="#">快快邀请好友，共同进步吧~</a></span>
         </p>
         <div id="p_01" class="bubble1" onmouseout="closediv(&#39;p_01&#39;)">
             <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_01&#39;)">
-            <span onmouseover="showdiv(&#39;p_01&#39;)">您已验证手机: 158****4363</span>
+            <!--<span onmouseover="showdiv(&#39;p_01&#39;)">您已验证手机: 139****4363</span>-->
+            <span onmouseover="showdiv(&#39;p_01&#39;)">您尚未验证手机</span>
         </div>
 
         <div id="p_02" class="bubble2" onmouseout="closediv(&#39;p_02&#39;)">
             <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_02&#39;)">
-            <span onmouseover="showdiv(&#39;p_02&#39;)">您已验证邮箱:huy***@foxmail.com</span>
+            <!--<span onmouseover="showdiv(&#39;p_02&#39;)">您已验证邮箱:edf***@163.com</span>-->
+            <span onmouseover="showdiv(&#39;p_02&#39;)">您尚未验证邮箱:${email}</span>
         </div>
 
         <div id="p_03" class="bubble3" onmouseout="closediv(&#39;p_03&#39;)">
             <img src="${ctxPath}/front/images/center/bubble.png" onmouseover="showdiv(&#39;p_03&#39;)">
-            <span onmouseover="showdiv(&#39;p_03&#39;)">您已绑定银行卡: ********2048</span>
+            <!--<span onmouseover="showdiv(&#39;p_03&#39;)">您已绑定银行卡: ********2080</span>-->
+            <span onmouseover="showdiv(&#39;p_03&#39;)">您尚未绑定银行卡</span>
         </div>
 
         <ul>
-            <li>我的积分：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toIntegral.htm&#39;)">138</a></i>
+            <li>我的易币：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toIntegral.htm&#39;)">0币</a></i>
             </li>
             <li>我的卡券：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/userVoucher.htm&#39;)">0张</a></i>
             </li>
-            <li>消息中心：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toMessages.htm&#39;)">29条</a></i>
+            <li>消息中心：&nbsp;<i><a class="color" onclick="checkLogin(&#39;/ssl/account/toMessages.htm&#39;)">0条</a></i>
             </li>
-            <li>累计登录：&nbsp;<i style="cursor: pointer;" onclick="toLoginSuccess()">2天</i></li>
+            <li>累计登录：&nbsp;<i style="cursor: pointer;" onclick="toLoginSuccess()">1天</i></li>
             <!--<li><a class="ols" href="#" style="color:#006ba9">【退出】</a></li>-->
         </ul>
     </div>

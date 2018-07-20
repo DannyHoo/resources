@@ -31,6 +31,11 @@ public class BgIndexController {
         return "bg/index";
     }
 
+    @RequestMapping("/login")
+    public String login(HttpServletRequest request) {
+        return "bg/pages/login/login";
+    }
+
     @RequestMapping("/pages/main")
     public String main(HttpServletRequest request) {
         return "bg/pages/main";

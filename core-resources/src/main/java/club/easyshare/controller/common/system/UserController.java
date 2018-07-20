@@ -6,6 +6,7 @@ import club.easyshare.service.common.system.UserService;
 import club.easysharing.model.bean.system.User;
 import club.easysharing.model.parameter.system.UserParameter;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,12 +40,16 @@ public class UserController extends AbstractController {
 
     @RequestMapping("/checkLogin")
     @ResponseBody
-    public String header(HttpServletRequest request) {
+    public JSONObject header(HttpServletRequest request) {
         User currentUser= SessionUtils.getCurrentUser(request);
+        JSONObject jsonObject=new JSONObject();
         if (currentUser!=null){
-            return "true";
+             jsonObject.put("result","true");
+             jsonObject.put("userName",currentUser.getUserName());
+        }else{
+            jsonObject.put("result","false");
         }
-        return "false";
+        return jsonObject;
     }
 
     @RequestMapping("/doLogin")

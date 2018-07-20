@@ -1,8 +1,11 @@
 package club.easyshare.controller.front.center;
 
 import club.easyshare.controller.common.AbstractController;
+import club.easyshare.controller.utils.SessionUtils;
+import club.easysharing.model.bean.system.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,8 +27,13 @@ public class FrontPersonalCenterController extends AbstractController {
     }
 
     @RequestMapping("/toMyCenter")
-    public String toMyCenter(HttpServletRequest request) {
-        return "front/pages/center/myCenter";
+    public ModelAndView toMyCenter(HttpServletRequest request) {
+        ModelAndView modelAndView=new ModelAndView("front/pages/center/myCenter");
+        User user= SessionUtils.getCurrentUser(request);
+        modelAndView.addObject("userName",user.getUserName());
+        modelAndView.addObject("mobileNo",user.getMobileNo());
+        modelAndView.addObject("email",user.getEmail());
+        return modelAndView;
     }
 
     @RequestMapping("/toSetting")

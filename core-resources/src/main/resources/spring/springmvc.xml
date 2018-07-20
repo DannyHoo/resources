@@ -30,6 +30,7 @@
     <mvc:resources location="/WEB-INF/bg/images/" mapping="/bg/images/**"/>
     <mvc:resources location="/WEB-INF/bg/layui/" mapping="/bg/layui/**"/>
     <mvc:resources location="/WEB-INF/bg/json/" mapping="/bg/json/**"/>
+    <mvc:resources location="/WEB-INF/bg/mp4/" mapping="/bg/mp4/**"/>
     <mvc:resources location="/WEB-INF/front/js/" mapping="/front/js/**"/>
     <mvc:resources location="/WEB-INF/front/css/" mapping="/front/css/**"/>
     <mvc:resources location="/WEB-INF/front/images/" mapping="/front/images/**"/>
