@@ -42,5 +42,6 @@ public abstract class BaseDaoSpringTest extends AbstractTransactionalJUnit4Sprin
     }
 
     //测试回退1 2019年08月01日11:37:04
+    //测试回退2 2019年08月01日11:38:07
 }
 
