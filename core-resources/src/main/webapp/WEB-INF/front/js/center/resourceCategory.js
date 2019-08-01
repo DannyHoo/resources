@@ -128,6 +128,9 @@ $(function () {
     }
 
     function substringAndReplace(str, length) {
+        if(typeof str == "undefined" || str == null || str == ""){
+            return "";
+        }
         if (str.length <= length) {
             return str;
         } else {

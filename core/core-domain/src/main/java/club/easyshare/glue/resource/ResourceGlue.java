@@ -55,6 +55,7 @@ public class ResourceGlue extends BaseGlue {
      * @return
      */
     public Pagenation<ResourceVO> findAllByCategoryCodeAndStatus(String categoryCode, int pageNum, int pageSize, String status, boolean isRealPage) {
+        long start=System.currentTimeMillis();
         Pagenation<ResourceVO> result = new Pagenation<ResourceVO>();
         //真分页
         if (isRealPage) {
@@ -73,6 +74,7 @@ public class ResourceGlue extends BaseGlue {
                 result.setDataList(resourceVOList);
             }
         }
+        System.out.println("findAllByCategoryCodeAndStatus耗时："+(System.currentTimeMillis()-start));
         return result;
     }
 
@@ -83,6 +85,7 @@ public class ResourceGlue extends BaseGlue {
      * @param recordCount 查询前几条
      */
     public List<ResourceVO> queryOrderByViewCount(String status, int recordCount) {
+        long start=System.currentTimeMillis();
         Pagenation<ResourceVO> result = new Pagenation<ResourceVO>();
         Sort sort = new Sort(Sort.Direction.DESC, "viewCount");
         Pageable pageable = new PageRequest(0, recordCount, sort);
@@ -98,10 +101,12 @@ public class ResourceGlue extends BaseGlue {
             }
             result.setDataList(resourceVOList);
         }
+        System.out.println("queryOrderByViewCount："+(System.currentTimeMillis()-start));
         return result.getDataList();
     }
 
     public List<ResourceVO> queryOrderByCreateTime(String status, int recordCount) {
+        long start=System.currentTimeMillis();
         Pagenation<ResourceVO> result = new Pagenation<ResourceVO>();
         Sort sort = new Sort(Sort.Direction.DESC, "createTime");
         Pageable pageable = new PageRequest(0, recordCount, sort);
@@ -117,11 +122,13 @@ public class ResourceGlue extends BaseGlue {
             }
             result.setDataList(resourceVOList);
         }
+        System.out.println("queryOrderByCreateTime："+(System.currentTimeMillis()-start));
         return result.getDataList();
     }
 
 
     public List<ResourceVO> queryOrderByRand(String status, int recordCount) {
+        long start=System.currentTimeMillis();
         List<ResourceDO> resourceDOList = resourceDAO.queryOrderByRand(status, recordCount);
         if (ListUtil.isEmpty(resourceDOList)) {
             return new ArrayList();
@@ -130,6 +137,7 @@ public class ResourceGlue extends BaseGlue {
         for (ResourceVO resourceVO : resourceVOList) {
             resourceVO.setCategoryName(getCategoryName(resourceVO.getCategoryCode()));
         }
+        System.out.println("queryOrderByRand："+(System.currentTimeMillis()-start));
         return resourceVOList;
     }
 
