@@ -1,1 +1,1 @@
-# easysharing
+# resources
